@@ -1,0 +1,215 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>商品日报表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="product_day_report.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            商品日报表
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box">
+                    <input id="d5221" class="Wdate start_time" name="start_time" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="开始日期"/>
+                    <i>-</i>
+                    <input id="d5222" class="Wdate end_time" name="end_time" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="结束日期"/>
+                    <input class="input_textbox" type="text" name="name" placeholder="商品ID/商品名/简拼">
+                    <a href="javascript:void(0);" class="btn_search">
+                        查询
+                        <i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置
+                        <i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">商品ID</th>
+                        <th width="13%">商品名</th>
+                        <th width="8%">当日订单(单)</th>
+                        <th width="8%">平均盒数(盒)</th>
+                        <th width="8%">当日销量(盒)</th>
+                        <th width="8%">新购订单(单)</th>
+                        <th width="8%">新购均量(盒)</th>
+                        <th width="8%">新购销量(盒)</th>
+                        <th width="8%">复购订单(单)</th>
+                        <th width="8%">复购均量(盒)</th>
+                        <th width="8%">当日复购(盒)</th>
+                        <th width="10%">
+                            <a class="th-sort" href="javascript:void(0);">当前日期<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>雏凤精</td>
+                        <td>6</td>
+                        <td>1</td>
+                        <td>9</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>7</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2017-08-08</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>雏凤精</td>
+                        <td>6</td>
+                        <td>1</td>
+                        <td>9</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>7</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2017-08-08</td>
+                    </tr>
+                </tbody>
+                <!-- 合计部分,需计算 -->
+                <tr class="tr_heji">
+                    <td>合计</td>
+                    <td></td>
+                    <td>7</td>
+                    <td>1</td>
+                    <td>10</td>
+                    <td>6</td>
+                    <td>1</td>
+                    <td>8</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="product_day_report.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.start_time').val(getNowFormatDate());
+            $('.end_time').val(getNowFormatDate());
+        });
+        //查询部分
+        $('.btn_search').on('click',function() {
+            //获取开始日期到结束日期
+            var start_time = $('.start_time').val();
+            var end_time = $('.end_time').val();
+            $.ajax({
+                url: "demo.php", 
+                data:{'start_time':start_time,'end_time':end_time},
+                type:"post",
+                dataType:"json",
+                success: function(data){ 
+                    if(data != null && data.status == 0){
+                        var str = "";
+                        for(var i=0;i<data.content.length;i++){
+                            str += "<tr>";
+                                str += "<td>"+data.content[i].order_num+"</td>";
+                                str += "<td>"+data.content[i].sales_amount+"</td>";
+                                str += "<td>"+data.content[i].ke_price+"</td>";
+                                str += "<td>"+data.content[i].new_customer_order+"</td>";
+                                str += "<td>"+data.content[i].new_customer_sales+"</td>";
+                                str += "<td>"+data.content[i].new_customer_price+"</td>";
+                                str += "<td>"+data.content[i].purchase_order+"</td>";
+                                str += "<td>"+data.content[i].purchase_sales+"</td>";
+                                str += "<td>"+data.content[i].purchase_price+"</td>";
+                                str += "<td>"+data.content[i].sales_mendian+"</td>";
+                                str += "<td>"+data.content[i].sales_clerk+"</td>";
+                                str += "<td>"+data.content[i].now_time+"</td>";
+                            str += "</tr>";
+                        }
+                        $('.tbody_box').html("");
+                        $('.tbody_box').append(str);
+                        //以下为合计部分,需计算所有搜索到的内容，然后加入到text里
+                        $('.tr_heji td').eq(1).text("");
+                        $('.tr_heji td').eq(2).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(3).text(data.heji.new_customer_order);
+                        $('.tr_heji td').eq(4).text(data.heji.new_customer_sales);
+                        $('.tr_heji td').eq(5).text(data.heji.new_customer_price);
+                        $('.tr_heji td').eq(6).text(data.heji.purchase_order);
+                        $('.tr_heji td').eq(7).text(data.heji.purchase_sales);
+                        $('.tr_heji td').eq(8).text(data.heji.purchase_price);
+                        $('.tr_heji td').eq(9).text(data.heji.sales_mendian);
+                        $('.tr_heji td').eq(10).text(data.heji.sales_clerk);
+                        $('.tr_heji td').eq(11).text("");
+                    }else if(data.status == 1){
+                        var str = "<tr><td colspan='12' style='background:#ffffff;height:100px;line-height:100px;text-align:center;'>没有任何数据！</td></tr>";
+                        $('.tbody_box').html("");
+                        $('.tbody_box').append(str);
+                        $('.tr_heji td').eq(1).text("");
+                        $('.tr_heji td').eq(2).text("0");
+                        $('.tr_heji td').eq(3).text("0");
+                        $('.tr_heji td').eq(4).text("0");
+                        $('.tr_heji td').eq(5).text("0");
+                        $('.tr_heji td').eq(6).text("0");
+                        $('.tr_heji td').eq(7).text("0");
+                        $('.tr_heji td').eq(8).text("0");
+                        $('.tr_heji td').eq(9).text("0");
+                        $('.tr_heji td').eq(10).text("0");
+                        $('.tr_heji td').eq(11).text("");
+                    }
+                },
+                error:function() {
+                    var str = "<tr><td colspan='12' style='background:#ffffff;height:100px;line-height:100px;text-align:center;'>服务器开小差...</td></tr>";
+                    $('.tbody_box').html("");
+                    $('.tbody_box').append(str);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

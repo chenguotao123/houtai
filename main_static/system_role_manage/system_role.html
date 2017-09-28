@@ -1,0 +1,494 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>角色管理</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="system_role.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            角色管理列表
+            <a href="javascript:void(0);" class="btn_add">
+                <span>新增</span>
+                <i class="add"></i>
+            </a>
+        </div>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table" width="100%">
+                <thead width="100%">
+                    <tr width="100%">
+                        <th width="5%" nowrap>编号</th>  
+                        <th width="10%" nowrap>角色名</th> 
+                        <th width="75%" nowrap>描述</th> 
+                        <th width="10%" nowrap>操作</th> 
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>超级管理员</td>
+                        <td>11111111111111</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>普通管理员</td>
+                        <td>11111111111111</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>普通管理员</td>
+                        <td>11111111111111</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>客服经理</td>
+                        <td>11111111111111</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>客服</td>
+                        <td>11111111111111</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>       
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <!-- <img class="left-btn-all-img" src="../../images/l-btn-img.png" alt=""> -->
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <!-- <img class="left-btn-img" src="../../images/l-btn-img.png" alt=""> -->
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <!-- <img class="right-btn-img" src="../../images/r-btn-img.png" alt=""> -->
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <!-- <img class="right-btn-all-img" src="../../images/r-btn-img.png" alt=""> -->
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <!-- <img class="refresh-btn-img" src="../../images/refresh-btn-img.png" alt=""> -->
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <!-- 新增和编辑部分 -->
+    <form id="form_tijiao" name="form_tijiao" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;border:1px solid #ccc;">
+                    <span class="add_tit">添加角色</span>
+                </div>
+                <ul class="mask-tabs-tit clearfix">
+                    <li class="current"><a href="javascript:void(0);">基本信息</a></li>
+                    <li><a href="javascript:void(0);">客户管理</a></li>
+                    <li><a href="javascript:void(0);">订单管理</a></li>
+                    <li><a href="javascript:void(0);">商品管理</a></li>
+                    <li><a href="javascript:void(0);">资讯管理</a></li>
+                    <li><a href="javascript:void(0);">客户管理</a></li>
+                    <li><a href="javascript:void(0);">报表管理</a></li>
+                    <li><a href="javascript:void(0);">系统管理</a></li>
+                </ul>
+                <!-- 基本信息部分 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">角色名：</td>
+                                <td colspan="8">
+                                    <span class="jiaose_name">
+                                        <input name="jiaose_name" type="text" value="">
+                                        <i class="jiaose_name-xing input-xing">*</i>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">角色描述：</td>
+                                <td colspan="8">
+                                    <span class="jiaose_desc">
+                                        <textarea name="jiaose_desc"></textarea>
+                                        <i class="input-xing jiaose_desc-xing">*</i>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">角色权限：</td>
+                                <td colspan="8">
+                                    <span class="jiaose_right">
+                                        <label for="allcheck">
+                                            <input name="allcheck" id="allcheck" type="checkbox">
+                                            <label for="allcheck" class="label"></label>
+                                             全选
+                                        </label>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                     </div>
+                </div>
+                <!-- 客户管理部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table tab-table-big">
+                            <tr class="customer-box">
+                                <td class="td-tit">
+                                    <span class="label-box">
+                                        <label for="kehu_all">
+                                            <input id="kehu_all" class="kehu-check check" name="kehu_all" type="checkbox">
+                                            <label for="kehu_all" class="label"></label>
+                                            全选
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr class="customer-box">
+                                <td class="td-tit" class="one-td">
+                                    <span class="label-box">
+                                        <label for="customer_manage">
+                                            <input id="customer_manage" name="customer_manage" class="check customer-tit kehu-check" type="checkbox">
+                                            <label for="customer_manage" class="label"></label>
+                                            客户管理
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8" class="two-td customer-cont all-cont">
+                                    <label for="customer_see">
+                                        <input id="customer_see" name="customer_see" class="check kehu-check" type="checkbox">
+                                        <label for="customer_see" class="label"></label>
+                                        查看
+                                    </label>
+                                    <label for="customer_add">
+                                        <input id="customer_add" name="customer_add" class="check kehu-check" type="checkbox">
+                                        <label for="customer_add" class="label"></label>
+                                        编辑/添加
+                                    </label>
+                                    <label for="customer_remove">
+                                        <input id="customer_remove" name="customer_remove" class="check kehu-check" type="checkbox">
+                                        <label for="customer_remove" class="label"></label>
+                                        移除
+                                    </label>
+                                    <label for="customer_recovery">
+                                        <input id="customer_recovery" name="customer_recovery" class="check kehu-check" type="checkbox">
+                                        <label for="customer_recovery" class="label"></label>
+                                        回收站
+                                    </label>
+                                    <label for="customer_reduction">
+                                        <input id="customer_reduction" name="customer_reduction" class="check kehu-check" type="checkbox">
+                                        <label for="customer_reduction" class="label"></label>
+                                        还原
+                                    </label>
+                                    <label for="customer_del">
+                                        <input id="customer_del" name="customer_del" class="check kehu-check" type="checkbox">
+                                        <label for="customer_del" class="label"></label>
+                                        删除
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="customer-box">
+                                <td class="td-tit" class="one-td">
+                                    <span class="label-box">
+                                        <label for="visit_manage">
+                                            <input id="visit_manage" name="visit_manage" class="check customer-tit kehu-check" type="checkbox">
+                                            <label for="visit_manage" class="label"></label>
+                                            回访管理
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8" class="two-td visit-cont all-cont">
+                                     <label for="visit_see">
+                                        <input id="visit_see" name="visit_see" class="check kehu-check" type="checkbox">
+                                        <label for="visit_see" class="label"></label>
+                                        查看
+                                    </label>
+                                    <label for="visit_add">
+                                        <input id="visit_add" name="visit_add" class="check kehu-check" class="check" type="checkbox">
+                                        <label for="visit_add" class="label"></label>
+                                        编辑/添加
+                                    </label>
+                                    <label for="visit_remove">
+                                        <input id="visit_remove" name="visit_remove" class="check kehu-check" type="checkbox">
+                                        <label for="visit_remove" class="label"></label>
+                                        移除
+                                    </label>
+                                    <label for="visit_recovery">
+                                        <input id="visit_recovery" name="visit_recovery" class="check kehu-check" type="checkbox">
+                                        <label for="visit_recovery" class="label"></label>
+                                        回收站
+                                    </label>
+                                    <label for="visit_reduction">
+                                        <input name="visit_reduction" id="visit_reduction" class="check kehu-check" type="checkbox">
+                                        <label for="visit_reduction" class="label"></label>
+                                        还原
+                                    </label>
+                                    <label for="visit_del">
+                                        <input name="visit_del" id="visit_del" class="check kehu-check" type="checkbox">
+                                        <label for="visit_del" class="label"></label>
+                                        删除
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="customer-box">
+                                <td class="td-tit" class="one-td">
+                                    <span class="label-box">
+                                        <label for="do_manage">
+                                            <input id="do_manage" name="do_manage" class="check customer-tit kehu-check" type="checkbox">
+                                            <label for="do_manage" class="label"></label>
+                                            待办管理
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8" class="two-td do-cont all-cont">
+                                    <label for="do_see">
+                                        <input id="do_see" name="do_see" class="check kehu-check" type="checkbox">
+                                        <label for="do_see" class="label"></label>
+                                        查看
+                                    </label>
+                                    <label for="do_add">
+                                        <input id="do_add" name="do_add" class="check kehu-check" type="checkbox">
+                                        <label for="do_add" class="label"></label>
+                                        编辑/添加
+                                    </label>
+                                    <label for="do_remove">
+                                        <input id="do_remove" name="do_remove" class="check kehu-check" type="checkbox">
+                                        <label for="do_remove" class="label"></label>
+                                        移除
+                                    </label>
+                                    <label for="do_recovery">
+                                        <input id="do_recovery" name="do_recovery" class="check kehu-check" type="checkbox">
+                                        <label for="do_recovery" class="label"></label>
+                                        回收站
+                                    </label>
+                                    <label for="do_reduction">
+                                        <input id="do_reduction" name="do_reduction" class="check kehu-check" type="checkbox">
+                                        <label for="do_reduction" class="label"></label>
+                                        还原
+                                    </label>
+                                    <label for="do_del">
+                                        <input id="do_del" name="do_del" class="check kehu-check" type="checkbox">
+                                        <label for="do_del" class="label"></label>
+                                        删除
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="customer-box">
+                                <td class="td-tit" class="one-td">
+                                    <span class="label-box">
+                                        <label for="kefu_trans">
+                                            <input id="kefu_trans" name="kefu_trans" class="check customer-tit kehu-check" type="checkbox">
+                                            <label for="kefu_trans" class="label"></label>
+                                            客服转移
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8" class="two-td all-cont odd-check">
+                                    <label for="kehu_trans">
+                                        <input id="kehu_trans" name="kehu_trans" class="check kehu-cont kehu-check" type="checkbox">
+                                        <label for="kehu_trans" class="label"></label>
+                                        转移客户
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="customer-box">
+                                <td class="td-tit" class="one-td">
+                                    <span class="label-box">
+                                        <label for="kefu_merge">
+                                            <input id="kefu_merge" name="kefu_merge" class="check customer-tit kehu-check" type="checkbox">
+                                            <label for="kefu_merge" class="label"></label>
+                                            客服合并
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8" class="two-td all-cont odd-check">
+                                    <label for="kehu_merge">
+                                        <input id="kehu_merge" name="kehu_merge" class="check kehu-check" type="checkbox">
+                                        <label for="kehu_merge" class="label"></label>
+                                        合并客户
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                     </div>
+                </div>
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        订单管理
+                    </div>
+                </div>
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        商品管理
+                    </div>
+                </div>  
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        资讯管理
+                    </div>
+                </div>
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        客户管理
+                    </div>
+                </div>
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        报表管理
+                    </div>
+                </div>
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table tab-table-big">
+                            <tr class="customer-box">
+                                <td class="td-tit">
+                                    <span class="label-box">
+                                        <label for="check_system">
+                                            <input id="check_system" class="check" name="check_system" type="checkbox">
+                                            <label for="check_system" class="label"></label>
+                                            全选
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr class="customer-box">
+                                <td class="td-tit" class="one-td">
+                                    <span class="label-box">
+                                        <label for="system_manage">
+                                            <input id="system_manage" name="system_manage" class="check system_check system_tit" type="checkbox">
+                                            <label for="system_manage" class="label"></label>
+                                            管理员管理
+                                        </label>
+                                    </span>
+                                </td>
+                                <td colspan="8" class="two-td manage-cont system-cont">
+                                   <label for="system_see">
+                                       <input id="system_see" name="system_see" class="check system_check" type="checkbox">
+                                       <label for="system_see" class="label"></label>
+                                       查看
+                                   </label>
+                                   <label for="system_add">
+                                       <input id="system_add" name="system_add" class="check system_check" type="checkbox">
+                                       <label for="system_add" class="label"></label>
+                                       编辑/添加
+                                   </label>
+                                   <label for="system_del">
+                                       <input id="system_del" name="system_del" class="check system_check" type="checkbox">
+                                       <label for="system_del" class="label"></label>
+                                       删除
+                                   </label>
+                                </td>
+                            </tr>
+                            <tr class="customer-box">
+                                <td class="td-tit" class="one-td">
+                                    <span class="label-box">
+                                       <label for="jiaose_manage">
+                                           <input id="jiaose_manage" name="jiaose_manage" class="check system_check system_tit" type="checkbox">
+                                           <label for="jiaose_manage" class="label"></label>
+                                           角色管理
+                                       </label>
+                                    </span>
+                                </td>
+                                <td colspan="8" class="two-td jiaose-cont system-cont">
+                                   <label for="jiaose_see">
+                                       <input id="jiaose_see" name="jiaose_see" class="check system_check" type="checkbox">
+                                       <label for="jiaose_see" class="label"></label>
+                                       查看
+                                   </label>
+                                   <label for="jiaose_add">
+                                       <input id="jiaose_add" name="jiaose_add" class="check system_check" type="checkbox">
+                                       <label for="jiaose_add" class="label"></label>
+                                       编辑/添加
+                                   </label>
+                                   <label for="jiaose_del">
+                                       <input id="jiaose_del" name="jiaose_del" class="check system_check" type="checkbox">
+                                       <label for="jiaose_del" class="label"></label>
+                                       删除
+                                   </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">确&nbsp;定</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="system_role.js"></script>
+    <script type="text/javascript">     
+        //tab栏切换
+        $(function () {
+            $('.mask-tabs li').click(function () {
+                var index = $(this).index();
+                $(this).addClass('current').siblings('li').removeClass('current');
+                $('.tabcontent').eq(index).show().siblings('.tabcontent').hide();
+            });
+        });
+    </script>
+</body>
+</html>

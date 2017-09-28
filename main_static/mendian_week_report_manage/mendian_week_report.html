@@ -1,0 +1,232 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>门店周报表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="mendian_week_report.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">门店周报表</span>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <!--  周报表，默认显示本周数据，只显示本年度周.... -->
+                    <span class="beautify_select now_week_one">
+                        <select name="now_week_one" class="beautify_input">
+                            <option value="2">第1周</option>
+                            <option value="3">第2周</option>
+                            <option value="4">第3周</option>
+                            <option value="5">第4周</option>
+                            <option value="6">第5周</option>
+                            <option value="7">第6周</option>
+                            <option value="8">第7周</option>
+                            <option value="9">第8周</option>
+                            <option value="10">第9周</option>
+                            <option value="11">第10周</option>
+                            <!-- ....一直列到36周 -->
+                            <option value="32">第31周</option>
+                            <option value="33">第32周</option>
+                            <option value="34">第33周</option>
+                            <option value="35">第34周</option>
+                            <option value="36">第35周</option>
+                            <option value="37">第36周</option>
+                            <option value="1">上周</option>
+                            <option value="0" selected>本周</option>
+                        </select>
+                    </span>
+                    <i class="icon_heng">-</i>
+                    <span class="beautify_select now_week_two">
+                        <select name="now_week_two" class="beautify_input">
+                            <option value="2">第1周</option>
+                            <option value="3">第2周</option>
+                            <option value="4">第3周</option>
+                            <option value="5">第4周</option>
+                            <option value="6">第5周</option>
+                            <option value="7">第6周</option>
+                            <option value="8">第7周</option>
+                            <option value="9">第8周</option>
+                            <option value="10">第9周</option>
+                            <option value="11">第10周</option>
+                            <!-- ....一直列到36周 -->
+                            <option value="32">第31周</option>
+                            <option value="33">第32周</option>
+                            <option value="34">第33周</option>
+                            <option value="35">第34周</option>
+                            <option value="36">第35周</option>
+                            <option value="37">第36周</option>
+                            <option value="1">上周</option>
+                            <option value="0" selected>本周</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select business">
+                        <select name="business" class="beautify_input">
+                            <option value="0" selected>=所属业务=</option>
+                            <option value="1">业务1</option>
+                            <option value="2">业务2</option>
+                            <option value="3">业务3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select customer_service">
+                        <select name="customer_service" class="beautify_input">
+                            <option value="0" selected>=所属客服=</option>
+                            <option value="1">客服1</option>
+                            <option value="2">客服2</option>
+                            <option value="3">客服3</option>
+                        </select>
+                    </span>
+                    <input class="input_textbox" type="text" name="name" placeholder="ID/门店/简拼">
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="8%">门店简称</th>
+                        <th width="5%">店员数</th>
+                        <th width="5%">微信店员</th>
+                        <th width="5%">顾客数</th>
+                        <th width="5%">微顾客数</th>
+                        <th width="5%">粉丝数</th>
+                        <th width="6%">顾客绑定率</th>
+                        <th width="5%">订单数</th>
+                        <th width="7%">
+                            <a class="th-sort" href="javascript:void(0);">销售额<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="6%">客单价</th>
+                        <th width="6%">新客订单</th>
+                        <th width="6%">新客销售</th>
+                        <th width="6%">新客单价</th>
+                        <th width="6%">复购订单</th>
+                        <th width="6%">复购销售</th>
+                        <th width="6%">复购单价</th>
+                        <th width="7%">开始日期</th>
+                        <th width="7%">结束日期</th>
+                    </tr>
+                </thead>
+                <tbody class="main_tbody">
+                    <tr>
+                        <td>1111</td>
+                        <td>111111111</td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2017-08-08</td>
+                        <td>2017-08-08</td>
+                    </tr>
+                    <tr>
+                        <td>1111</td>
+                        <td>111111111</td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2017-09-09</td>
+                        <td>2017-09-09</td>
+                    </tr>
+                </tbody>
+                <!-- 合计部分,需计算 -->
+                <tr class="tr_heji">
+                    <td>合计</td>
+                    <td>111111111</td>
+                    <td>111111111</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="mendian_week_report.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+    </script>
+</body>
+</html>

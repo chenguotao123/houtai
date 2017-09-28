@@ -1,0 +1,2560 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>客户列表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="customer_list.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">全部客户</span>
+            <a id="btn_add" href="javascript:void(0);" class="btn_add">
+                <span>新增</span>
+                <i class="add"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_back btn_back_customer">
+                <span>回收站</span>
+                <i class="back"></i>
+            </a>
+        </div>
+        <form action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <input class="input_textbox" type="text" name="name" placeholder="顾客ID/姓名/简拼/电话/门店名">
+                    <input id="d5221" class="Wdate" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="开始日期"/>
+                    <i class="icon_heng">-</i>
+                    <input id="d5222" class="Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="结束日期"/>
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                    查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                    重置<i class="reload"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_more">
+                    更多<i class="more"></i>
+                    </a>
+                </span>
+                <div class="more-box hide clearfix" style="padding-top: 20px;">
+                    <input class="input_textbox" type="text" name="age" style="width: 60px;" placeholder="年龄" onkeyup="value=value.replace(/[^\d]/g,'')">
+                    <i class="icon_hengxian">-</i>
+                    <input class="input_textbox" type="text" name="age" style="width: 60px;" placeholder="年龄" onkeyup="value=value.replace(/[^\d]/g,'')">
+
+                    <span class="beautify_select">
+                        <select name="sex" class="beautify_input">
+                            <option value="0" selected>==性别==</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="bind" class="beautify_input">
+                            <option value="0" selected>==是否绑定==</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select id="department" name="department" class="beautify_input">
+                            <option value="0" selected>==科室==</option>
+                            <option value="1">科室1</option>
+                            <option value="2">科室2</option>
+                            <option value="3">科室3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select disease_select">
+                        <select id="disease" name="disease" class="beautify_input">
+                            <option value="0">==病种==</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="more-box hide clearfix" style="padding-top:20px;">
+                    <span class="beautify_select store_select">
+                        <select id="store" name="store" class="beautify_input">
+                            <option value="0" selected>==所属门店==</option>
+                            <option value="1">门店1</option>
+                            <option value="2">门店2</option>
+                            <option value="3">门店3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select worker_select">
+                        <select id="store_worker" name="store_worker" class="beautify_input">
+                            <option value="0" selected>==所属店员==</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="customer_grade" class="beautify_input">
+                            <option value="0" selected>==客户等级==</option>
+                            <option value="1">普通客户</option>
+                            <option value="2">贵宾客户</option>
+                            <option value="3">普通客户</option>
+                            <option value="4">普通客户</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="source" class="beautify_input">
+                            <option value="0" selected>==添加来源==</option>
+                            <option value="1">微信-客服1</option>
+                            <option value="2">微信-客服2</option>
+                            <option value="3">微信-客服3</option>
+                            <option value="4">微信-客服4</option>
+                        </select>
+                    </span>
+               </div>
+            </div>
+        </form>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">序号</th>
+                        <th width="6%">
+                            <a class="th-sort" href="javascript:void(0);">客户ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="5%">微信ID</th>
+                        <th width="9%">客户姓名</th>
+                        <th width="5%">性别</th>
+                        <th width="5%">年龄</th>
+                        <th width="10%">联系方式</th>
+                        <th width="5%">订单数</th>
+                        <th width="7%">客户等级</th>
+                        <th width="11%">所属门店</th>
+                        <th width="8%">所属店员</th>
+                        <th width="8%">添加来源</th>
+                        <th width="8%">更新日期</th>
+                        <th width="8%">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>123</td>
+                        <td>1234</td>
+                        <td>凯</td>
+                        <td>男</td>
+                        <td>18</td>
+                        <td>888888888888</td>
+                        <td>1</td>
+                        <td>普通客户</td>
+                        <td>嘉仑药业泰轩堂分店</td>
+                        <td>陈小姐</td>
+                        <td>微信店员</td>
+                        <td>2017-08-08</td>
+                        <td>
+                            <a class="btn_chakan" href="javascript:void(0);">
+                                <img src="../../images/icon_chakan.png" alt="">
+                            </a>
+                            <a class="btn_update btn_main_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>123</td>
+                        <td>1234</td>
+                        <td>凯</td>
+                        <td>男</td>
+                        <td>18</td>
+                        <td>888888888888</td>
+                        <td>1</td>
+                        <td>普通客户</td>
+                        <td>嘉仑药业泰轩堂分店</td>
+                        <td>陈小姐</td>
+                        <td>微信店员</td>
+                        <td>2017-08-08</td>
+                        <td>
+                            <a class="btn_chakan" href="javascript:void(0);">
+                                <img src="../../images/icon_chakan.png" alt="">
+                            </a>
+                            <a class="btn_update btn_main_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);">
+                                <img src="../../images/icon_reduction.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>123</td>
+                        <td>1234</td>
+                        <td>凯</td>
+                        <td>男</td>
+                        <td>18</td>
+                        <td>888888888888</td>
+                        <td>1</td>
+                        <td>普通客户</td>
+                        <td>嘉仑药业泰轩堂分店</td>
+                        <td>陈小姐</td>
+                        <td>微信店员</td>
+                        <td>2017-08-08</td>
+                        <td>
+                            <a class="btn_chakan" href="javascript:void(0);">
+                                <img src="../../images/icon_chakan.png" alt="">
+                            </a>
+                            <a class="btn_update btn_main_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <!-- 编辑和添加部分 -->
+    <form id="form_tijiao" name="form_tijiao" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs add-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;">
+                    <span class="add_tit">添加客户</span>
+                    <a href="javascript:void(0);" class="btn_add btn_customer_list">
+                        <span>客户列表</span>
+                        <i class="icon_customer_list"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_excel">
+                        <span>导出</span>
+                        <i class="excel"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_back btn_add_back">
+                        <span>回收站</span>
+                        <i class="back"></i>
+                    </a>
+                </div>
+                <ul class="mask-tabs-tit clearfix">
+                    <li class="current"><a href="javascript:void(0);">基本信息</a></li>
+                    <li><a href="javascript:void(0);">症状信息</a></li>
+                    <li><a href="javascript:void(0);">添加订单</a></li>
+                </ul>
+                <!-- 基本信息部分 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">顾客姓名：</td>
+                                <td colspan="2">
+                                    <input class="input-text customer_name" name="customer_name" type="text" placeholder="顾客姓名">
+                                    <i class="input-xing customer_name-xing">*</i>
+                                </td>
+                                <td class="td-tit">顾客性别：</td>
+                                <td colspan="2">
+                                    <label for="check1" class="radioFour">
+                                        <input name="sex" id="check1" type="radio">
+                                        <label for="check1"></label>
+                                        男
+                                    </label>
+                                    <label for="check2"  class="radioFour">
+                                        <input name="sex" id="check2" type="radio" checked="true">
+                                        <label for="check2"></label>
+                                        女
+                                    </label>
+                                </td>
+                                <td class="td-tit">顾客年龄：</td>
+                                <td colspan="2">
+                                    <input class="input-text customer_age" style="width: 80px;" name="customer_name" type="text" placeholder="顾客年龄" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机1：</td>
+                                <td colspan="2">
+                                    <input class="input-text phone_one" style="width: 120px;" name="phone_one" type="text" placeholder="13800138000" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11">
+                                    <i class="input-xing phone_one-xing">*</i>
+                                    <div class="phone-tishi" style="display:none;line-height:13px;font-size:12px;color:#ff0000;">该号码已被会员ID:5503占用！</div>
+                                </td>
+                                <td class="td-tit">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机2：</td>
+                                <td colspan="2">
+                                    <input class="input-text phone_two" style="width: 120px;" name="phone_two" type="text" placeholder="" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11">
+                                </td>
+                                <td class="td-tit">固&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+                                <td colspan="2">
+                                    <input class="input-text gu_phone" style="width: 120px;" name="phone_phone" type="text" placeholder="0757-81278888" onkeyup="value=value.replace(/[^-\d]/g,'')">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">科室病种：</td>
+                                <td colspan="2">
+                                    <span class="beautify_select keshi_select">
+                                        <select name="keshi" class="beautify_input keshi">
+                                            <option value="0">请选择科室...</option>
+                                            <option value="1">科室1</option>
+                                            <option value="2">科室2</option>
+                                            <option value="3">科室3</option>
+                                        </select>
+                                    </span>
+                                    <span style="display:inline-block;"></span>
+                                    <span class="beautify_select bingzhong_select">
+                                        <select id="bingzhong" name="bingzhong" class="beautify_input">
+                                            <option value="0">请选择病种...</option>
+                                        </select>
+                                    </span>
+                                    <i class="input-xing keshi-xing">*</i>
+                                </td>
+                                <td class="td-tit">客户阶段：</td>
+                                <td colspan="5">
+                                    <span class="beautify_select customer_jieduan_select">
+                                        <select name="customer_jieduan" class="beautify_input customer_jieduan">
+                                            <option value="0">请选择...</option>
+                                            <option value="1">1阶段...</option>
+                                            <option value="2">2阶段...</option>
+                                            <option value="3">3阶段...</option>
+                                        </select>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">客户体质：</td>
+                                <td colspan="8">
+                                    <label for="check50" class="checkFour">
+                                        <input class="check" name="name50" id="check50" type="checkbox">
+                                        <label for="check50"></label>
+                                        阴虚体质
+                                    </label>
+                                    <label for="check51" class="checkFour">
+                                        <input class="check" name="name51" id="check51" type="checkbox">
+                                        <label for="check51"></label>
+                                        阳虚体质
+                                    </label>
+                                    <label for="check52" class="checkFour">
+                                        <input class="check" name="name52" id="check52" type="checkbox">
+                                        <label for="check52"></label>
+                                        气虚体质
+                                    </label>
+                                    <label for="check53" class="checkFour">
+                                        <input class="check" name="name53" id="check53" type="checkbox">
+                                        <label for="check53"></label>
+                                        气郁体质
+                                    </label>
+                                    <label for="check54" class="checkFour">
+                                        <input class="check" name="name54" id="check54" type="checkbox">
+                                        <label for="check54"></label>
+                                        痰湿体质
+                                    </label>
+                                    <label for="check55" class="checkFour">
+                                        <input class="check" name="name55" id="check55" type="checkbox">
+                                        <label for="check55"></label>
+                                        湿热体质
+                                    </label>
+                                    <label for="check56" class="checkFour">
+                                        <input class="check" name="name56" id="check56" type="checkbox">
+                                        <label for="check56"></label>
+                                        血淤体质
+                                    </label>
+                                    <label for="check57" class="checkFour">
+                                        <input class="check" name="name57" id="check57" type="checkbox">
+                                        <label for="check57"></label>
+                                        特禀体质
+                                    </label>
+                                    <label for="check58" class="checkFour">
+                                        <input class="check" name="name58" id="check58" type="checkbox">
+                                        <label for="check58"></label>
+                                        平和体质
+                                    </label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-tit" style="height:105px;">客户备注：</td>
+                                <td style="height:105px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                    <textarea class="customer-textarea" name="textarea" placeholder="客户备注"></textarea>    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit" style="height:70px;">所属客服：</td>
+                                <td style="height:70px;" colspan="2">
+                                    <span class="beautify_select customer_service_select">
+                                        <select name="customer_service" class="beautify_input customer_service">
+                                            <option value="0">请选择客服...</option>
+                                            <option value="1">客服...1</option>
+                                            <option value="2">客服...2</option>
+                                            <option value="3">客服...3</option>
+                                        </select>
+                                    </span>
+                                    <i class="input-xing customer_service-xing">*</i>
+                                </td>
+                                <td class="td-tit" style="height:70px;">门店、店员：</td>
+                                <td style="height:70px;" colspan="5">
+                                    <div class="td-one">
+                                        <input class="input-text input-text_num" style="width: 50px;" name="name" type="text">
+                                        <input class="input-text input-text_name" style="width: 180px;" name="name" type="text" placeholder="门店名称/简称/简拼">
+                                    </div>
+                                    <div class="td-two">
+                                        <input class="input-text input-text_num" style="width: 50px;" name="name" type="text">
+                                        <input class="input-text input-text_name" style="width: 100px;" name="name" type="text" placeholder="店员姓名/简拼">
+                                        <a class="btn_sou" href="javascript:void(0);">搜索</a>
+                                        <span class="beautify_select stores_add_select">
+                                            <select id="stores_add" name="stores_add" class="beautify_input">
+                                                <option value="0" selected="true"></option>
+                                            </select>
+                                        </span>
+                                        <a class="bind_selected" href="javascript:void(0);">选定</a>
+                                        <i class="input-xing stores_add-xing">*</i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 症状信息部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">月经周期：</td>
+                                <td colspan="8">
+                                    <label for="check3" class="radioFour">
+                                        <input class="check" name="name3" id="check3" type="radio">
+                                        <label for="check3"></label>
+                                        周期提前&nbsp;:&nbsp;每次至少提前7天以上
+                                    </label>
+                                    <label for="check4" class="radioFour">
+                                        <input class="check" name="name3" id="check4" type="radio">
+                                        <label for="check4"></label>
+                                        周期推后&nbsp;:&nbsp;每次拖后7天或以上
+                                    </label>
+                                    <label for="check5" class="radioFour">
+                                        <input class="check" name="name3" id="check5" type="radio">
+                                        <label for="check5"></label>
+                                        先后不定期&nbsp;:&nbsp;时间不规律
+                                    </label>
+                                    <label for="check6" class="radioFour">
+                                        <input class="check" name="name3" id="check6" type="radio">
+                                        <label for="check6"></label>
+                                        备经或停经
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">月经量：</td>
+                                <td colspan="8">
+                                    <label for="check7" class="radioFour">
+                                        <input class="check" name="name7" id="check7" type="radio">
+                                        <label for="check7"></label>
+                                        经量多
+                                    </label>
+                                    <label for="check8" class="radioFour">
+                                        <input class="check" name="name7" id="check8" type="radio">
+                                        <label for="check8"></label>
+                                        经量少
+                                    </label>
+                                    <label for="check9" class="radioFour">
+                                        <input class="check" name="name7" id="check9" type="radio">
+                                        <label for="check9"></label>
+                                        经量或多或少
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">月经经色：</td>
+                                <td colspan="8">
+                                    <label for="check10" class="radioFour">
+                                        <input class="check" name="name10" id="check10" type="radio">
+                                        <label for="check10"></label>
+                                        颜色发黑
+                                    </label>
+                                    <label for="check11" class="radioFour">
+                                        <input class="check" name="name10" id="check11" type="radio">
+                                        <label for="check11"></label>
+                                        颜色鲜红
+                                    </label>
+                                    <label for="check12" class="radioFour">
+                                        <input class="check" name="name10" id="check12" type="radio">
+                                        <label for="check12"></label>
+                                        深咖啡色
+                                    </label>
+                                    <label for="check13" class="radioFour">
+                                        <input class="check" name="name10" id="check13" type="radio">
+                                        <label for="check13"></label>
+                                        暗红或紫
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">月经质地：</td>
+                                <td colspan="8">
+                                    <label for="check14" class="radioFour">
+                                        <input class="check" name="name14" id="check14" type="radio">
+                                        <label for="check14"></label>
+                                        质稀
+                                    </label>
+                                    <label for="check15" class="radioFour">
+                                        <input class="check" name="name14" id="check15" type="radio">
+                                        <label for="check15"></label>
+                                        质稠
+                                    </label>
+                                    <label for="check16" class="radioFour">
+                                        <input class="check" name="name14" id="check16" type="radio">
+                                        <label for="check16"></label>
+                                        有血块
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">经期症状：</td>
+                                <td colspan="8">
+                                    <label for="check17" class="checkFour">
+                                        <input class="check" name="name17" id="check17" type="checkbox">
+                                        <label for="check17"></label>
+                                        腹痛明显
+                                    </label>
+                                    <label for="check18" class="checkFour">
+                                        <input class="check" name="name18" id="check18" type="checkbox">
+                                        <label for="check18"></label>
+                                        腹痛难忍
+                                    </label>
+                                    <label for="check19" class="checkFour">
+                                        <input class="check" name="name19" id="check19" type="checkbox">
+                                        <label for="check19"></label>
+                                        头昏眼花
+                                    </label>
+                                    <label for="check20" class="checkFour">
+                                        <input class="check" name="name20" id="check20" type="checkbox">
+                                        <label for="check20"></label>
+                                        腰部酸痛
+                                    </label>
+                                    <label for="check21" class="checkFour">
+                                        <input class="check" name="name21" id="check21" type="checkbox">
+                                        <label for="check21"></label>
+                                        恶心呕吐
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">头部、面部：</td>
+                                <td colspan="8">
+                                    <label for="check22" class="checkFour">
+                                        <input class="check" name="name22" id="check22" type="checkbox">
+                                        <label for="check22"></label>
+                                        头痛
+                                    </label>
+                                    <label for="check23" class="checkFour">
+                                        <input class="check" name="name23" id="check23" type="checkbox">
+                                        <label for="check23"></label>
+                                        眩晕
+                                    </label>
+                                    <label for="check24" class="checkFour">
+                                        <input class="check" name="name24" id="check24" type="checkbox">
+                                        <label for="check24"></label>
+                                        粉刺
+                                    </label>
+                                    <label for="check25" class="checkFour">
+                                        <input class="check" name="name25" id="check25" type="checkbox">
+                                        <label for="check25"></label>
+                                        失眠
+                                    </label>
+                                    <label for="check26" class="checkFour">
+                                        <input class="check" name="name26" id="check26" type="checkbox">
+                                        <label for="check26"></label>
+                                        贪冷饮、面色苍白
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">腹部症状：</td>
+                                <td colspan="8">
+                                    <label for="check27" class="checkFour">
+                                        <input class="check" name="name27" id="check27" type="checkbox">
+                                        <label for="check27"></label>
+                                        腹泻
+                                    </label>
+                                    <label for="check28" class="checkFour">
+                                        <input class="check" name="name28" id="check28" type="checkbox">
+                                        <label for="check28"></label>
+                                        小腹坠胀
+                                    </label>
+                                    <label for="check29"  class="checkFour">
+                                        <input class="check" name="name29" id="check29" type="checkbox">
+                                        <label for="check29"></label>
+                                        食欲不振
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">腰臂症状：</td>
+                                <td colspan="8">
+                                    <label for="check30" class="checkFour">
+                                        <input class="check" name="name30" id="check30" type="checkbox">
+                                        <label for="check30"></label>
+                                        腰酸
+                                    </label>
+                                    <label for="check31" class="checkFour">
+                                        <input class="check" name="name31" id="check31" type="checkbox">
+                                        <label for="check31"></label>
+                                        便秘
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">全身症状：</td>
+                                <td colspan="8">
+                                    <label for="check32" class="checkFour">
+                                        <input class="check" name="name32" id="check32" type="checkbox">
+                                        <label for="check32"></label>
+                                        浮肿
+                                    </label>
+                                    <label for="check33" class="checkFour">
+                                        <input class="check" name="name33" id="check33" type="checkbox">
+                                        <label for="check33"></label>
+                                        发热
+                                    </label>
+                                    <label for="check34" class="checkFour">
+                                        <input class="check" name="name34" id="check34" type="checkbox">
+                                        <label for="check34"></label>
+                                        身体酸痛
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">其他症状：</td>
+                                <td colspan="8">
+                                    <label for="check35" class="checkFour">
+                                        <input class="check" name="name35" id="check35" type="checkbox">
+                                        <label for="check35"></label>
+                                        乳房胀痛
+                                    </label>
+                                    <label for="check36" class="checkFour">
+                                        <input class="check" name="name36" id="check36" type="checkbox">
+                                        <label for="check36"></label>
+                                        白带异常
+                                    </label>
+                                    <label for="check37" class="checkFour">
+                                        <input class="check" name="name37" id="check37" type="checkbox">
+                                        <label for="check37"></label>
+                                        感冒
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">顾客需求：</td>
+                                <td colspan="8">
+                                    <label for="check38" class="checkFour">
+                                        <input class="check" name="name38" id="check38" type="checkbox">
+                                        <label for="check38"></label>
+                                        想月经正常
+                                    </label>
+                                    <label for="check39" class="checkFour">
+                                        <input class="check" name="name39" id="check39" type="checkbox">
+                                        <label for="check39"></label>
+                                        想气血充足
+                                    </label>
+                                    <label for="check40" class="checkFour">
+                                        <input class="check" name="name40" id="check40" type="checkbox">
+                                        <label for="check40"></label>
+                                        想经历旺盛
+                                    </label>
+                                    <label for="check41" class="checkFour">
+                                        <input class="check" name="name41" id="check41" type="checkbox">
+                                        <label for="check41"></label>
+                                        祛斑
+                                    </label>
+                                    <label for="check42" class="checkFour">
+                                        <input class="check" name="name42" id="check42" type="checkbox">
+                                        <label for="check42"></label>
+                                        备孕
+                                    </label>
+                                    <label for="check43" class="checkFour">
+                                        <input class="check" name="name43" id="check43" type="checkbox">
+                                        <label for="check43"></label>
+                                        夫妻生活正常
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td class="td-tit" style="height:105px;">其他症状：</td>
+                                <td style="height:105px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                    <textarea class="zhengzhuang-textarea" name="zhengzhuang-textarea"  placeholder="其他症状"></textarea>    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 添加订单部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">选择商品：</td>
+                                <td colspan="8">
+                                    <span class="beautify_select select_product">
+                                        <select id="select_product" name="select_product" class="beautify_input">
+                                            <option value="0">雏凤精-10ml*10支-山东宏济堂-138</option>
+                                            <option value="1">[赠品]雏凤精-10ml*10支-山东宏济堂-0</option>
+                                        </select>
+                                    </span>
+                                    <!-- <select name="select_product" class="select_product td_select" style="width:400px;">
+                                        <option value="0">雏凤精-10ml*10支-山东宏济堂-138</option>
+                                        <option value="1">[赠品]雏凤精-10ml*10支-山东宏济堂-0</option>
+                                    </select> -->
+                                    <a class="button_add" style="width: 70px;margin-left: 10px;" href="javascript:void(0);">添加</a>
+                                    <i class="input-xing select_product-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="td-tit">订单商品：</td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="td-table-box">
+                                    <table id="add_table" class="tab-table" style="display: none;">
+                                        <thead>
+                                            <tr>
+                                                <th width="7%">商品ID</th>
+                                                <th width="65%">商品名称/规格/厂家</th>
+                                                <th width="7%">价格</th>
+                                                <th width="7%">数量</th>
+                                                <th width="7%">小计</th>
+                                                <th width="7%">操作</th>
+                                            </tr>     
+                                        </thead>
+                                        <tbody id="add_tbody" class="tbody-box">
+                                            <!-- <tr>
+                                                <td>1</td>
+                                                <td>雏凤精...</td>
+                                                <td>138</td>
+                                                <td>
+                                                    <input name="name" type="text" class="input-right input-right-num" value="1"  onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                </td>
+                                                <td>
+                                                    <input name="name" type="text" class="input-right input-right-price" value="138"  onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                </td>
+                                                <td>
+                                                    <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                                        <img src="../../images/icon_del.png" alt="">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td><i class="zengpin">[赠品]</i>雏凤精...</td>
+                                                <td>0</td>
+                                                <td>
+                                                    <input name="name" type="text" class="input-right input-right-num" value="1"  onkeyup="value=value.replace(/[^\d]/g,'') ">
+                                                </td>
+                                                <td>
+                                                    <input name="name" type="text" class="input-right input-right-price" value="0"  onkeyup="value=value.replace(/[^\d]/g,'') ">
+                                                </td>
+                                                <td>
+                                                    <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                                        <img src="../../images/icon_del.png" alt="">
+                                                    </a>
+                                                </td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">订单小票：</td>
+                                <td colspan="8">
+                                    <input class="input-text right_ticket" style="width: 160px;" name="right_ticket" type="text" placeholder="订单小票">
+                                    <i class="input-xing right_ticket-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">订单总额：</td>
+                                <td colspan="8">
+                                    <input id="all_price" class="input-text" readonly="readonly" style="width: 60px;" name="all_price" type="text" placeholder="0.00">
+                                </td>
+                            </tr>
+                            <tr >
+                                <td class="td-tit" style="height:105px;">订单备注：</td>
+                                <td style="height:105px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                    <textarea class="zhengzhuang-textarea" name="zhengzhuang-textarea"  placeholder="订单备注"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">提&nbsp;交</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+
+    <!-- 查看客户信息部分 -->
+    <div class="add_box_see">
+        <!-- 主要部分 -->
+        <div class="see-tabs-box">
+            <div class="mask-tabs see-tabs">
+                <div class="table-tit edit_tit" style="margin-bottom: 6px;">
+                    查看客户
+                    <a href="javascript:void(0);" class="btn_add btn_customer_list">
+                        <span>客户列表</span>
+                        <i class="icon_customer_list"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_add btn_see_add">
+                        <span>新增</span>
+                        <i class="add"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_back btn_add_back btn_see_back">
+                        <span>回收站</span>
+                        <i class="back"></i>
+                    </a>
+                </div>
+                <ul class="mask-tabs-tit clearfix">
+                    <li class="current"><a href="javascript:void(0);">基本信息</a></li>
+                    <li><a href="javascript:void(0);">症状信息</a></li>
+                    <li><a href="javascript:void(0);">提醒记录</a></li>
+                    <li><a href="javascript:void(0);">待办记录</a></li>
+                    <li><a href="javascript:void(0);">回访记录</a></li>
+                    <li><a href="javascript:void(0);">购买记录</a></li>
+                </ul>
+                <!-- 基本信息部分 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <div class="tabcontent-tit"><span>消费信息<i class="bot-xian"></i></span></div>
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">顾客消费：</td>
+                                <td colspan="2">888.00</td>
+                                <td class="td-tit">顾客积分：</td>
+                                <td colspan="2">89</td>
+                                <td class="td-tit">可用积分：</td>
+                                <td colspan="2">89</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">顾客订单：</td>
+                                <td colspan="2">2</td>
+                                <td class="td-tit">顾客客单：</td>
+                                <td colspan="2">440.00</td>
+                                <td class="td-tit">最近购买：</td>
+                                <td colspan="2">2017-08-08</td>
+                            </tr>
+                        </table>       
+                        <div class="tabcontent-tit"><span>回访信息<i class="bot-xian"></i></span></div>
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">需要回访：</td>
+                                <td colspan="2">是</td>
+                                <td class="td-tit">回访次数：</td>
+                                <td colspan="2">8</td>
+                                <td class="td-tit">最近回访：</td>
+                                <td colspan="2">2017-08-08</td>
+                            </tr>
+                        </table>   
+                        <div class="tabcontent-tit"><span>基本信息<i class="bot-xian"></i></span></div>
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">客户ID：</td>
+                                <td colspan="2">8888</td>
+                                <td class="td-tit">客户等级：</td>
+                                <td colspan="2">贵宾客户</td>
+                                <td class="td-tit">顾客来源：</td>
+                                <td colspan="2">微信-店员</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">顾客姓名：</td>
+                                <td colspan="2">吴小姐</td>
+                                <td class="td-tit">顾客性别：</td>
+                                <td colspan="2">女</td>
+                                <td class="td-tit">顾客年龄：</td>
+                                <td colspan="2">30</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机1：</td>
+                                <td colspan="2">13888888888</td>
+                                <td class="td-tit">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机2：</td>
+                                <td colspan="2"></td>
+                                <td class="td-tit">固&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">科室病种：</td>
+                                <td colspan="2">妇科-月经不调</td>
+                                <td class="td-tit">客户阶段：</td>
+                                <td colspan="5">第一阶段</td>
+                            </tr>
+                            <tr style="height: 120px;">
+                                <td class="td-tit">客户备注：</td>
+                                <td colspan="8">
+                                    <textarea readonly class="customer-textarea" style="width: 450px;" name="customer_textarea" placeholder="客户备注"></textarea>  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">所属客服：</td>
+                                <td colspan="2">娇养健康</td>
+                                <td class="td-tit">所属门店：</td>
+                                <td colspan="2">德元堂药房</td>
+                                <td class="td-tit">所属店员：</td>
+                                <td colspan="2">阿紫</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">添加人：</td>
+                                <td colspan="2">阿紫</td>
+                                <td class="td-tit">添加时间：</td>
+                                <td colspan="2">2017-08-08&nbsp;09:24</td>
+                                <td class="td-tit">更新时间：</td>
+                                <td colspan="2">2017-08-08&nbsp;09:24</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 症状信息部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">月经周期：</td>
+                                <td colspan="8">
+                                    <label for="check70" class="radioFour">
+                                        <input class="check" name="name70" id="check70" type="radio" disabled="disabled">
+                                        <label for="check70"></label>
+                                        周期提前&nbsp;:&nbsp;每次至少提前7天以上
+                                    </label>
+                                    <label for="check71" class="radioFour">
+                                        <input class="check" name="name70" id="check71" type="radio" disabled="disabled">
+                                        <label for="check71"></label>
+                                        周期推后&nbsp;:&nbsp;每次拖后7天或以上
+                                    </label>
+                                    <label for="check72" class="radioFour">
+                                        <input class="check" name="name70" id="check72" type="radio" disabled="disabled">
+                                        <label for="check72"></label>
+                                        先后不定期&nbsp;:&nbsp;时间不规律
+                                    </label>
+                                    <label for="check73" class="radioFour">
+                                        <input class="check" name="name70" id="check73" type="radio" disabled="disabled">
+                                        <label for="check73"></label>
+                                        备经或停经
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">月经量：</td>
+                                <td colspan="8">
+                                    <label for="check74" class="radioFour">
+                                        <input class="check" name="name74" id="check74" type="radio" disabled="disabled">
+                                        <label for="check74"></label>
+                                        经量多
+                                    </label>
+                                    <label for="check75" class="radioFour">
+                                        <input class="check" name="name74" id="check75" type="radio" disabled="disabled">
+                                        <label for="check75"></label>
+                                        经量少
+                                    </label>
+                                    <label for="check76" class="radioFour">
+                                        <input class="check" name="name74" id="check76" type="radio" disabled="disabled">
+                                        <label for="check76"></label>
+                                        经量或多或少
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">月经经色：</td>
+                                <td colspan="8">
+                                    <label for="check77" class="radioFour">
+                                        <input class="check" name="name77" id="check77" type="radio" disabled="disabled">
+                                        <label for="check77"></label>
+                                        颜色发黑
+                                    </label>
+                                    <label for="check78" class="radioFour">
+                                        <input class="check" name="name77" id="check78" type="radio" disabled="disabled">
+                                        <label for="check78"></label>
+                                        颜色鲜红
+                                    </label>
+                                    <label for="check79" class="radioFour">
+                                        <input class="check" name="name77" id="check79" type="radio" disabled="disabled">
+                                        <label for="check79"></label>
+                                        深咖啡色
+                                    </label>
+                                    <label for="check80" class="radioFour">
+                                        <input class="check" name="name77" id="check80" type="radio" disabled="disabled">
+                                        <label for="check80"></label>
+                                        暗红或紫
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">月经质地：</td>
+                                <td colspan="8">
+                                    <label for="check81" class="radioFour">
+                                        <input class="check" name="name81" id="check81" type="radio" disabled="disabled">
+                                        <label for="check81"></label>
+                                        质稀
+                                    </label>
+                                    <label for="check82" class="radioFour">
+                                        <input class="check" name="name81" id="check82" type="radio" disabled="disabled">
+                                        <label for="check82"></label>
+                                        质稠
+                                    </label>
+                                    <label for="check83" class="radioFour">
+                                        <input class="check" name="name81" id="check83" type="radio" disabled="disabled">
+                                        <label for="check83"></label>
+                                        有血块
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">经期症状：</td>
+                                <td colspan="8">
+                                    <label for="check84" class="checkFour">
+                                        <input class="check" name="name84" id="check84" type="checkbox" disabled="disabled">
+                                        <label for="check84"></label>
+                                        腹痛明显
+                                    </label>
+                                    <label for="check85" class="checkFour">
+                                        <input class="check" name="name85" id="check85" type="checkbox" disabled="disabled">
+                                        <label for="check85"></label>
+                                        腹痛难忍
+                                    </label>
+                                    <label for="check86" class="checkFour">
+                                        <input class="check" name="name86" id="check86" type="checkbox" disabled="disabled">
+                                        <label for="check86"></label>
+                                        头昏眼花
+                                    </label>
+                                    <label for="check87" class="checkFour">
+                                        <input class="check" name="name87" id="check87" type="checkbox" disabled="disabled">
+                                        <label for="check87"></label>
+                                        腰部酸痛
+                                    </label>
+                                    <label for="check88" class="checkFour">
+                                        <input class="check" name="name88" id="check88" type="checkbox" disabled="disabled">
+                                        <label for="check88"></label>
+                                        恶心呕吐
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">头部、面部：</td>
+                                <td colspan="8">
+                                    <label for="check89" class="checkFour">
+                                        <input class="check" name="name89" id="check89" type="checkbox" disabled="disabled">
+                                        <label for="check89"></label>
+                                        头痛
+                                    </label>
+                                    <label for="check90" class="checkFour">
+                                        <input class="check" name="name90" id="check90" type="checkbox" disabled="disabled">
+                                        <label for="check90"></label>
+                                        眩晕
+                                    </label>
+                                    <label for="check91" class="checkFour">
+                                        <input class="check" name="name91" id="check91" type="checkbox" disabled="disabled">
+                                        <label for="check91"></label>
+                                        粉刺
+                                    </label>
+                                    <label for="check92" class="checkFour">
+                                        <input class="check" name="name92" id="check92" type="checkbox" disabled="disabled">
+                                        <label for="check92"></label>
+                                        失眠
+                                    </label>
+                                    <label for="check93" class="checkFour">
+                                        <input class="check" name="name93" id="check93" type="checkbox" disabled="disabled">
+                                        <label for="check93"></label>
+                                        贪冷饮、面色苍白
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">腹部症状：</td>
+                                <td colspan="8">
+                                    <label for="check94" class="checkFour">
+                                        <input class="check" name="name94" id="check94" type="checkbox" disabled="disabled">
+                                        <label for="check94"></label>
+                                        腹泻
+                                    </label>
+                                    <label for="check95" class="checkFour">
+                                        <input class="check" name="name95" id="check95" type="checkbox" disabled="disabled">
+                                        <label for="check95"></label>
+                                        小腹坠胀
+                                    </label>
+                                    <label for="check96"  class="checkFour">
+                                        <input class="check" name="name96" id="check96" type="checkbox" disabled="disabled">
+                                        <label for="check96"></label>
+                                        食欲不振
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">腰臂症状：</td>
+                                <td colspan="8">
+                                    <label for="check97" class="checkFour">
+                                        <input class="check" name="name97" id="check97" type="checkbox" disabled="disabled">
+                                        <label for="check97"></label>
+                                        腰酸
+                                    </label>
+                                    <label for="check98" class="checkFour">
+                                        <input class="check" name="name98" id="check98" type="checkbox" disabled="disabled">
+                                        <label for="check98"></label>
+                                        便秘
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">全身症状：</td>
+                                <td colspan="8">
+                                    <label for="check99" class="checkFour">
+                                        <input class="check" name="name99" id="check99" type="checkbox" disabled="disabled">
+                                        <label for="check99"></label>
+                                        浮肿
+                                    </label>
+                                    <label for="check100" class="checkFour">
+                                        <input class="check" name="name100" id="check100" type="checkbox" disabled="disabled">
+                                        <label for="check100"></label>
+                                        发热
+                                    </label>
+                                    <label for="check101" class="checkFour">
+                                        <input class="check" name="name101" id="check101" type="checkbox" disabled="disabled">
+                                        <label for="check101"></label>
+                                        身体酸痛
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">其他症状：</td>
+                                <td colspan="8">
+                                    <label for="check102" class="checkFour">
+                                        <input class="check" name="name102" id="check102" type="checkbox" disabled="disabled">
+                                        <label for="check102"></label>
+                                        乳房胀痛
+                                    </label>
+                                    <label for="check103" class="checkFour">
+                                        <input class="check" name="name103" id="check103" type="checkbox" disabled="disabled">
+                                        <label for="check103"></label>
+                                        白带异常
+                                    </label>
+                                    <label for="check104" class="checkFour">
+                                        <input class="check" name="name104" id="check104" type="checkbox" disabled="disabled">
+                                        <label for="check104"></label>
+                                        感冒
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">顾客需求：</td>
+                                <td colspan="8">
+                                    <label for="check105" class="checkFour">
+                                        <input class="check" name="name105" id="check105" type="checkbox" disabled="disabled">
+                                        <label for="check105"></label>
+                                        想月经正常
+                                    </label>
+                                    <label for="check106" class="checkFour">
+                                        <input class="check" name="name106" id="check106" type="checkbox" disabled="disabled">
+                                        <label for="check106"></label>
+                                        想气血充足
+                                    </label>
+                                    <label for="check107" class="checkFour">
+                                        <input class="check" name="name107" id="check107" type="checkbox" disabled="disabled">
+                                        <label for="check107"></label>
+                                        想经历旺盛
+                                    </label>
+                                    <label for="check108" class="checkFour">
+                                        <input class="check" name="name108" id="check108" type="checkbox" disabled="disabled">
+                                        <label for="check108"></label>
+                                        祛斑
+                                    </label>
+                                    <label for="check109" class="checkFour">
+                                        <input class="check" name="name109" id="check109" type="checkbox" disabled="disabled">
+                                        <label for="check109"></label>
+                                        备孕
+                                    </label>
+                                    <label for="check110" class="checkFour">
+                                        <input class="check" name="name110" id="check110" type="checkbox" disabled="disabled">
+                                        <label for="check110"></label>
+                                        夫妻生活正常
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td class="td-tit" style="height:105px;">其他症状：</td>
+                                <td style="height:105px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                    <textarea readonly class="zhengzhuang-textarea" name="zhengzhuang-textarea"  placeholder="其他症状"></textarea>    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 提醒记录部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <div class="table-tit" style="margin-bottom: 10px;">
+                            提醒列表
+                            <a href="javascript:void(0);" class="btn_excel">
+                                <span>导出</span>
+                                <i class="excel"></i>
+                            </a>
+                        </div>
+                        <table id="mian_table" class="mian-table">
+                            <thead>
+                                <tr>
+                                    <th width="7%">序号</th>
+                                    <th width="7%">
+                                        <a class="th-sort" href="javascript:void(0);">提醒ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                                    </th>
+                                    <th width="55%">提醒事项</th>
+                                    <th width="7%">待办人</th>
+                                    <th width="10%">待办日期</th>
+                                    <th width="7%">状态</th>
+                                    <th width="7%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_box">
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                
+                        <!-- 分页部分 -->
+                        <div class="page-box clearfix">
+                            <div class="pagination clearfix">
+                                <select class="pagination-list">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                                <a href="javascript:void(0)" class="left-btn-all current">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="left-btn current">
+                                    <i></i>
+                                </a>
+                                <span class="span_text">第</span>
+                                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                                <span class="span_text">共<i>15</i>页</span>
+                                <a href="javascript:void(0)" class="right-btn">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="right-btn-all">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+                        </div>
+                    </div>
+                </div>  
+                <!-- 待办记录部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <div class="table-tit" style="margin-bottom: 10px;">
+                            待办列表
+                            <a href="javascript:void(0);" class="btn_add btn_daiban_add">
+                                <span>新建</span>
+                                <i class="add"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn_excel">
+                                <span>导出</span>
+                                <i class="excel"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn_back btn_daiban_back">
+                                <span>回收站</span>
+                                <i class="back"></i>
+                            </a>
+                        </div>
+                        <table id="mian_table" class="mian-table">
+                            <thead>
+                                <tr>
+                                    <th width="7%">序号</th>
+                                    <th width="7%">
+                                        <a class="th-sort" href="javascript:void(0);">待办ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                                    </th>
+                                    <th width="55%">待办事项</th>
+                                    <th width="7%">待办人</th>
+                                    <th width="10%">待办日期</th>
+                                    <th width="7%">状态</th>
+                                    <th width="7%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_box">
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);">
+                                            <img src="../../images/icon_reduction.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>131231</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_xiaoxi" href="javascript:void(0);">
+                                            <img src="../../images/icon_xiaoxi.png" alt="">
+                                        </a>
+                                        <a class="btn_update btn_daiban_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                
+                        <!-- 分页部分 -->
+                        <div class="page-box clearfix">
+                            <div class="pagination clearfix">
+                                <select class="pagination-list">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                                <a href="javascript:void(0)" class="left-btn-all current">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="left-btn current">
+                                    <i></i>
+                                </a>
+                                <span class="span_text">第</span>
+                                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                                <span class="span_text">共<i>15</i>页</span>
+                                <a href="javascript:void(0)" class="right-btn">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="right-btn-all">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+                        </div>
+                    </div>
+                </div>  
+                <!-- 回访记录部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <div class="table-tit" style="margin-bottom: 10px;">
+                            回访列表
+                            <a href="javascript:void(0);" class="btn_add btn_huifang_add">
+                                <span>新建</span>
+                                <i class="add"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn_excel">
+                                <span>导出</span>
+                                <i class="excel"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn_back btn_huifang_back" iconCls="icon-recycle">
+                                <span>回收站</span>
+                                <i class="back"></i>
+                            </a>
+                        </div>
+                        <table id="mian_table" class="mian-table">
+                            <thead>
+                                <tr>
+                                    <th width="7%">序号</th>
+                                    <th width="7%">
+                                        <a class="th-sort" href="javascript:void(0);">回访ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                                    </th>
+                                    <th width="50%">回访记录</th>
+                                    <th width="7%">回访方式</th>
+                                    <th width="5%">回访人</th>
+                                    <th width="10%">回访时间</th>
+                                    <th width="7%">结束</th>
+                                    <th width="7%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_box">
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>【提醒复购回访】订单ID:8459，商品:雏凤精，数量:5，服用天数:25，将于2017-08-02服用完.....</td>
+                                    <td>微信</td>
+                                    <td>凯</td>
+                                    <td>2017-08-08 15:30</td>
+                                    <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                                    <td>
+                                        <a class="btn_update btn_huifang_update" href="javascript:void(0);">
+                                            <img src="../../images/icon_update.png" alt="">
+                                        </a>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                
+                        <!-- 分页部分 -->
+                        <div class="page-box clearfix">
+                            <div class="pagination clearfix">
+                                <select class="pagination-list">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                                <a href="javascript:void(0)" class="left-btn-all current">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="left-btn current">
+                                    <i></i>
+                                </a>
+                                <span class="span_text">第</span>
+                                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                                <span class="span_text">共<i>15</i>页</span>
+                                <a href="javascript:void(0)" class="right-btn">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="right-btn-all">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+                        </div>
+                    </div>
+                </div>  
+                <!-- 购买记录部分 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <div class="table-tit" style="margin-bottom: 10px;">
+                            订单列表
+                            <a href="javascript:void(0);" class="btn_add btn_goumai_add">
+                                <span>新建</span>
+                                <i class="add"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn_excel">
+                                <span>导出</span>
+                                <i class="excel"></i>
+                            </a>
+                        </div>
+                        <table id="mian_table" class="mian-table">
+                            <thead>
+                                <tr>
+                                    <th width="7%">序号</th>
+                                    <th width="7%">
+                                        <a class="th-sort" href="javascript:void(0);">订单ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                                    </th>
+                                    <th width="45%">订单商品</th>
+                                    <th width="7%">订单金额</th>
+                                    <th width="10%">所属门店</th>
+                                    <th width="7%">所属店员</th>
+                                    <th width="10%">添加时间</th>
+                                    <th width="7%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_box">
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>111111111111</td>
+                                    <td>123</td>
+                                    <td>雏凤精-10ml*10支-山东宏济堂^5，<i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂^1</td>
+                                    <td>380.00</td>
+                                    <td>药店</td>
+                                    <td>阿紫</td>
+                                    <td>2017-08-08&nbsp;15:30</td>
+                                    <td>
+                                        <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                            <img src="../../images/icon_del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                
+                        <!-- 分页部分 -->
+                        <div class="page-box clearfix">
+                            <div class="pagination clearfix">
+                                <select class="pagination-list">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                </select>
+                                <a href="javascript:void(0)" class="left-btn-all current">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="left-btn current">
+                                    <i></i>
+                                </a>
+                                <span class="span_text">第</span>
+                                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                                <span class="span_text">共<i>15</i>页</span>
+                                <a href="javascript:void(0)" class="right-btn">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="right-btn-all">
+                                    <i></i>
+                                </a>
+                                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="button_fanhui">返&nbsp;回</a>
+                <a href="javascript:void(0)" class="button_bianji">编&nbsp;辑</a>
+                <a href="javascript:void(0)" class="button_shanchu" onclick="confirm1();">删&nbsp;除</a>
+            </div>
+        </div>
+        <!-- 待办新增部分 -->
+        <div class="daiban-tabs-box" style="display: none;">
+            <form id="daiban_form" action="demo.php" method="post">
+                <div class="mask-tabs"> 
+                    <ul class="mask-tabs-tit clearfix"><li>新增待办</li></ul>
+                    <!-- 新增待办部分 -->
+                    <div class="tabcontent">
+                        <div class="tab_table-box">
+                            <table id="tab_table" class="tab-table">
+                                <tr>
+                                    <td class="td-tit" style="height:135px;">待办事项：</td>
+                                    <td style="height:135px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                        <textarea class="daiban_textarea" name="daiban_textarea" placeholder="待办事项"></textarea>
+                                        <i class="input-xing daiban_textarea-xing">*</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit">待办时间：</td>
+                                    <td colspan="8">
+                                        <input class="Wdatetime daiban_time" type="text" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly placeholder="输入日期">
+                                        <i class="input-xing daiban_time-xing">*</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit">待办客服：</td>
+                                    <td colspan="8">
+                                        <span class="beautify_select daiban_service">
+                                            <select name="daiban_service" class="beautify_input">
+                                                <option value="0" selected>客服1</option>
+                                                <option value="1">客服2</option>
+                                                <option value="2">客服3</option>
+                                            </select>
+                                        </span>
+                                        <i class="input-xing daiban_service-xing">*</i>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div> 
+                <div class="btn-box">
+                    <a href="javascript:void(0)" class="daiban_queding">提&nbsp;交</a>
+                    <a href="javascript:void(0)" class="daiban_fanhui">取&nbsp;消</a>
+                </div>
+            </form>
+        </div>
+        <!-- 回访新增部分 -->
+        <div class="huifang-tabs-box" style="display: none;">
+            <form id="huifang_form" action="demo.php" method="post">
+                <div class="mask-tabs huifang-tabs">
+                    <ul class="mask-tabs-tit clearfix">
+                        <li class="current"><a href="javascript:void(0);">新增回访</a></li>
+                        <li><a href="javascript:void(0);">需要跟进</a></li>
+                    </ul>
+                    <!-- 新增回访部分 -->
+                    <div class="tabcontent">
+                        <div class="tab_table-box">
+                            <table id="tab_table" class="tab-table">
+                                <tr>
+                                    <td class="td-tit">回访方式：</td>
+                                    <td colspan="8" style="height:50px;line-height:50px;">
+                                        <select name="huifang_style" class="beautify_input">
+                                            <option value="0" selected>请选择...</option>
+                                            <option value="1">微信</option>
+                                            <option value="2">QQ</option>
+                                            <option value="3">电话</option>
+                                        </select>
+                                        <i class="input-xing huifang_style-xing">*</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit" style="height:135px;">回访记录：</td>
+                                    <td style="height:135px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                        <textarea class="huifang_textarea" name="huifang_textarea"  placeholder="回访记录"></textarea>
+                                        <i class="input-xing huifang_textarea-xing">*</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit">回访时间：</td>
+                                    <td colspan="8">
+                                        <input class="Wdatetime huifang_time" type="text" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly placeholder="输入日期">
+                                        <i class="input-xing huifang_time-xing">*</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit">回访客服：</td>
+                                    <td colspan="8">
+                                        <select name="huifang_service" class="beautify_input">
+                                            <option value="0" selected>请选择客服...</option>
+                                            <option value="1">客服1</option>
+                                            <option value="2">客服2</option>
+                                            <option value="3">客服3</option>
+                                        </select>
+                                        <i class="input-xing huifang_service-xing">*</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit">是否结束：</td>
+                                    <td colspan="8">
+                                        <label for="check120" class="radioFour">
+                                            <input class="check" name="name120" id="check120" type="radio">
+                                            <label for="check120"></label>
+                                            是
+                                        </label>
+                                        <label for="check121" class="radioFour">
+                                            <input class="check" name="name120" id="check121" type="radio" checked="true">
+                                            <label for="check121"></label>
+                                            否
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- 需要跟进部分 -->
+                    <div class="tabcontent hide">
+                        <div class="tab_table-box">
+                            <table id="tab_table" class="tab-table">
+                                <tr>
+                                    <td class="td-tit">需要跟进：</td>
+                                    <td colspan="8" style="height:50px;line-height:50px;">       
+                                        <label for="check_genjin" class="checkFour">
+                                            <input class="check genjin_check" name="genjin_check" id="check_genjin" type="checkbox">
+                                            <label for="check_genjin"></label>
+                                            是
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit" style="height:135px;">跟进事项：</td>
+                                    <td style="height:135px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                        <textarea class="huifang_textarea genjin_textarea" name="genjin_textarea"  placeholder="跟进备注"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit">跟进时间：</td>
+                                    <td colspan="8">
+                                        <input class="Wdatetime" type="text" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-%d %H:{%m+30}:%s'})" readonly placeholder="点击选择跟进时间">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-tit">跟进客服：</td>
+                                    <td colspan="8">
+                                        <select name="genjin_service" class="beautify_input">
+                                            <option value="0" selected>请选择客服...</option>
+                                            <option value="1">客服1</option>
+                                            <option value="2">客服2</option>
+                                            <option value="3">客服3</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-box">
+                    <a href="javascript:void(0)" class="huifang_queding">提&nbsp;交</a>
+                    <a href="javascript:void(0)" class="huifang_fanhui">取&nbsp;消</a>
+                </div>
+            </form>
+        </div>
+        <!-- 购买新增部分 -->
+        <div class="goumai-tabs-box" style="display: none;">
+            <form id="goumai_form" action="demo.php" method="post">
+                <div class="mask-tabs goumai-tabs-box">
+                    <ul class="mask-tabs-tit clearfix">
+                        <li>新增订单</li>
+                    </ul>
+                    <!-- 新增购买部分 -->
+                    <div class="tabcontent">
+                        <div class="tab_table-box">
+                            <table id="tab_table" class="tab-table">
+                                <tr>
+                                    <td class="td-tit">选择商品：</td>
+                                    <td colspan="8" style="height:50px;line-height:50px;">
+                                        <select name="goumai_select_product" class="beautify_input goumai_select_product">
+                                            <option value="0">雏凤精-10ml*10支-山东宏济堂-138</option>
+                                            <option value="1">[赠品]雏凤精-10ml*10支-山东宏济堂-0</option>
+                                        </select>
+                                        <a class="button_goumai_add" href="javascript:void(0);">添&nbsp;加</a>
+                                        <i class="input-xing goumai_select_product-xing">*</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9" class="td-tit">订单商品：</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9" class="td-table-box">
+                                        <table id="goumai_table" class="tab-table" style="display:none;">
+                                            <thead>
+                                                <tr>
+                                                    <th width="7%">商品ID</th>
+                                                    <th width="65%">商品名称/规格/厂家</th>
+                                                    <th width="7%">价格</th>
+                                                    <th width="7%">数量</th>
+                                                    <th width="7%">小计</th>
+                                                    <th width="7%">操作</th>
+                                                </tr>     
+                                            </thead>
+                                            <tbody id="goumai_tbody" class="tbody-box">
+                                               <!--  <tr>
+                                                   <td class="right-chufeng-id">1</td>
+                                                   <td>雏凤精-10ml*10支-山东宏济堂-138</td>
+                                                   <td>138</td>
+                                                   <td>
+                                                       <input name="select_chufnegjing_num" type="text" class="input-right input-right-num" value="1" <="" td="">
+                                                   </td>
+                                                   <td>
+                                                       <input name="select_chufnegjing_price" type="text" class="input-right input-right-price" value="138">
+                                                   </td>
+                                                   <td>
+                                                       <a class="table_del" href="javascript:void(0);"><img src="../../images/icon_table_del.png" alt=""></a>
+                                                   </td>
+                                               </tr>
+                                               <tr>
+                                                   <td class="right-chufengzeng-id">2</td>
+                                                   <td>
+                                                       <i class="zengpin">[赠品]</i>雏凤精-10ml*10支-山东宏济堂-0
+                                                   </td>
+                                                   <td>0</td>
+                                                   <td>
+                                                       <input name="select_chufnegjing_num" type="text" class="input-right input-right-num" value="1">
+                                                   </td>
+                                                   <td>
+                                                       <input name="select_chufnegjing_price" type="text" class="input-right input-right-price" value="0">
+                                                   </td>
+                                                   <td>
+                                                       <a class="table_del" href="javascript:void(0);"><img src="../../images/icon_table_del.png" alt=""></a>
+                                                   </td>
+                                               </tr> -->
+                                           </tbody>
+                                       </table>
+                                   </td>
+                               </tr>
+                               <tr>
+                                <td class="td-tit">订单小票</td>
+                                <td colspan="8">
+                                    <input class="input-text goumai_xiaopiao" name="name" type="text" placeholder="订单小票号">
+                                    <i class="input-xing goumai_xiaopiao-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit" style="height:135px;">订单备注：</td>
+                                <td style="height:135px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                    <textarea class="goumai_textarea" name="goumai_textarea"  placeholder="订单备注"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit" style="height:100px;">所属客服：</td>
+                                <td colspan="2" style="height:100px;">
+                                    <select name="goumai_service" class="beautify_input">
+                                        <option value="0" selected>请选择客服...</option>
+                                        <option value="1">客服1</option>
+                                        <option value="2">客服2</option>
+                                        <option value="3">客服3</option>
+                                    </select>
+                                    <i class="input-xing goumai_service-xing">*</i>
+                                </td>
+                                <td class="td-tit" style="height:100px;">门店、店员：</td>
+                                <td colspan="5" style="height:100px;">
+                                    <div class="goumai_td-one">
+                                        <input class="input-text input-goumai_num" style="width:50px;height:28px;line-height:28px;" name="name" type="text">
+                                        <input class="input-text input-goumai_name" style="width:180px;height:28px;line-height:28px;" name="name" type="text" placeholder="门店名称/简称/简拼">
+                                    </div>
+                                    <div class="goumai_td-two">
+                                        <input class="input-text input-goumai_num" style="width: 50px;height:28px;line-height:28px;" name="name" type="text">
+                                        <input class="input-text input-goumai_name" style="width: 100px;height:28px;line-height:28px;" name="name" type="text" placeholder="店员姓名/简拼">
+                                        <a class="btn_goumai_sou" href="javascript:void(0);" style="margin-left:4px;margin-right:4px;">搜索</a>
+                                        <span class="beautify_select stores_goumai_select_box">
+                                            <div class="cssSelect" id="select_ui_name_stores_goumai_select">
+                                                <div class="selectBox sNormal">
+                                                    <div class="selectLt"></div>
+                                                    <div class="selectRt"></div>
+                                                </div>
+                                                <div class="optionsBox">
+                                                    <div class="optionsInnerBox">
+                                                        <div class="optionBox oNormal selected">
+                                                            <span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <select name="stores_goumai_select" class="beautify_input">
+                                                <option value="0" selected="true"></option>
+                                            </select>
+                                        </span>
+                                        <!-- <select class="stores_goumai_select td_select" name="stores">
+                                            <option value ="0" selected="true">正圆堂吉利分店</option>
+                                        </select> -->
+                                        <a class="bind_goumai_selected" href="javascript:void(0);">选定</a>
+                                        <i class="input-xing stores_goumai-xing">*</i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div> 
+                <div class="btn-box">
+                    <a href="javascript:void(0)" class="goumai_queding">确&nbsp;定</a>
+                    <a href="javascript:void(0)" class="goumai_fanhui">返&nbsp;回</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="../../js/selectivizr.js"></script>
+    <script type="text/javascript" src="customer_list.js"></script>
+    <script type="text/javascript" src="see_table.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+            $('.daiban_time').val(getNowFormatDateTime());
+            $('.huifang_time').val(getNowFormatDateTime());
+        });
+        //点击回收站改变文字，客户部分
+        $('.btn_back_customer').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("全部客户");
+                $(this).find('i').css("background-image","url(../../images/icon_all_customer.png)");
+                $('.all_mendian').html("回收站");
+            }else if($(this).find('span').html() == "全部客户"){
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("全部客户");
+            }
+        });
+        //点击回收站改变文字，待办部分
+        $('.btn_daiban_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("全部待办");
+                $(this).find('i').css("background-image","url(../../images/icon_all_daiban.png)");
+                // $('.all_mendian').html("回收站");
+            }else if($(this).find('span').html() == "全部待办"){
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                // $('.all_mendian').html("全部待办");
+            }
+        });
+        //点击回收站改变文字，回访部分
+        $('.btn_huifang_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("全部回访");
+                $(this).find('i').css("background-image","url(../../images/icon_all_huifang.png)");
+                // $('.all_mendian').html("回收站");
+            }else if($(this).find('span').html() == "全部回访"){
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                // $('.all_mendian').html("全部回访");
+            }
+        });
+        //更多按钮
+        $(".btn_more").click(function(){
+            $('.more-box').toggle(250);
+        });
+        $(function () {
+            //添加tab栏切换
+            $('.add-tabs li').click(function () {
+                var index = $(this).index();
+                $(this).addClass('current').siblings('li').removeClass('current');
+                $(this).parents('.add-tabs').find('.tabcontent').eq(index).show().siblings('.tabcontent').hide();
+            });
+            //查看tab栏切换
+            $('.see-tabs li').click(function () {
+                var index = $(this).index();
+                $(this).addClass('current').siblings('li').removeClass('current');
+                $(this).parents('.see-tabs').find('.tabcontent').eq(index).show().siblings('.tabcontent').hide();
+            });
+            //新增回访tab切换
+            $('.huifang-tabs li').click(function () {
+                var index = $(this).index();
+                $(this).addClass('current').siblings('li').removeClass('current');
+                $(this).parents('.huifang-tabs').find('.tabcontent').eq(index).show().siblings('.tabcontent').hide();
+            });
+        });
+
+        //添加中的表格中的表格添加
+        $('.button_add').on('click',function() {
+            var select_val = parseInt($('.select_product option:selected').val());
+            var select_product = $('.select_product option:selected').text();
+            var arr = select_product.split("-");
+            var price = arr[arr.length-1];
+            var srt = "";
+            switch(select_val){
+                case 0:
+                    if(parseInt($('.right-chufeng-id').text()) != 1){                 
+                        srt += "<tr>";
+                            srt += "<td class='right-chufeng-id'>"+ (select_val+1) +"</td>";
+                            srt += "<td>"+ select_product +"</td>";
+                            srt += "<td>"+ price +"</td>";
+                            srt += "<td>";
+                                srt += "<input name='select_chufnegjing_num' type='text' class='input-right input-right-num' value='1'";
+                            srt += "</td>";
+                            srt += "<td>";
+                                srt += "<input name='select_chufnegjing_price' type='text' class='input-right input-right-price' value='"+ price +"'>";
+                            srt += "</td>";
+                            srt += "<td>";
+                                srt += "<a class='table_del' href='javascript:void(0);'><img src='../../images/icon_table_del.png' alt=''></a>";
+                            srt += "</td>";
+                        srt += "</tr>";
+                        $('#add_tbody').append(srt);
+                    }
+                    break;     
+                case 1:
+                    if($('.right-chufengzeng-id').text() != 2){ 
+                        srt += "<tr>";
+                            srt += "<td class='right-chufengzeng-id'>"+ (select_val+1) +"</td>";
+                            srt += "<td><i class='zengpin'>[赠品]</i>雏凤精-10ml*10支-山东宏济堂-0</td>";
+                            srt += "<td>"+ price +"</td>";
+                            srt += "<td>";
+                                srt += "<input name='select_chufnegjing_num' type='text' class='input-right input-right-num' value='1'>";
+                            srt += "</td>";
+                            srt += "<td>";
+                                srt += "<input name='select_chufnegjing_price' type='text' class='input-right input-right-price' value='"+ price +"'>";
+                            srt += "</td>";
+                            srt += "<td>";
+                                srt += "<a class='table_del' href='javascript:void(0);'><img src='../../images/icon_table_del.png' alt=''></a>";
+                            srt += "</td>";
+                        srt += "</tr>";
+                        $('#add_tbody').append(srt);
+                    }
+                    break;
+            }
+            $('#add_table').show();
+            //下面部分添加计算
+            func_price();
+        });
+        //表格中的表格删除
+        $(document).on('click','.table_del',function() {
+            $(this).parent('td').parent('tr').remove();
+            func_price();
+        }); 
+
+        //手动输入计算
+        $(document).on('keyup','.input-right',function() {
+            var value = $(this).val().replace(/[^\d]/g,'');
+            $(this).val(value);
+            if($(this).val() != ""){
+                func_price();
+            }
+        });
+        $(document).on('blur','.input-right',function() {
+            if($(this).val() == ""){
+                $(this).val("1");
+                func_price();
+            }
+        });
+
+        //表格中的表格计算方法
+        function func_price() {    
+            $('#all_price').val("");
+            var all_price = 0;
+            for(var i=0;i<$('.input-right-num').length;i++){
+                var right_num = parseInt($('.input-right-num').eq(i).val());
+                var right_price = parseInt($('.input-right-price').eq(i).val());
+                all_price += right_num * right_price;
+            }
+            $('#all_price').val(all_price);
+        }
+
+        //查询中select科室二级联动
+        $("#department").change(function() { 
+            var department = $(this).val(); 
+            $.ajax({
+                url: "demo.php", 
+                data:{'department':department},
+                type:"post",  
+                dataType:"json",
+                success: function(data){ 
+                    if(data != null && data.status == 0){
+                        var str = "";
+                        str += "<select id='disease' name='disease' class='beautify_input'>"; 
+                        for(var i=0;i<data.content.length;i++){
+                            if(i==0){
+                                str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                            }else{
+                                str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                            }
+                        }
+                        str += "</select>";
+                        $(".disease_select").html("");
+                        $('.disease_select').append(str);
+                        $('.beautify_input').cssSelect();
+                    }
+                }
+            });
+        }); 
+
+        //查询中select所属门店二级联动
+        $("#store").change(function() { 
+            var store = $(this).val(); 
+            // $("#store_worker option").remove();
+            $.ajax({
+                url: "demo.php", 
+                data:{'store':store},
+                type:"post",  
+                dataType:"json",
+                success: function(data){  
+                    if(data != null && data.status == 0){ 
+                        var str = "";
+                        str += "<select id='store_worker' name='store_worker' class='beautify_input'>"; 
+                        for(var i=0;i<data.content.length;i++){
+                            if(i==0){
+                                str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                            }else{
+                                str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                            }
+                        }
+                        str += "</select>";
+                        $(".worker_select").html("");
+                        $('.worker_select').append(str);
+                        $('.beautify_input').cssSelect();
+                    }
+                }
+            });
+        }); 
+
+        //添加中科室
+        $('.keshi').change(function() { 
+            var keshi = $(this).val(); 
+            // $(".bingzhong option").remove();
+            $.ajax({
+                url: "demo.php", 
+                data:{'keshi':keshi},
+                type:"post",  
+                dataType:"json",
+                success: function(data){
+                    if(data != null && data.status == 0){ 
+                        var str = "";
+                        str += "<select id='bingzhong' name='bingzhong' class='beautify_input'>"; 
+                        for(var i=0;i<data.content.length;i++){
+                            if(i==0){
+                                str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                            }else{
+                                str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                            }
+                        }
+                        str += "</select>";
+                        $(".bingzhong_select").html("");
+                        $('.bingzhong_select').append(str); 
+                        $('.beautify_input').cssSelect();
+                    }
+                }
+            });
+        }); 
+
+        //添加中根据店员搜索门店的select
+        $('.btn_sou').on('click',function() {
+            var dianyuan = $('.td-two .input-text_name').val();
+            // $(".stores_select option").remove();
+            $.ajax({
+                url: "demo.php", 
+                data:{'dianyuan':dianyuan},
+                type:"post",  
+                dataType:"json",
+                success: function(data){
+                    if(data != null && data.status == 0){ 
+                        var str = "";
+                        str += "<select id='stores_add' name='stores_add' class='beautify_input'>"; 
+                            for(var i=0;i<data.content.length;i++){
+                                if(i==0){
+                                    str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                                }else{
+                                    str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                                }
+                            }
+                        str += "</select>";
+                        $(".stores_add_select").html("");
+                        $('.stores_add_select').append(str); 
+                        $('.beautify_input').cssSelect();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

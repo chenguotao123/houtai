@@ -1,0 +1,251 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>微信顾客</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="wechat_customer.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">微信顾客</span>
+            <a href="javascript:void(0);" class="btn_back">
+                <span>回收站</span>
+                <i class="back"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <input id="d5221" class="Wdate start_time" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="关注开始日期"/>
+                    <i class="icon_heng">-</i>
+                    <input id="d5222" class="Wdate end_time" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="关注结束日期"/>
+                    <span class="beautify_select">
+                        <select name="isfollow" class="beautify_input">
+                            <option value="0" selected>=是否关注=</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="isbind" class="beautify_input">
+                            <option value="0" selected>=是否绑定=</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="isfans" class="beautify_input">
+                            <option value="0" selected>=是否有粉=</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <input class="input_textbox" type="text" name="name" placeholder="昵称/姓名/电话/ID">
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="6%">
+                            <a class="th-sort" href="javascript:void(0);">微信ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="5%">顾客ID</th>
+                        <th width="5%">头像</th>
+                        <th width="26%">OpenID</th>
+                        <th width="8%">昵称/姓名</th>
+                        <th width="5%">性别</th>
+                        <th width="8%">手机号</th>
+                        <th width="8%">来源门店</th>
+                        <th width="5%">关注来源</th>
+                        <th width="5%">下级数量</th>
+                        <th width="8%">关注时间</th>
+                        <th width="5%">关注</th>
+                        <th width="6%">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="main_tbody">
+                    <tr>
+                        <td>1111</td>
+                        <td>111111111</td>
+                        <td class="td_photo_img"><img src="../../images/photo01.jpg" alt=""></td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                            <a class="btn_transform" href="javascript:void(0);">
+                                <img src="../../images/icon_transform.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1111</td>
+                        <td>111111111</td>
+                        <td class="td_photo_img"><img src="../../images/photo02.jpg" alt=""></td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                            <a class="btn_transform" href="javascript:void(0);">
+                                <img src="../../images/icon_transform.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="wechat_customer.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+            $('.start_time').val(getNowFormatDate());
+            $('.end_time').val(getNowFormatDate());
+        });
+        //点击回收站改变文字，客户部分
+        $('.btn_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("微信顾客");
+                $(this).find('i').css("background-image","url(../../images/icon_all_customer.png)");
+                $('.all_mendian').html("回收站");
+            }else if($(this).find('span').html() == "微信顾客"){
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("微信顾客");
+            }
+        });
+        //顾客转换对话框
+        $('.btn_transform').on('click',function() {
+            //显示删除的提示框
+            $('.del_tishi .del-box-cont span',window.parent.document).text("您确实要把该顾客转到店员吗？");
+            $('.mask_del',window.parent.document).show();
+            // 提示框中的取消按钮
+            $('.del_tishi .btn_close',window.parent.document).on('click',function() {
+                $('.mask_del',window.parent.document).hide();
+            });
+            $('.del_tishi .dialog_close',window.parent.document).on('click',function() {
+                $('.mask_del',window.parent.document).hide();
+            });
+            // 提示框中的确认按钮
+            $('.del_tishi .btn_ok',window.parent.document).on('click',function() {
+                //在里面执行删除操作
+                /*$ajax({
+                    url:"",
+                    data:"",
+                    dataType:"",
+                    type:"",
+                    success:function(data) {
+                        if(data == 1){
+                            $('.del-box-cont i').css("background-position","0 0");
+                            $('.del-box-cont span').html("顾客转到成功！");
+                        }else {
+                            $('.del-box-cont .result-question').css('background-position','-100px 0');
+                            $('.del-box-cont span').html("顾客转到失败！");
+                        }
+                    },
+                    error:function(data) {
+                        $('.del-box-cont .result-question').css('background-position','-100px 0');
+                        $('.del-box-cont span').html("顾客转到失败！");
+                    }
+                });*/
+                //成功后显示隐藏当前的框，显示结果框
+                $('.del_result .del-box-cont .result-question',window.parent.document).css("background-position","0 0");
+                $('.del_result .del-box-cont span',window.parent.document).html("顾客转到成功！");
+                /*如果失败，则用这句
+                $('.del-box-cont .result-question').css('background-position','-100px 0');
+                $('.del-box-cont span').html("顾客转到失败！");*/
+                $('.del_tishi',window.parent.document).hide();
+                $('.del_result',window.parent.document).show();
+            });
+
+            //结果框部分，关闭
+            $('.del_result .dialog_close',window.parent.document).on('click',function() {
+                $('.del_result .del-box-cont .result-question',window.parent.document).css("background-position","0 0");
+                $('.del_result .del-box-cont span',window.parent.document).html("删除成功！");
+                $('.del_result',window.parent.document).hide();
+                $('.mask_del',window.parent.document).hide();
+                $('.del_tishi',window.parent.document).show();
+                window.location.reload();
+            });
+            $('.del_result .button_ok',window.parent.document).on('click',function() {
+                $('.del_result .del-box-cont .result-question',window.parent.document).css("background-position","0 0");
+                $('.del_result .del-box-cont span',window.parent.document).html("删除成功！");
+                $('.del_result',window.parent.document).hide();
+                $('.mask_del',window.parent.document).hide();
+                $('.del_tishi',window.parent.document).show();
+                window.location.reload();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>回访列表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="customer_visit.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">全部回访</span>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_back">
+                <span>回收站</span>
+                <i class="back"></i>
+            </a>
+        </div>
+        <form action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <input class="input_textbox" type="text" name="name" placeholder="回访ID/顾客ID/姓名/简拼/电话">
+                    <input id="d5221" class="Wdate" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="开始日期"/>
+                    <i class="icon_heng">-</i>
+                    <input id="d5222" class="Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="结束日期"/>
+                    <span class="beautify_select" style="float:left;margin-left:10px;">
+                        <select name="huifang_people" class="beautify_input">
+                            <option value="0" selected>==回访人==</option>
+                            <option value="1">回访人1</option>
+                            <option value="2">回访人2</option>
+                            <option value="3">回访人3</option>
+                        </select>
+                    </span>
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_more">
+                        更多<i class="more"></i>
+                    </a>
+                </span>
+                <div class="more-box hide clearfix" style="padding-top: 20px;">
+                    <span class="beautify_select">
+                        <select name="bind" class="beautify_input">
+                            <option value="0" selected>==是否结束==</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="sex" class="beautify_input">
+                            <option value="0" selected>==回访方式==</option>
+                            <option value="1">电话</option>
+                            <option value="2">微信</option>
+                            <option value="3">QQ</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">序号</th>
+                        <th width="7%">
+                            <a class="th-sort" href="javascript:void(0);">回访ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="15%">客户</th>
+                        <th width="35%">回访记录</th>
+                        <th width="7%">回访方式</th>
+                        <th width="7%">回访人</th>
+                        <th width="10%">
+                            <a class="th-sort" href="javascript:void(0);">回访时间<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="7%">是否结束</th>
+                        <th width="7%">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr>
+                        <td>111111111111</td>
+                        <td>123</td>
+                        <td>邱...18888888</td>
+                        <td>回访1111.....</td>
+                        <td>微信</td>
+                        <td>凯</td>
+                        <td>2017-08-08 16:06</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1234</td>
+                        <td>123</td>
+                        <td>邱...18888888</td>
+                        <td>回访1111.....</td>
+                        <td>电话</td>
+                        <td>凯</td>
+                        <td>2017-08-08 16:06</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <!-- 编辑部分 -->
+    <form id="form_tijiao" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+               <ul class="mask-tabs-tit clearfix">
+                    <li>编辑回访</li>
+                </ul>
+                <!-- 新增回访部分 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit" style="height:50px;">回访方式：</td>
+                                <td colspan="8" style="height:50px;line-height:50px;">
+                                    <span class="huifang_style_select">
+                                        <select name="huifang_style" class="beautify_input">
+                                            <option value="0" selected>请选择...</option>
+                                            <option value="1">电话</option>
+                                            <option value="2">微信</option>
+                                            <option value="3">QQ</option>
+                                        </select>
+                                    </span>
+                                    <i class="input-xing huifang_style-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit" style="height:135px;">回访记录：</td>
+                                <td style="height:135px;padding-top: 4px;padding-bottom: 4px;" colspan="8">
+                                    <textarea class="huifang_textarea" name="huifang_textarea"  placeholder="回访记录"></textarea>
+                                    <i class="input-xing huifang_textarea-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit" style="height:50px;">回访时间：</td>
+                                <td colspan="8" style="height:50px;">
+                                    <input class="Wdatetime huifang_time" type="text" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" readonly placeholder="输入日期">
+                                    <i class="input-xing huifang_time-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit" style="height:50px;">回访客服：</td>
+                                <td colspan="8" style="height:50px;">
+                                    <span class="huifang_service_select">
+                                        <select name="huifang_service" class="beautify_input">
+                                            <option value="0" selected>请选择客服...</option>
+                                            <option value="1">客服1</option>
+                                            <option value="2">客服2</option>
+                                            <option value="3">客服3</option>
+                                        </select>
+                                    </span>
+                                    <i class="input-xing huifang_service-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit" style="height:50px;">是否结束：</td>
+                                <td colspan="8" style="height:50px;">
+                                    <label for="check1" class="radioFour">
+                                        <input class="check" name="name" id="check1" type="radio">
+                                        <label for="check1"></label>
+                                        是
+                                    </label>
+                                    <label for="check2" class="radioFour">
+                                        <input class="check" name="name" id="check2" type="radio" checked="true">
+                                        <label for="check2"></label>
+                                        否
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">提&nbsp;交</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+
+    <!-- 删除提示框 -->
+    <!-- <div class="mask_del">
+        <div class="del-box del_tishi">
+            <div class="del-box-top">
+                <span>操作提示</span>
+                <i class="dialog_close"></i>
+            </div>
+            <div class="del-box-cont clearfix">
+                <i class="msg-question"></i>
+                <span>你确定要删除吗？</span>
+            </div>
+            <div class="del-box-bot">
+                <a class="btn_ok" href="javascript:void(0);">确&nbsp;定</a>
+                <a class="btn_close" href="javascript:void(0);">取&nbsp;消</a>
+            </div>
+        </div>
+    
+        <div class="del-box del_result" style="display:none;">
+            <div class="del-box-top">
+                <span>操作结果</span>
+                <i class="dialog_close"></i>
+            </div>
+            <div class="del-box-cont clearfix">
+                <i class="result-question"></i>
+                <span>删除成功！</span>
+            </div>
+            <div class="del-box-bot">
+                <a class="button_ok" href="javascript:void(0);">确&nbsp;定</a>
+            </div>
+        </div>
+    </div> -->
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="customer_visit.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+            $('.huifang_time').val(getNowFormatDateTime());
+        });
+        //点击回收站改变文字
+        $('.btn_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("全部回访");
+                $(this).find('i').css("background-image","url(../../images/icon_all_huifang.png)");
+                // $(this).prop("iconCls","icon-mendian");
+                $('.all_mendian').html("回收站");
+            }else if($(this).find('span').html() == "全部回访"){
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("全部回访");
+            }
+        });
+        //更多按钮
+        $(".btn_more").click(function(){
+            $('.more-box').toggle(250);
+        });
+    </script>
+</body>
+</html>

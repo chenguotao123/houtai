@@ -1,0 +1,40 @@
+.table-tit .btn_excel {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+
+.Wdate,
+.icon_heng,
+.beautify_select,
+.input_textbox,
+.btn_search,
+.btn_reload {
+	float: left;
+}
+
+.search-box .icon_heng {
+	display: block;
+	height: 34px;
+	line-height: 34px;
+	margin: 0 5px;
+}
+
+.end_time {
+	margin-right: 8px;
+}
+
+.beautify_select,
+.input_textbox {
+	margin-right: 8px;
+}
+
+.input_textbox {
+	width: 220px;
+}
+
+.btn_search {
+	margin-left: 4px;
+}

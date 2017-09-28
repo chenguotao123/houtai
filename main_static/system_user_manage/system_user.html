@@ -1,0 +1,243 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>用户管理</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="system_user.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            用户管理列表
+            <a href="javascript:void(0);" class="btn_add">
+                <span>新增</span>
+                <i class="add"></i>
+            </a>
+        </div>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table" width="100%">
+                <thead width="100%">
+                    <tr width="100%">
+                        <th width="4%">编号</th>
+                        <th width="8%">姓名</th>
+                        <th width="8%">账号</th>
+                        <th width="8%">验证码</th>
+                        <th width="8%">管理员角色</th>
+                        <th width="8%">上次登录IP</th>
+                        <th width="8%">上次登录时间</th>
+                        <th width="8%">次数</th>
+                        <th width="8%">多开</th>
+                        <th width="8%">停用</th>
+                        <th width="8%">添加时间</th>
+                        <th width="8%">更新时间</th>
+                        <th width="8%">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>123</td>
+                        <td>chen</td>
+                        <td>EB45DD</td>
+                        <td>普通管理员</td>
+                        <td>192.168.123.12</td>
+                        <td>2017-10-10</td>
+                        <td>100</td>
+                        <td>是</td>
+                        <td>否</td>
+                        <td>2017-01-02</td>
+                        <td>2017-08-08</td>
+                        <!-- <td><a class="btn_del" href="javascript:void(0);">删除</a></td> -->
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>123</td>
+                        <td>123123</td>
+                        <td>123123</td>
+                        <td>超级管理员</td>
+                        <td>192.168.123.12</td>
+                        <td>2017-10-10</td>
+                        <td>100</td>
+                        <td>否</td>
+                        <td>否</td>
+                        <td>2017-01-02</td>
+                        <td>2017-08-08</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>123</td>
+                        <td>44444444</td>
+                        <td>123123</td>
+                        <td>客服经理</td>
+                        <td>192.168.123.12</td>
+                        <td>2017-10-10</td>
+                        <td>100</td>
+                        <td>是</td>
+                        <td>否</td>
+                        <td>2017-01-02</td>
+                        <td>2017-08-08</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+    <!-- 修改和添加部分 -->
+    <form id="form_tijiao" name="form_tijiao" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;border:1px solid #ccc;">
+                    <span class="add_tit">添加用户</span>
+                </div>
+                <ul class="mask-tabs-tit clearfix"><li>基本信息</li></ul>
+                <!-- 基本信息部分 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">账号：</td>
+                                <td colspan="8">
+                                    <span class="number">
+                                        <input class="input_to_text" name="number" type="text" value="">
+                                        <i class="input-xing number-xing">*</i>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">密码：</td>
+                                <td colspan="8">
+                                    <span class="pwd">
+                                        <input name="pwd" type="text" value="">
+                                        <i class="input-xing pwd-xing">*</i>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">确认密码：</td>
+                                <td colspan="8">
+                                    <span class="confirm_pwd">
+                                        <input name="confirm_pwd" type="text" value="">
+                                        <i class="input-xing confirm_pwd-xing">*</i>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">姓名：</td>
+                                <td colspan="8">
+                                    <span class="name">
+                                        <input name="name" type="text" value="">
+                                        <i class="input-xing name-xing">*</i>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">验证码：</td>
+                                <td colspan="8">
+                                   <span class="code">
+                                        <input name="code" type="text" value="">
+                                        <i class="input-xing code-xing">*</i>
+                                   </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">多人登录：</td>
+                                <td colspan="8">
+                                    <span class="many_login">
+                                        <input name="check" id="check" type="checkbox">
+                                        <label for="check"></label>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">所属角色：</td>
+                                <td colspan="8">
+                                    <span class="role">
+                                        <select name="role" class="beautify_input">
+                                            <option value="0" selected>超级管理员</option>
+                                            <option value ="1">系统管理员</option>
+                                            <option value="2">普通管理员</option>
+                                            <option value="3">客服经理</option>
+                                            <option value="4">客服</option>
+                                        </select>
+                                    </span>
+                               </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">确&nbsp;定</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="system_user.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>日报表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="customer_service_day_report.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">日报表</span>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="demo.php" method="post">
+            <div class="table-search">
+                <span class="search-box">
+                    <input id="d5221" class="Wdate start_time" name="start_time" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="开始日期"/>
+                    <i>-</i>
+                    <input id="d5222" class="Wdate end_time" name="end_time" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="结束日期"/>
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();">
+                        查询
+                        <i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置
+                        <i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="6%">
+                            <a class="th-sort" href="javascript:void(0);">客服ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="6%">客服姓名</th>
+                        <th width="6%">门店数量</th>
+                        <th width="6%">店员数量</th>
+                        <th width="6%">顾客数</th>
+                        <th width="6%">订单数</th>
+                        <th width="6%">客单价</th>
+                        <th width="6%">订单总数</th>
+                        <th width="6%">新客订单数</th>
+                        <th width="6%">新客单价</th>
+                        <th width="6%">新客订单额</th>
+                        <th width="6%">复购订单数</th>
+                        <th width="6%">复购单价</th>
+                        <th width="6%">复购订单额</th>
+                        <th width="8%">当前日期</th>
+                        <th width="8%">当前周数</th>
+                    </tr>
+                </thead>
+                <tbody class="main_tbody">
+                    <tr>
+                        <td>1111</td>
+                        <td>111111111</td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2017-09-09</td>
+                        <td>39</td>
+                    </tr>
+                    <tr>
+                        <td>2222</td>
+                        <td>111111111</td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2017-09-09</td>
+                        <td>39</td>
+                    </tr>
+                </tbody>
+                <!-- 合计部分,需计算 -->
+                <tr class="tr_heji">
+                    <td>合计</td>
+                    <td>1111</td>
+                    <td>111111111</td>
+                    <td>111111111</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>2</td>
+                    <td>13</td>
+                    <td>36</td>
+                    <td>36</td>
+                    <td>36</td>
+                    <td>5</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="customer_service_day_report.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.start_time').val(getNowFormatDate());
+        $('.end_time').val(getNowFormatDate());
+    })
+    </script>
+</body>
+</html>

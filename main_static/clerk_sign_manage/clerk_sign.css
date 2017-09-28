@@ -1,0 +1,55 @@
+.base_info .store_name input {
+	width: 280px;
+	padding: 2px 4px;
+	display: inline-block;
+	padding-left: 5px;
+	font-size: 14px;
+}
+.base_info .jinyong {
+	margin-bottom: 4px;
+}
+.base_info .jinyong input {
+	width: 14px;
+	display: inline-block;
+}
+.table-tit .btn_excel {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+
+.Wdate,
+.btn_search,
+.btn_reload {
+	float: left;
+}
+
+/*日历插件部分*/
+.bodys{ padding:50px 0 0 50px;}
+.datainp{ width:120px; height:34px; border:1px #aaa solid;}
+.datep{ margin-bottom:40px; line-height:24px; margin-right:15px;}
+.wicon{
+	padding: 0 10px;
+	background-image: url(../../images/rili.png); background-repeat:no-repeat; 
+	background-position:115px center;
+}
+
+.mian-table tr th .th-sort {
+	width: 100%;
+	height: 37px;
+	line-height: 37px;
+	display: block;
+	position: relative;
+	text-decoration: underline;
+}
+.mian-table tr th .th-sort .th-icon-sort {
+	width: 15px;
+	height: 15px;
+	display: block;
+	position: absolute;
+	top: 50%;	
+	left: 49px;
+	margin-top: -8px;
+}

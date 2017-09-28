@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>转移客户</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="customer_transfer.css">
+    <style type="text/css">
+        .tab-table tr td {
+            height: 50px;
+            line-height: 50px;
+        }
+        .icon_dbjiantou {
+            width: 16px;
+            height: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            转移客户
+        </div>
+        <div class="tab_table-box">
+            <table id="tab_table" class="tab-table">
+                <tr>
+                    <td colspan="7" style="font-weight:bold;">转出客服</td>
+                    <td class="td-tit" colspan="1" style="text-align:center;">操作</td>
+                    <td colspan="7" style="font-weight:bold;">转入客服</td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <span class="beautify_select custom_service_out">
+                            <select name="custom_service_out" class="beautify_input">
+                                <option value="0">请选择客服...</option>
+                                <option value="1">客服1</option>
+                                <option value="2">客服2</option>
+                                <option value="3">客服3</option>
+                            </select>
+                        </span>
+                    </td>
+                    <td colspan="1" style="text-align:center;"><img class="icon_dbjiantou" src="../../images/icon_dbjiantou.png" alt=""></td>
+                    <td colspan="7">
+                        <span class="beautify_select custom_service_in">
+                            <select name="custom_service_in" class="beautify_input">
+                                <option value="0">请选择客服...</option>
+                                <option value="1">客服1</option>
+                                <option value="2">客服2</option>
+                                <option value="3">客服3</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="btn-box" style="margin-top:80px;">
+            <a href="javascript:void(0)" class="btn_queding">提&nbsp;交</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="customer_transfer.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+            $('.btn_queding').on('click',function() {
+                if($('.custom_service_out select option:selected').val() == "0" && $('.custom_service_in select option:selected').val() == "0"){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-请选择转出、转入客服！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else if($('.custom_service_out select option:selected').val() == "0"){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-请选择转出客服！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else if($('.custom_service_in select option:selected').val() == "0"){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-请选择转入客服！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else if($('.custom_service_out select option:selected').text() == $('.custom_service_in select option:selected').text()){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-转入客服不能为转出客服！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else{
+                    //下面为正确
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","0 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("提交成功");
+                    $('.mask_tishi',window.parent.document).show();
+                }
+            });
+            $('.button_ok',window.parent.document).on('click',function() {
+                $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","0 0");
+                $('.tishi-box-cont .question_text',window.parent.document).text("提交成功");
+                $('.mask_tishi',window.parent.document).hide();
+            });
+            $('.dialog_close',window.parent.document).on('click',function() {
+                $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","0 0");
+                $('.tishi-box-cont .question_text',window.parent.document).text("提交成功");
+                $('.mask_tishi',window.parent.document).hide();
+            });
+        });
+    </script>
+</body>
+</html>

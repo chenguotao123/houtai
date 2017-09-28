@@ -1,0 +1,242 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>信息管理系统</title> 
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/platform.css" rel="stylesheet">
+    <link href="uimaker/easyui.css" rel="stylesheet">
+</head> 
+<body>
+    <div class="container">
+        <div id="pf-hd">
+            <div class="pf-logo">
+                <img src="images/main/main_logo.png" alt="logo">
+            </div>
+            <div class="pf-nav-wrap">
+                <!--<div class="pf-nav-ww">-->
+                <div class="pf-nav-ww">
+
+                    <ul class="pf-nav">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="pf-user">
+                <div class="pf-logout">
+                    <a href="javascript:;">
+                        <i class="iconfont">&#xe668;</i>
+                        <span class="pf-opt-name">退出</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="pf-bd">
+            <div class="pf-sider-wrap"></div>
+            <div id="pf-page"></div>
+        </div>
+        <div id="pf-ft">
+            <div class="system-name">
+                <i class="iconfont">&#xe638;</i>
+                <span>DTP管理系统&nbsp;v1.0</span>
+            </div>
+            <div class="copyright-name">
+                <span>CopyRight&nbsp;2018&nbsp;&nbsp;凤谜网络&nbsp;版权所有</span>
+                <i class="iconfont" >&#xe601;</i>
+            </div>
+        </div>
+    </div>
+
+    <div id="mm" class="easyui-menu tabs-menu" style="width:120px;display:none;">
+        <div id="mm-tabclose">关闭</div>
+        <div id="mm-tabcloseall">关闭所有</div>
+        <div id="mm-tabcloseother">关闭其他</div> 
+        <div id="mm-tabrefresh">刷新</div> 
+    </div>
+
+    <!-- 删除提示框 -->
+    <div class="mask_del">
+        <div class="del-box del_tishi">
+            <div class="del-box-top">
+                <span>操作提示</span>
+                <i class="dialog_close"></i>
+            </div>
+            <div class="del-box-cont clearfix">
+                <i class="msg-question"></i>
+                <span>你确定要删除吗？</span>
+            </div>
+            <div class="del-box-bot">
+                <a class="btn_ok" href="javascript:void(0);">确定</a>
+                <a class="btn_close" href="javascript:void(0);">取消</a>
+            </div>
+        </div>
+
+        <div class="del-box del_result" style="display: none;">
+            <div class="del-box-top">
+                <span>操作结果</span>
+                <i class="dialog_close"></i>
+            </div>
+            <div class="del-box-cont clearfix">
+                <i class="result-question"></i>
+                <span>删除成功！</span>
+            </div>
+            <div class="del-box-bot">
+                <a class="button_ok" href="javascript:void(0);">确定</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="mask_tishi">
+        <div class="tishi-box">
+            <div class="tishi-box-top">
+                <span>提示</span>
+                <i class="dialog_close"></i>
+            </div>
+            <div class="tishi-box-cont clearfix">
+                <i class="tishi-question"></i>
+                <span class="question_text">提交成功</span>
+            </div>
+            <div class="tishi-box-bot">
+                <a class="button_ok" href="javascript:void(0);">确定</a>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<!--[if IE 7]>
+<script type="text/javascript">
+$(window).resize(function(){
+$('#pf-bd').height($(window).height()-76);
+}).resize();
+
+</script>
+<![endif]-->  
+
+
+<script type="text/javascript">
+// $('.easyui-tabs1').tabs({
+//   tabHeight: 44,
+//   onSelect:function(title,index){
+//     var currentTab = $('.easyui-tabs1').tabs("getSelected");
+//     if(currentTab.find("iframe") && currentTab.find("iframe").size()){
+//         currentTab.find("iframe").attr("src",currentTab.find("iframe").attr("src"));
+//     }
+//   }
+// })
+$(window).resize(function(){
+    $('.tabs-panels').height($("#pf-page").height()-46);
+    $('.panel-body').not('.messager-body').height($(".easyui-dialog").height)
+}).resize();
+
+var page = 0,
+pages = ($('.pf-nav').height() / 70) - 1;
+
+if(pages === 0){
+    $('.pf-nav-prev,.pf-nav-next').hide();
+}
+$(document).on('click', '.pf-nav-prev,.pf-nav-next', function(){
+
+
+    if($(this).hasClass('disabled')) return;
+    if($(this).hasClass('pf-nav-next')){
+        page++;
+        $('.pf-nav').stop().animate({'margin-top': -70*page}, 200);
+        if(page == pages){
+            $(this).addClass('disabled');
+            $('.pf-nav-prev').removeClass('disabled');
+        }else{
+            $('.pf-nav-prev').removeClass('disabled');
+        }
+
+    }else{
+        page--;
+        $('.pf-nav').stop().animate({'margin-top': -70*page}, 200);
+        if(page == 0){
+            $(this).addClass('disabled');
+            $('.pf-nav-next').removeClass('disabled');
+        }else{
+            $('.pf-nav-next').removeClass('disabled');
+        }
+
+    }
+})
+
+// setTimeout(function(){
+//    $('.tabs-panels').height($("#pf-page").height()-46);
+//    $('.panel-body').height($("#pf-page").height()-76)
+// }, 200)
+function replace(doc, style) {
+
+
+    $('link', doc).each(function(index, one) {
+
+        var path = $(one).attr('href').replace(/(static\/)\w+(\/css)/g, '$1' + style + '$2').replace(/(custom\/)\w+(\/)/g, '$1' + style + '$2'),
+        sheet;
+
+        if(doc.createStyleSheet) {
+
+            sheet = doc.createStyleSheet(path);
+            setTimeout(function() {
+
+                $(one).remove();
+
+            }, 500)
+
+        } else {
+
+            sheet = $('<link rel="stylesheet" type="text/css" href="' + path + '" />').appendTo($('head', doc));
+            sheet = sheet[0];
+            sheet.onload = function() {
+
+                $(one).remove();
+
+            }
+
+        }
+
+    })
+
+    $('img', doc).each(function(index, one) {
+
+        var path = $(one).attr('src').replace(/(static\/)\w+(\/images)/g, '$1' + style + '$2');
+
+        $(one).attr('src', path);
+
+    })
+
+}
+$('.skin-item').click(function() {
+
+    var color = $(this).data('color');
+    replaceAll(color);
+
+})
+function replaceAll(style) {
+
+    $('iframe').each(function(index, one) {
+
+        try {
+
+            replace(one.contentWindow.document, style)
+
+        } catch(e) {
+
+            console.warn('origin cross');
+
+        }
+
+    })
+
+    replace(document, style)
+
+}
+
+
+</script>
+</body> 
+</html>

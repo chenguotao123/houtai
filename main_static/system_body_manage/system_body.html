@@ -1,0 +1,195 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>体质管理</title> 
+    <link rel="stylesheet" href="../../css/base.css" >
+    <link rel="stylesheet" href="system_body.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            体质管理列表--<span class="all_body">全部体质</span>
+            <a href="javascript:void(0);" class="btn_add">
+                <span>新增</span>
+                <i class="add"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_jinyong">
+                <span>已禁用</span>
+                <i class="jinyong"></i>
+            </a>
+        </div>
+        <form action="">
+            <div class="table-search">
+                <span class="search-box">
+                    <input class="input_textbox" style="width:180px;" type="text" name="name" placeholder="体质名称">
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                    查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                    重置<i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">ID</th>
+                        <th width="50%">体质名称</th>
+                        <th width="15%">添加时间</th>
+                        <th width="15%">更新时间</th>
+                        <th width="5%">停用</th>
+                        <th width="10%">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>体质全称体质全称体质全称123</td>
+                        <td>2017-08-08</td>
+                        <td>2017-10-08</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>体质全称体质全称体质全称456</td>
+                        <td>2017-08-08</td>
+                        <td>2017-10-08</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>体质全称体质全称体质全称789</td>
+                        <td>2017-08-08</td>
+                        <td>2017-10-08</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+    <!-- 修改和添加部分 -->
+    <form id="form_tijiao" name="form_tijiao" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;border:1px solid #ccc;">
+                    <span class="add_tit">添加体质</span>
+                </div>
+                <ul class="mask-tabs-tit clearfix"><li>基本信息</li></ul>
+                <!-- 基本信息部分 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">门店全称：</td>
+                                <td colspan="8">
+                                    <span class="store_name">
+                                        <input name="store_name" type="text" value="">
+                                        <i class="input-xing store_name-xing">*</i>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">禁用：</td>
+                                <td colspan="8">
+                                    <span class="jinyong">
+                                        <label for="check1" class="radioFour">
+                                            <input name="check" id="check1" type="radio">
+                                            <label for="check1"></label>
+                                            是
+                                        </label>
+                                        <label for="check2"  class="radioFour">
+                                            <input name="check" id="check2" type="radio" checked="true">
+                                            <label for="check2"></label>
+                                            否
+                                        </label>
+                                    </span>
+                               </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">确&nbsp;定</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="system_body.js"></script>
+    <script type="text/javascript">
+        //点击已禁用改变文字
+        $('.btn_jinyong').on('click',function() {
+            if($(this).find('span').html() == "全部"){
+                $(this).find('span').html("已禁用");
+                $(this).find('.jinyong').css("background-image","url(../../images/jinyong.png)");
+                $('.all_body').html("全部体质");   
+            }else if($(this).find('span').html() == "已禁用"){
+                $(this).find('span').html("全部");
+                $(this).find('.jinyong').css("background-image","url(../../images/all.png)");
+                $('.all_body').html("已禁用体质");
+            }
+        });
+    </script>
+</body>
+</html>

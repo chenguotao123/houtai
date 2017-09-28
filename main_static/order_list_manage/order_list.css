@@ -1,0 +1,150 @@
+.table-search {
+ 	overflow: hidden;
+ }
+ .search-box{
+ 	min-width: 1070px;
+ 	overflow: hidden;
+ }
+
+ .input-text {
+	width: 140px;
+	height: 28px;
+	line-height: 28px;
+	padding: 2px 4px;
+	border: 1px solid #bbb;
+	font-size: 13px;
+}
+
+.table-tit .btn_excel,
+.table-tit .btn_back {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+.table-tit .btn_back {
+	right: 120px;
+}
+
+.search-box .input_textbox,
+.search-box .search_service,
+.search-box .Wdate,
+.search-box .icon_heng,
+.search-box .btn_search,
+.search-box .btn_reload,
+.search-box .btn_more,
+.beautify_select {
+	float: left;
+}
+
+.search-box .btn_search,
+.search-box .btn_reload,
+.search-box .btn_more {
+	margin-left: 8px;
+}
+
+.order_source_select {
+	margin: 0 6px;
+}
+
+.search-box .input_textbox {
+	width: 210px;
+	margin-right: 8px;
+}
+.search-box .search_service {
+	margin-right: 3px;
+}
+.search-box .icon_heng {
+	display: block;
+	height: 34px;
+	line-height: 34px;
+	margin: 0 5px;
+}
+.more-box {
+	padding-bottom: 5px;
+}
+.more-box .styled-select {
+	margin-left: 6px;
+}
+
+.more-box .input_textbox,
+.more-box .icon_hengxian,
+.more-box .beautify_select {
+	float: left;
+}
+
+.more-box .icon_hengxian {
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	margin: 0 5px;
+}
+
+.more-box .beautify_select {
+	height: 35px;
+	margin-left: 15px;
+}
+
+.more-box .store_select {
+	margin-left: 0;
+}
+
+.btn_update {
+	margin-left: 0;
+}
+.btn_chakan {
+	margin-left: 3px;
+	margin-right: 1px;
+}
+.tabcontent-tit {
+	width: 100%;
+	height: 20px;
+	border-bottom: 1px solid #bbb;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+.tabcontent-tit span {
+	height: 20px;
+	display: inline-block;
+	color: #1da02b;
+	font-weight: bold;
+	font-size: 13px;
+	position: relative;
+}
+.tabcontent-tit span .bot-xian {
+	width: 60px;
+	height: 2px;
+	display: block;
+	background: #ff9d02;
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+}
+
+.btn_fanhui,
+.btn_shanchu {
+	display: inline-block;
+	width: 75px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	outline:none;
+	background: #1da02b;
+	color: #fff;
+	border: 1px solid #1da02b;
+	cursor: pointer;
+}
+
+.btn_shanchu {
+	margin-left: 10px;
+	color: #333;
+	background: #ededed;
+	border: 1px solid #aaa;
+}
+.btn_shanchu:hover {
+	background: #fff;
+}

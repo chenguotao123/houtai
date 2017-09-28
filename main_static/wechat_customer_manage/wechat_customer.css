@@ -1,0 +1,83 @@
+.table-search {
+ 	overflow: hidden;
+ }
+ .search-box{
+ 	min-width: 1070px;
+ 	overflow: hidden;
+ }
+
+.table-tit .btn_excel,
+.table-tit .btn_back {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+.table-tit .btn_back {
+	right: 120px;
+}
+
+.mian-table .main_tbody tr td {
+	height: 55px;
+	line-height: 55px;
+}
+.mian-table .main_tbody tr td.td_photo_img img {
+	max-width: 90%;
+	max-height: 50px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.Wdate,
+.icon_heng,
+.beautify_select,
+.input_textbox,
+.btn_search,
+.btn_reload {
+	float: left;
+}
+
+.search-box .icon_heng {
+	display: block;
+	height: 34px;
+	line-height: 34px;
+	margin: 0 4px;
+}
+
+.end_time {
+	margin-right: 7px;
+}
+
+.beautify_select,
+.input_textbox {
+	margin-right: 7px;
+}
+
+.input_textbox {
+	width: 200px;
+}
+
+.btn_search {
+	margin-left: 1px;
+}
+
+.search-box .btn_reload {
+	margin-left: 8px;
+}
+
+
+.btn_transform {
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	text-align: left;
+	display: inline-block;
+}
+
+.btn_transform img {
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+}

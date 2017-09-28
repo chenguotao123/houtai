@@ -1,0 +1,64 @@
+/*文本域*/
+.base_desc {
+	height: 160px;
+	line-height: 160px;
+}
+.tab-table tr td input {
+	width: 400px;
+  height: 28px;
+  line-height: 28px;
+  padding: 2px 4px;
+  border: 1px solid #bbb;
+  font-size: 13px;
+}
+.tab-table tr td .stage_desc textarea {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 2px 6px;
+	width: 400px;
+	height: 120px;
+}
+.tab-table tr td .sort input {
+	width: 40px;
+}
+.tab-table tr td .jinyong {
+	margin-bottom: 4px;
+}
+.tab-table tr td .jinyong input {
+	width: 14px;
+	display: inline-block;
+}
+/**
+ * 隐藏默认的checkbox
+ */
+.radioFour input[type=radio] {
+  visibility: hidden;
+}
+.radioFour {
+  width: 0;
+  height: 0;
+  position: relative;
+  margin-right: 7px;
+}
+.radioFour label {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 4px;
+  z-index: 1;
+  border: 1px solid #999;
+}
+.radioFour input[type=radio]:checked + label {
+  width: 17px;
+  height: 17px;
+  border: 0;
+  background: url(../../images/icon_yuangou.png) no-repeat center center;
+  background-size: 17px 17px;
+  /*background: #000;*/
+  border-color: #479ce2;
+  opacity: 1;
+}

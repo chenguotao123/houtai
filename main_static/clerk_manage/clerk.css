@@ -1,0 +1,293 @@
+.input_textbox {
+	width: 260px;
+}
+/*添加的表格*/
+.td_table-box {
+	padding-top: 10px;
+}
+.clerk_name,
+.clerk_phone,
+.store_num,
+.store_name {
+	width: 150px;
+	height: 28px;
+	line-height: 28px;
+	padding: 2px 4px;
+	border: 1px solid #bbb;
+	font-size: 13px;
+} 
+.clerk_name {
+	width: 220px;
+}
+.store_num{
+	width: 50px;
+}
+.mendian-box {
+	vertical-align:middle;
+}
+.btn_sou {
+	display: inline-block;
+	width: 55px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid #aaa;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px; 
+	background-color: #ededed;
+	font-size: 12px;
+	margin: 0 4px;
+	margin-bottom: 4px;
+}
+.bind_selected {
+	font-size: 12px;
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: url(../../images/left_dbjiantou.png) no-repeat center left;
+	border: 1px solid #aaa;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px; 
+	background-color: #ededed;
+	margin-left: 4px;
+	margin-bottom: 4px;
+}
+.btn_sou:hover,
+.bind_selected:hover {
+	background-color: #fff;
+}
+.subordinate_role {
+	width: 100px;
+}
+.jinyong {
+	margin-bottom: 4px;
+}
+.jinyong input {
+	width: 30px;
+	display: inline-block;
+}
+
+.table-tit .btn_add,
+.table-tit .btn_excel,
+.table-tit .btn_back {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+.table-tit .btn_add {
+	right: 240px;	
+}
+.table-tit .btn_back {
+	right: 120px;
+}
+.table-tit .btn_all_clerk {
+	padding-left: 36px;
+}
+.table-tit .btn_see_allcleak {
+	right: 350px;	
+}
+.table-tit .btn_add_clerk {
+	right: 240px;
+}
+.table-tit .icon_all_clerk {
+	width: 20px;
+	height: 20px;
+	display: block;
+	background: url(../../images/icon_customer_list.png) no-repeat;
+	background-size: 20px 20px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	margin-top: -10px;
+}
+/*返回按钮*/
+.btn_fanhui {
+	display: inline-block;
+	width: 75px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	outline:none;
+	background: #1da02b;
+	color: #fff;
+	border: 1px solid #1da02b;
+	cursor: pointer;
+}
+
+.btn_clerk {
+	text-decoration: underline;
+}
+.table-box {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+}
+.tabcontent {
+	background: #fff;
+	position: relative;
+}
+.tabcontent.hide {
+	display: none;
+}
+.mask-tabs-tit li a{
+	display: inline-block;
+	color: #fff;
+}
+.mask-tabs-tit li.current {
+	border-color: #aaa;
+	background: #fff;
+	border-top: 2px solid #ff9d02;
+	color: #333;
+}
+.mask-tabs-tit li.current a {
+	color: #333;
+}
+
+.fanhui-box {
+	float: left;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	margin: 0 auto;
+	background: #fff;
+	border-top: 1px solid #ccc;
+}
+.fanhui-box.addsticky {  
+  	position: -webkit-sticky;
+   	position: sticky;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;
+}  
+.tab-bianji,
+.tab-shanchu {
+	font-size: 12px;
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	display: inline-block;
+	border: 1px solid #aaa;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-left: 6px;
+	background: #dedede;
+	position: relative;
+	padding-left: 10px;
+}
+.tab-bianji:hover,
+.tab-shanchu:hover {
+	background: #fff;
+}
+.tab-bianji i,
+.tab-shanchu i {
+	width: 18px;
+	height: 18px;
+	display: block;
+	position: absolute;
+    top: 5px;
+    left: 14px;
+	background: url(../../images/icon_bianji.png) no-repeat;
+	background-size: 18px 18px;
+}
+.tab-shanchu i {
+	background-image: url(../../images/icon_del.png);
+}
+
+.add_box_cat {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;	
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #ffffff;
+	display: none;
+	overflow-y: auto;
+}
+
+.add_box_jifen {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;	
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #ffffff;
+	display: none;
+	overflow-y: auto;
+}
+.jifen_queding,
+.jifen_back {
+	display: inline-block;
+	width: 75px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 12px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	outline:none;
+	background: #1da02b;
+	color: #fff;
+	border: 1px solid #1da02b;
+	cursor: pointer;
+}
+
+.jifen_back {
+	margin-left: 10px;
+	color: #333;
+	background: #ededed;
+	border: 1px solid #aaa;
+}
+.jifen_back:hover {
+	background: #fff;
+}
+
+.btn_chakan {
+	display: block;
+	margin: 0 auto;
+}
+
+.base_info select {
+	height: 26px;
+}
+
+.mian-table tr td .zengpin {
+	color: #ff0000;
+}
+
+.mian-table tr th .th-sort {
+	width: 100%;
+	height: 37px;
+	line-height: 37px;
+	display: block;
+	position: relative;
+	text-decoration: underline;
+}
+.mian-table tr th .th-sort .th-icon-sort {
+	width: 15px;
+	height: 15px;
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 37px;
+	margin-top: -8px;
+}

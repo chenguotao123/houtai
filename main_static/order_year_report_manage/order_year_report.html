@@ -1,0 +1,232 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>订单年报表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="order_year_report.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            订单年报表
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <!-- <form id="form_tijiao" action=""> -->
+            <div class="table-search">
+                <span class="search-box">
+                    <!-- 年报表，默认显示本年数据，仅显示 2012至今.... -->
+                    <span class="beautify_select now_year_one">
+                        <select name="now_year_one" class="beautify_input">
+                            <option value="2">2012</option>
+                            <option value="3">2013</option>
+                            <option value="4">2014</option>
+                            <option value="5">2015</option>
+                            <option value="1">去年</option>
+                            <option value="0" selected>今年</option>
+                        </select>
+                    </span>
+                    <i class="icon_heng">-</i>
+                    <span class="beautify_select now_year_two">
+                        <select name="now_year_two" class="beautify_input">
+                            <option value="2">2012</option>
+                            <option value="3">2013</option>
+                            <option value="4">2014</option>
+                            <option value="5">2015</option>
+                            <option value="1">去年</option>
+                            <option value="0" selected>今年</option>
+                        </select>
+                    </span>
+                    <!-- <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();"> -->
+                    <a href="javascript:void(0);" class="btn_search">
+                        查询
+                        <i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置
+                        <i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        <!-- </form> -->
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">序号</th>
+                        <th width="7%">订单数(单)</th>
+                        <th width="7%">销售额(元)</th>
+                        <th width="7%">客单价(元)</th>
+                        <th width="7%">新客订单(单)</th>
+                        <th width="7%">新客销售(元)</th>
+                        <th width="7%">新客单价(元)</th>
+                        <th width="7%">复购订单(单)</th>
+                        <th width="7%">复购销售(元)</th>
+                        <th width="7%">复购单价(元)</th>
+                        <th width="7%">销售门店(个)</th>
+                        <th width="7%">销售店员(名)</th>
+                        <th width="8%">购买顾客(名)</th>
+                        <th width="10%">
+                            <a class="th-sort" href="javascript:void(0);">当前年份<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>3382</td>
+                        <td>1,117,882.00</td>
+                        <td>330.54</td>
+                        <td>2484</td>
+                        <td>721,759.00</td>
+                        <td>303.85</td>
+                        <td>898</td>
+                        <td>363,123.00</td>
+                        <td>404.16</td>
+                        <td>101</td>
+                        <td>168</td>
+                        <td>2690</td>
+                        <td>2017</td>
+                    </tr>
+                </tbody>
+                <!-- 合计部分,需计算 -->
+                <tr class="tr_heji">
+                    <td>合计</td>
+                    <td>3382</td>
+                    <td>1,117,882.00</td>
+                    <td>330.54</td>
+                    <td>2484</td>
+                    <td>721,759.00</td>
+                    <td>303.85</td>
+                    <td>898</td>
+                    <td>363,123.00</td>
+                    <td>404.16</td>
+                    <td>101</td>
+                    <td>168</td>
+                    <td>2690</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="order_year_report.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+        //查询部分
+        $('.btn_search').on('click',function() {
+            var now_year_one = $('.now_year_one .selectLt').text();
+            var now_year_two = $('.now_year_two .selectLt').text();
+            $.ajax({
+                url: "demo.php",
+                data:{'now_year_one':now_year_one,'now_year_two':now_year_two},
+                type:"post",
+                dataType:"json",
+                success: function(data){ 
+                    if(data != null && data.status == 0){
+                        var str = "";
+                        for(var i=0;i<data.content.length;i++){
+                            str += "<tr>";
+                                str += "<td>"+data.content[i].xuhao+"</td>";
+                                str += "<td>"+data.content[i].order_num+"</td>";
+                                str += "<td>"+data.content[i].sales_amount+"</td>";
+                                str += "<td>"+data.content[i].ke_price+"</td>";
+                                str += "<td>"+data.content[i].new_customer_order+"</td>";
+                                str += "<td>"+data.content[i].new_customer_sales+"</td>";
+                                str += "<td>"+data.content[i].new_customer_price+"</td>";
+                                str += "<td>"+data.content[i].purchase_order+"</td>";
+                                str += "<td>"+data.content[i].purchase_sales+"</td>";
+                                str += "<td>"+data.content[i].purchase_price+"</td>";
+                                str += "<td>"+data.content[i].sales_mendian+"</td>";
+                                str += "<td>"+data.content[i].sales_clerk+"</td>";
+                                str += "<td>"+data.content[i].buy_customer+"</td>";
+                                str += "<td>"+data.content[i].now_time+"</td>";
+                            str += "</tr>";
+                        }
+                        $('.tbody_box').html("");
+                        $('.tbody_box').append(str);
+                        //以下为合计部分,需计算所有搜索到的内容，然后加入到text里
+                        $('.tr_heji td').eq(1).text("33");
+                        $('.tr_heji td').eq(2).text("144");
+                        $('.tr_heji td').eq(3).text("49,952.00");
+                        $('.tr_heji td').eq(4).text("340.00");
+                        $('.tr_heji td').eq(5).text("144");
+                        $('.tr_heji td').eq(6).text("36,044.00");
+                        $('.tr_heji td').eq(7).text("0316.18");
+                        $('.tr_heji td').eq(8).text("30");
+                        $('.tr_heji td').eq(9).text("13,055.00");
+                        $('.tr_heji td').eq(10).text("435.00");
+                        $('.tr_heji td').eq(11).text("86");
+                        $('.tr_heji td').eq(12).text("93");
+                        $('.tr_heji td').eq(13).text("");
+                    }else if(data.status == 1){
+                        var str = "<tr><td colspan='14' style='background:#ffffff;height:100px;line-height:100px;text-align:center;'>没有任何数据！</td></tr>";
+                        $('.tbody_box').html("");
+                        $('.tbody_box').append(str);
+                        $('.tr_heji td').eq(1).text("0");
+                        $('.tr_heji td').eq(2).text("0");
+                        $('.tr_heji td').eq(3).text("0");
+                        $('.tr_heji td').eq(4).text("0");
+                        $('.tr_heji td').eq(5).text("0");
+                        $('.tr_heji td').eq(6).text("0");
+                        $('.tr_heji td').eq(7).text("0");
+                        $('.tr_heji td').eq(8).text("0");
+                        $('.tr_heji td').eq(9).text("0");
+                        $('.tr_heji td').eq(10).text("0");
+                        $('.tr_heji td').eq(11).text("0");
+                        $('.tr_heji td').eq(12).text("0");
+                        $('.tr_heji td').eq(13).text("");
+                    }
+                },
+                error:function() {
+                    var str = "<tr><td colspan='14' style='background:#ffffff;height:100px;line-height:100px;text-align:center;'>服务器开小差...</td></tr>";
+                    $('.tbody_box').html("");
+                    $('.tbody_box').append(str);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

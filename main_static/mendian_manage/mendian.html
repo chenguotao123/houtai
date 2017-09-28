@@ -1,0 +1,264 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>门店管理</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="mendian.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">全部门店</span>
+            <a id="btn_add" href="javascript:void(0);" class="btn_add">
+                <span>添加</span>
+                <i class="add"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_back btn_main_back">
+                <span>回收站</span>
+                <i class="back"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <span class="beautify_select">
+                        <select name="main_business" class="beautify_input">
+                            <option value="0" selected>=所属业务=</option>
+                            <option value="1">业务1</option>
+                            <option value="2">业务2</option>
+                            <option value="3">业务3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="main_customer_service" class="beautify_input">
+                            <option value="0" selected>=所属客服=</option>
+                            <option value="1">客服1</option>
+                            <option value="2">客服2</option>
+                            <option value="3">客服3</option>
+                        </select>
+                    </span>
+                    <input class="input_textbox" type="text" name="name" placeholder="全称/简称">
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();">
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">ID</th>
+                        <th width="9%">门店简称</th>
+                        <th width="9%">门店全称</th>
+                        <th width="7%">店员数</th>
+                        <th width="7%">微信店员</th>
+                        <th width="7%">顾客数</th>
+                        <th width="7%">微顾客数</th>
+                        <th width="7%">粉丝数</th>
+                        <th width="7%">订单数</th>
+                        <th width="7%">
+                            <a class="th-sort" href="javascript:void(0);">销售额<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="7%">所属业务</th>
+                        <th width="7%">所属客服</th>
+                        <th width="7%">更新时间</th>
+                        <th width="7%">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="main_tbody">
+                    <tr>
+                        <td>1</td>
+                        <td>111111111</td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>2017-08-08</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>2222222</td>
+                        <td>333333</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>2017-08-08</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <!-- 添加/编辑部分 -->
+    <form id="add_form" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;">
+                    <span class="add_tit">添加门店</span>
+                    <a href="javascript:void(0);" class="btn_add btn_menidan">
+                        <span>门店列表</span>
+                        <i class="icon_menidan"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_back btn_add_back">
+                        <span>回收站</span>
+                        <i class="back"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_excel">
+                        <span>导出</span>
+                        <i class="excel"></i>
+                    </a>
+                </div>
+                <ul class="mask-tabs-tit clearfix">
+                    <li>基本信息</li>
+                </ul>
+                <!-- 通用信息 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table class="tab-table">
+                            <tr>
+                                <td class="td-tit">门店全称：</td>
+                                <td colspan="8">
+                                    <input class="input-text mendian_all_name" name="mendian_all_name" type="text">
+                                    <i class="input-xing mendian_all_name-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">门店简称：</td>
+                                <td colspan="8">
+                                    <input class="input-text mendian_odd_name" name="mendian_odd_name" type="text" style="width:230px;">
+                                    <i class="input-xing mendian_odd_name-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">所属业务：</td>
+                                <td colspan="8">
+                                    <span class="beautify_select business_select">
+                                        <select name="business" class="beautify_input">
+                                        <option value="0" selected>请选择业务...</option>
+                                            <option value="1">业务1</option>
+                                            <option value="2">业务2</option>
+                                            <option value="3">业务3</option>
+                                        </select>
+                                    </span>
+                                    <i class="input-xing business-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">所属客服：</td>
+                                <td colspan="8">
+                                    <span class="beautify_select customer_service_select">
+                                        <select name="customer_service" class="beautify_input">
+                                        <option value="0" selected>请选择客服...</option>
+                                            <option value="1">客服1</option>
+                                            <option value="2">客服2</option>
+                                            <option value="3">客服3</option>
+                                        </select>
+                                    </span>
+                                    <i class="input-xing customer_service-xing">*</i>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">确&nbsp;定</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="mendian.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+        //点击回收站改变文字
+        $('.btn_main_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("全部门店");
+                $(this).find('i').css("background-image","url(../../images/icon_mendian.png)");
+                $('.all_mendian').html("回收站");
+            }else{
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("全部门店");
+            }
+        });
+    </script>
+</body>
+</html>

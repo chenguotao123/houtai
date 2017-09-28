@@ -1,0 +1,445 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>订单列表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="order_list.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">全部订单</span>
+            <a href="javascript:void(0);" class="btn_back btn_back_order">
+                <span>回收站</span>
+                <i class="back"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <input class="input_textbox" type="text" name="name" placeholder="订单ID/商品名/顾客名/电话/门店名">
+                    <input id="d5221" class="Wdate" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="开始日期"/>
+                    <i class="icon_heng">-</i>
+                    <input id="d5222" class="Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="结束日期"/>
+                    <span class="beautify_select order_source_select">
+                        <select name="order_source" class="beautify_input">
+                            <option value="0" selected>=订单来源=</option>
+                            <option value="1">后台</option>
+                            <option value="2">订单来源2</option>
+                            <option value="3">订单来源3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select isbuy_select">
+                        <select name="isbuy" class="beautify_input">
+                            <option value="0" selected>=是否复购=</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                    查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_more">
+                        更多<i class="more"></i>
+                    </a>
+                </span>
+                <div class="more-box hide clearfix" style="padding-top: 20px;">
+                    <span class="beautify_select store_select">
+                        <select id="store" name="store" class="beautify_input">
+                            <option value="0" selected>=所属门店=</option>
+                            <option value="1">门店1</option>
+                            <option value="2">门店2</option>
+                            <option value="3">门店3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select worker_select">
+                        <select id="store_worker" name="store_worker" class="beautify_input">
+                            <option value="0" selected>=所属店员=</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="service" class="beautify_input">
+                            <option value="0" selected>=所属客服=</option>
+                            <option value="1">客服1</option>
+                            <option value="2">客服2</option>
+                            <option value="3">客服3</option>
+                        </select>
+                    </span>
+               </div>
+            </div>
+        </form>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">序号</th>
+                        <th width="6%">
+                            <a class="th-sort" href="javascript:void(0);">订单ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="26%">订单商品</th>
+                        <th width="7%">订单金额</th>
+                        <th width="9%">小票号</th>
+                        <th width="9%">所属门店</th>
+                        <th width="6%">所属店员</th>
+                        <th width="7%">所属顾客</th>
+                        <th width="5%">来源</th>
+                        <th width="5%">复购</th>
+                        <th width="10%">添加时间</th>
+                        <th width="5%">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>9029</td>
+                        <td>雏凤精10ml*10支 山东宏济堂*5，<i class="zengpin">[赠品]</i>雏凤精10ml*10支 山东宏济堂*1</td>
+                        <td>690.00</td>
+                        <td>201708284</td>
+                        <td>太君堂</td>
+                        <td>阿康康</td>
+                        <td>陈顾客</td>
+                        <td>后台</td>
+                        <td style="color:#ff0000;">是</td>
+                        <td>2017-08-08 10:30</td>
+                        <td>
+                            <a class="btn_chakan" href="javascript:void(0);">
+                                <img src="../../images/icon_chakan.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>9026</td>
+                        <td>雏凤精10ml*10支 山东宏济堂*1</td>
+                        <td>138.00</td>
+                        <td>201708284</td>
+                        <td>太君堂</td>
+                        <td>阿康</td>
+                        <td>陈顾客</td>
+                        <td>后台</td>
+                        <td>否</td>
+                        <td>2017-08-08 10:30</td>
+                        <td>
+                            <a class="btn_chakan" href="javascript:void(0);">
+                                <img src="../../images/icon_chakan.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <!-- 查看订单部分 -->
+    <div class="add_box">
+        <div class="see-tabs-box">
+            <div class="mask-tabs see-tabs">
+                <ul class="mask-tabs-tit clearfix">
+                    <li>查看订单</li>
+                </ul>
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <div class="tabcontent-tit"><span>金额信息<i class="bot-xian"></i></span></div>
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">商品金额：</td>
+                                <td colspan="2">690.00</td>
+                                <td class="td-tit">整单折扣：</td>
+                                <td colspan="2">0.00</td>
+                                <td class="td-tit">订单金额</td>
+                                <td colspan="2">690.00</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">顾客积分：</td>
+                                <td colspan="2">0</td>
+                                <td class="td-tit">店员积分：</td>
+                                <td colspan="2">0</td>
+                                <td class="td-tit">归属积分：</td>
+                                <td colspan="2">0</td>
+                            </tr>
+                        </table>       
+                        <div class="tabcontent-tit"><span>基本信息<i class="bot-xian"></i></span></div>
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">订单ID：</td>
+                                <td colspan="2" class="orderID">9029</td>
+                                <td class="td-tit">订单来源：</td>
+                                <td colspan="2">后台</td>
+                                <td class="td-tit">订单状态：</td>
+                                <td colspan="2">已确认</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">制单人：</td>
+                                <td colspan="2">系统</td>
+                                <td class="td-tit">制单时间：</td>
+                                <td colspan="2">2017-08-29 11:08</td>
+                                <td class="td-tit">更新时间</td>
+                                <td colspan="2">2017-08-30 11:30</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">门店小票：</td>
+                                <td colspan="2">201708284</td>
+                                <td class="td-tit">审核人：</td>
+                                <td colspan="2">系统</td>
+                                <td class="td-tit">审核时间：</td>
+                                <td colspan="2">2017-08-29 11:40</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">所属客服：</td>
+                                <td colspan="2">陈小姐</td>
+                                <td class="td-tit">来源药店：</td>
+                                <td colspan="2">太君堂药店</td>
+                                <td class="td-tit">来源店员：</td>
+                                <td colspan="2">丽丽</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">订单备注</td>
+                                <td colspan="8">药片</td>
+                            </tr>
+                        </table>   
+                        <div class="tabcontent-tit"><span>商品信息<i class="bot-xian"></i></span></div>         
+                        <div class="table-box">
+                            <table class="mian-table">
+                                <thead>
+                                    <tr>
+                                        <th width="7%">商品ID</th>
+                                        <th width="65%">商品名称/规格/厂家</th>
+                                        <th width="7%">价格</th>
+                                        <th width="7%">数量</th>
+                                        <th width="7%">小计</th>
+                                        <th width="7%">本次积分</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_box">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>雏凤精10ml*10支 山东宏济堂</td>
+                                        <td>￥138.00</td>
+                                        <td>5</td>
+                                        <td>￥690.00</td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><i class="zengpin">[赠品]</i>雏凤精10ml*10支 山东宏济堂</td>
+                                        <td>￥0.00</td>
+                                        <td>1</td>
+                                        <td>￥0.00</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>   
+                        <div class="tabcontent-tit"><span>操作记录<i class="bot-xian"></i></span></div>         
+                        <div class="table-box">
+                            <table class="mian-table">
+                                <thead>
+                                    <tr>
+                                        <th width="25%">操作者</th>
+                                        <th width="25%">操作时间</th>
+                                        <th width="25%">订单状态</th>
+                                        <th width="25%">备注</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_box">
+                                    <tr>
+                                        <td>系统</td>
+                                        <td>2017-09-08 11:30</td>
+                                        <td>已确认</td>
+                                        <td>系统自动确认</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_fanhui">返&nbsp;回</a>
+                <a href="javascript:void(0)" class="btn_shanchu">删&nbsp;除</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="../../js/selectivizr.js"></script>
+    <script type="text/javascript" src="order_list.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+        //点击回收站改变文字，客户部分
+        $('.btn_back_order').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("订单列表");
+                $(this).find('i').css("background-image","url(../../images/icon_order.png)");
+                $('.all_mendian').html("回收站");
+            }else{
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("订单列表");
+            }
+        });
+        //更多按钮
+        $(".btn_more").click(function(){
+            $('.more-box').toggle(250);
+        });
+
+        //查询中select所属门店二级联动
+        $("#store").change(function() { 
+            var store = $(this).val(); 
+            $.ajax({
+                url: "demo.php", 
+                data:{'store':store},
+                type:"post",  
+                dataType:"json",
+                success: function(data){  
+                    if(data != null && data.status == 0){ 
+                        var str = "";
+                        str += "<select id='store_worker' name='store_worker' class='beautify_input'>"; 
+                        for(var i=0;i<data.content.length;i++){
+                            if(i==0){
+                                str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                            }else{
+                                str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                            }
+                        }
+                        str += "</select>";
+                        $(".worker_select").html("");
+                        $('.worker_select').append(str);
+                        $('.beautify_input').cssSelect();
+                    }
+                }
+            });
+        });
+
+        //主表格中的删除部分
+        $('.btn_del').on('click',function() {
+            //获取表格中订单id
+            var orderID = $(this).parent('td').siblings('td').eq(1).text();
+            func_del(orderID);
+        });
+
+        //查看订单信息的删除部分
+        $('.btn_shanchu').on('click',function() {   
+            //获取信息中的订单id
+            var orderID = $('.orderID').text();
+            func_del(orderID);
+        });
+
+        //删除公共方法
+        function func_del(orderID) {
+            //显示删除的提示框
+            $('.del_tishi .del-box-cont span',window.parent.document).text("您要把订单("+orderID+")放入回收站吗？");
+            $('.mask_del',window.parent.document).show();
+            // 提示框中的取消按钮
+            $('.del_tishi .btn_close',window.parent.document).on('click',function() {
+                $('.mask_del',window.parent.document).hide();
+            });
+            $('.del_tishi .dialog_close',window.parent.document).on('click',function() {
+                $('.mask_del',window.parent.document).hide();
+            });
+            // 提示框中的确认按钮
+            $('.del_tishi .btn_ok',window.parent.document).on('click',function() {
+                //在里面执行删除操作
+                /*$ajax({
+                    url:"",
+                    data:"",
+                    dataType:"",
+                    type:"",
+                    success:function(data) {
+                        if(data == 1){
+                            $('.del_result .del-box-cont .result-question',window.parent.document).css("background-position","0 0");
+                            $('.del_result .del-box-cont span',window.parent.document).text("订单已放入回收站！");
+                        }else {
+                            $('.del-box-cont .result-question').css('background-position','-100px 0');
+                            $('.del-box-cont span').html("订单放入回收站失败！");
+                        }
+                    },
+                    error:function(data) {
+                        $('.del-box-cont .result-question').css('background-position','-100px 0');
+                        $('.del-box-cont span').html("订单放入回收站失败！");
+                    }
+                });*/
+                //成功后显示隐藏当前的框，显示结果框
+                $('.del_result .del-box-cont .result-question',window.parent.document).css("background-position","0 0");
+                $('.del_result .del-box-cont span',window.parent.document).text("订单已放入回收站！");
+                /*如果失败，则用这句
+                $('.del-box-cont .result-question').css('background-position','-100px 0');
+                $('.del-box-cont span').html("订单放入回收站失败！");*/
+                $('.del_tishi',window.parent.document).hide();
+                $('.del_result',window.parent.document).show();
+            });
+        }
+
+        //结果框部分，关闭
+        $('.del_result .dialog_close',window.parent.document).on('click',function() {
+            $('.del_result .del-box-cont .result-question',window.parent.document).css("background-position","0 0");
+            $('.del_result .del-box-cont span',window.parent.document).html("删除成功！");
+            $('.del_result',window.parent.document).hide();
+            $('.mask_del',window.parent.document).hide();
+            $('.del_tishi',window.parent.document).show();
+            window.location.reload();
+        });
+        $('.del_result .button_ok',window.parent.document).on('click',function() {
+            $('.del_result .del-box-cont .result-question',window.parent.document).css("background-position","0 0");
+            $('.del_result .del-box-cont span',window.parent.document).html("删除成功！");
+            $('.del_result',window.parent.document).hide();
+            $('.mask_del',window.parent.document).hide();
+            $('.del_tishi',window.parent.document).show();
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+.table-tit .btn_excel {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+
+.beautify_select,
+.icon_heng,
+.btn_search,
+.btn_reload {
+	float: left;
+}
+
+.search-box .icon_heng {
+	margin-right: 6px;
+	display: block;
+	line-height: 30px;
+}
+
+.btn_search {
+	margin-left: 6px;
+}
+
+.beautify_select {
+	margin-right: 6px;
+}
+
+/*表格合计部分*/
+.mian-table .tr_heji {
+	background: #efefef;
+}
+.mian-table .tr_heji td {
+	font-weight: bold;
+}
+
+.mian-table tr th .th-sort .th-icon-sort {
+	left: 58px;
+}

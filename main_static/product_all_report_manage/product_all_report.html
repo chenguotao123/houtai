@@ -1,0 +1,151 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>商品总报表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="product_all_report.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            商品总报表
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">商品ID</th>
+                        <th width="7%">商品名</th>
+                        <th width="7%">总订单(单)</th>
+                        <th width="7%">平均盒数(盒)</th>
+                        <th width="7%">总销量(盒)</th>
+                        <th width="7%">新购订单(单)</th>
+                        <th width="7%">新购均量(盒)</th>
+                        <th width="7%">新购销量(盒)</th>
+                        <th width="7%">复购订单(单)</th>
+                        <th width="7%">复购均量(盒)</th>
+                        <th width="7%">复购销量(盒)</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>雏凤精</td>
+                        <td>91</td>
+                        <td>2</td>
+                        <td>929</td>
+                        <td>64</td>
+                        <td>2</td>
+                        <td>167</td>
+                        <td>29</td>
+                        <td>2</td>
+                        <td>72</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><i class="zengpin">[赠品]</i>雏凤精</td>
+                        <td>9</td>
+                        <td>2</td>
+                        <td>229</td>
+                        <td>34</td>
+                        <td>1</td>
+                        <td>67</td>
+                        <td>19</td>
+                        <td>1</td>
+                        <td>52</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>海龙</td>
+                        <td>9</td>
+                        <td>2</td>
+                        <td>229</td>
+                        <td>34</td>
+                        <td>1</td>
+                        <td>67</td>
+                        <td>19</td>
+                        <td>1</td>
+                        <td>52</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><i class="zengpin">[赠品]</i>海龙</td>
+                        <td>9</td>
+                        <td>2</td>
+                        <td>229</td>
+                        <td>34</td>
+                        <td>1</td>
+                        <td>67</td>
+                        <td>19</td>
+                        <td>1</td>
+                        <td>52</td>
+                    </tr>
+                </tbody>
+                <!-- 合计部分,需计算 -->
+                <tr class="tr_heji">
+                    <td>合计</td>
+                    <td></td>
+                    <td>145</td>
+                    <td>2</td>
+                    <td>330</td>
+                    <td>108</td>
+                    <td>2</td>
+                    <td>243</td>
+                    <td>37</td>
+                    <td>2</td>
+                    <td>87</td>
+                </tr>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="product_all_report.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+    </script>
+</body>
+</html>

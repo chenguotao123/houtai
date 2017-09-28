@@ -1,0 +1,402 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>项目管理</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="system_project.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            项目管理列表
+            <a href="javascript:void(0);" class="btn_repair">
+                <span>修复结构</span>
+                <i class="repair"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_add">
+                <span>新增</span>
+                <i class="add"></i>
+            </a>
+        </div>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="55%">项目名称<span class="s_tit">[子项目数]</span></th>
+                        <th width="5%">ID</th>
+                        <th width="5%">排序</th>
+                        <th width="10%">输入方式</th>
+                        <th width="5%">单行</th>
+                        <th width="5%">前端</th>
+                        <th width="5%">禁用</th>
+                        <th width="10%">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr class="0" id="0_1">
+                        <td>
+                            <a href="javascript:void(0);" onclick="rowClicked(this)">
+                                <img src="../../images/menu_minus.gif" id="icon_0_1" width="12" height="12" border="0" style="margin-left:0em">
+                                <span>妇科</span>[2]
+                            </a>
+                        </td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>多选</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="1" id="1_3">
+                        <td>
+                            <a href="javascript:void(0);" onclick="rowClicked(this)">
+                                &nbsp;&nbsp;&nbsp;&nbsp;<img src="../../images/menu_minus.gif" id="icon_1_3" width="12" height="12" border="0" style="margin-left:0em">
+                                <span>月经周期</span>[2]
+                            </a>
+                        </td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>多选</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="2" id="2_5">
+                        <td>
+                            <a href="javascript:void(0);" onclick="rowClicked(this)">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../../images/menu_minus.gif" id="icon_2_5" width="12" height="12" border="0" style="margin-left:0em">
+                                <span>周期提前，每次至少提前7天以上</span>
+                            </a>
+                        </td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td>多选</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="2" id="2_6">
+                        <td>
+                            <a href="javascript:void(0);" onclick="rowClicked(this)">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../../images/menu_minus.gif" id="icon_2_6" width="12" height="12" border="0" style="margin-left:0em">
+                                <span>周期推后，每次拖后7天或以上</span>
+                            </a>
+                        </td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>多选</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="1" id="1_4">
+                        <td>
+                            <a href="javascript:void(0);" onclick="rowClicked(this)">
+                                &nbsp;&nbsp;&nbsp;&nbsp;<img src="../../images/menu_minus.gif" id="icon_1_4" width="12" height="12" border="0" style="margin-left:0em">
+                                <span>月经量</span>
+                            </a>
+                        </td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>单选</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="0" id="0_2">
+                        <td>
+                            <a href="javascript:void(0);" onclick="rowClicked(this)">
+                                <img src="../../images/menu_minus.gif" id="icon_0_2" width="12" height="12" border="0" style="margin-left:0em">
+                                <span>男科</span>
+                            </a>
+                        </td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>文本框</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt=""></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt=""></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+    <!-- 修改和添加部分 -->
+    <form id="form_tijiao" name="form_tijiao" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;border:1px solid #ccc;">
+                    <span class="add_tit">添加项目</span>
+                </div>
+                <ul class="mask-tabs-tit clearfix"><li>基本信息</li></ul>
+                <!-- 基本信息部分 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table id="tab_table" class="tab-table">
+                            <tr>
+                                <td class="td-tit">上级项目：</td>
+                                <td colspan="8">
+                                    <span class="top_project">
+                                        <select name="top_project" id="top_project" class="beautify_input">
+                                            <option value="0">无（做为项目顶级）</option>
+                                            <option value="1">月经周期</option>
+                                            <option value="2">月经量</option>
+                                        </select>
+                                        <i class="input-xing top_project-xing">*</i>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">项目名称：</td>
+                                <td colspan="8">
+                                    <span class="project_name">
+                                        <input name="project_name" type="text" value="">
+                                        <i class="input-xing project_name-xing">*</i>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">录入方式：</td>
+                                <td colspan="8">
+                                    <span class="jinyong">
+                                        <label for="check1" class="radioFour">
+                                            <input name="input_check" id="check1" type="radio" checked="true">
+                                            <label for="check1"></label>
+                                            单选
+                                        </label>
+                                        <label for="check2"  class="radioFour">
+                                            <input name="input_check" id="check2" type="radio">
+                                            <label for="check2"></label>
+                                            多选
+                                        </label>
+                                        <label for="check3"  class="radioFour">
+                                            <input name="input_check" id="check3" type="radio">
+                                            <label for="check3"></label>
+                                            文本框
+                                        </label>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">是否单行：</td>
+                                <td colspan="8">
+                                    <span class="jinyong">
+                                        <label for="check4" class="radioFour">
+                                            <input name="single_check" id="check4" type="radio">
+                                            <label for="check4"></label>
+                                            是
+                                        </label>
+                                        <label for="check5"  class="radioFour">
+                                            <input name="single_check" id="check5" type="radio" checked="true">
+                                            <label for="check5"></label>
+                                            否
+                                        </label>
+                                    </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">允许添加：</td>
+                                <td colspan="8">
+                                   <span class="jinyong">
+                                       <label for="check6" class="radioFour">
+                                           <input name="add_check" id="check6" type="radio" checked="true">
+                                           <label for="check6"></label>
+                                           是
+                                       </label>
+                                       <label for="check7"  class="radioFour">
+                                           <input name="add_check" id="check7" type="radio">
+                                           <label for="check7"></label>
+                                           否
+                                       </label>
+                                   </span>
+                               </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">禁用：</td>
+                                <td colspan="8">
+                                   <span class="jinyong">
+                                       <label for="check8" class="radioFour">
+                                           <input name="jinyong_check" id="check8" type="radio">
+                                           <label for="check8"></label>
+                                           是
+                                       </label>
+                                       <label for="check9"  class="radioFour">
+                                           <input name="jinyong_check" id="check9" type="radio" checked="true">
+                                           <label for="check9"></label>
+                                           否
+                                       </label>
+                                   </span>
+                               </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">确&nbsp;定</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="system_project.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+        /**
+         * 折叠分类列表
+         */
+         var imgPlus = new Image();
+         imgPlus.src = "../../images/menu_plus.gif";
+
+         function rowClicked(obj)
+         {
+          var obja = obj;
+          obj = obj.getElementsByTagName('img')[0];
+          // 当前图像
+          img = obj;
+          // console.log(img);
+          // 取得上二级tr>td>img对象
+          obj = obja.parentNode.parentNode;
+          // 整个分类列表表格
+          var tbl = document.getElementById("mian_table");
+          // 当前分类级别
+          var lvl = parseInt(obj.className);
+          // 是否找到元素
+          var fnd = false;
+          var sub_display = img.src.indexOf('menu_minus.gif') > 0 ? 'none' : 'table-row' ;
+          // 遍历所有的分类
+          for (i = 0; i < tbl.rows.length; i++)
+          {
+              var row = tbl.rows[i];
+              if (row == obj)
+              {
+                  // 找到当前行
+                  fnd = true;
+                  //document.getElementById('result').innerHTML += 'Find row at ' + i +"<br/>";
+              }
+              else
+              {
+                  if (fnd == true)
+                  {
+                      var cur = parseInt(row.className);
+                      var icon = 'icon_' + row.id;
+                      if (cur > lvl)
+                      {
+                          row.style.display = sub_display;
+                          if (sub_display != 'none')
+                          {
+                              var iconimg = document.getElementById(icon);
+                              iconimg.src = iconimg.src.replace('plus.gif', 'minus.gif');
+                          }
+                      }
+                      else
+                      {
+                          fnd = false;
+                          break;
+                      }
+                  }
+              }
+          }
+
+          for (i = 0; i < obj.cells[0].childNodes[0].length; i++)
+          {
+              // var imgObj = obj.cells[0].childNodes[i];
+              // console.log(obj.cells[0].children[i].children[0]);
+              var imgObj = obj.cells[0].getElementsByTagName('img')[0];
+              if (imgObj.tagName == "IMG" && imgObj.src != '../../images/menu_arrow.gif')
+              {
+                  imgObj.src = (imgObj.src == imgPlus.src) ? '../../images/menu_minus.gif' : imgPlus.src;
+              }
+          }
+        }
+    </script>
+</body>
+</html>

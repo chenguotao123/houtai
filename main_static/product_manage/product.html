@@ -1,0 +1,625 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>商品管理</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">全部商品</span>
+            <a id="btn_add" href="javascript:void(0);" class="btn_add">
+                <span>添加</span>
+                <i class="add"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_back btn_main_back">
+                <span>回收站</span>
+                <i class="back"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <span class="beautify_select department_select">
+                        <select id="department" name="department" class="beautify_input">
+                            <option value="0" selected>==科组==</option>
+                            <option value="1">科组1</option>
+                            <option value="2">科组2</option>
+                            <option value="3">科组3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select disease_select">
+                        <select id="disease" name="disease" class="beautify_input">
+                            <option value="0">==病种==</option>
+                        </select>
+                    </span>
+                    <input class="input_textbox" type="text" name="name" placeholder="商品名/助记/批准文号/生产厂家">
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();">
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                </span>
+                <div class="more-box hide clearfix" style="padding-top: 20px;">
+                    <span class="beautify_select">
+                        <select name="bind" class="beautify_input">
+                            <option value="0" selected>==是否结束==</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select">
+                        <select name="sex" class="beautify_input">
+                            <option value="0" selected>==回访方式==</option>
+                            <option value="1">电话</option>
+                            <option value="2">微信</option>
+                            <option value="3">QQ</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">ID</th>
+                        <th width="5%">主品ID</th>
+                        <th width="10%">图片</th>
+                        <th width="14%">商品名称</th>
+                        <th width="15%">厂家</th>
+                        <th width="10%">规格</th>
+                        <th width="6%">价格</th>
+                        <th width="6%">效期(月)</th>
+                        <th width="6%">单盒天数</th>
+                        <th width="6%">参与积分</th>
+                        <th width="6%">是否赠品</th>
+                        <th width="6%">上架</th>
+                        <th width="5%">
+                            <a class="th-sort" href="javascript:void(0);">排序<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="7%">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="main_tbody">
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="td_product_img"><img src="../../images/product01.jpg" alt=""></td>
+                        <td>雏凤精</td>
+                        <td>山东宏济堂</td>
+                        <td>10ml*10支</td>
+                        <td>138</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>1</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>1</td>
+                        <td class="td_product_img"><img src="../../images/product02.jpg" alt=""></td>
+                        <td>雏凤精</td>
+                        <td>山东宏济堂</td>
+                        <td>10ml*10支</td>
+                        <td>0</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>2</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>3</td>
+                        <td class="td_product_img"><img src="../../images/product03.jpg" alt=""></td>
+                        <td>海龙</td>
+                        <td>山东宏济堂</td>
+                        <td>10ml*10支</td>
+                        <td>138</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>3</td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <!-- 添加/编辑部分 -->
+    <form id="add_form" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;">
+                    <span class="add_tit">添加商品</span>
+                    <a href="javascript:void(0);" class="btn_add btn_product">
+                        <span>商品列表</span>
+                        <i class="icon_product"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_back btn_add_back">
+                        <span>回收站</span>
+                        <i class="back"></i>
+                    </a>
+                </div>
+                <ul class="mask-tabs-tit clearfix">
+                    <li class="current"><a href="javascript:void(0);">通用信息</a></li>
+                    <li><a href="javascript:void(0);">价格优惠</a></li>
+                    <li><a href="javascript:void(0);">适应症</a></li>
+                    <li><a href="javascript:void(0);">用法用量</a></li>
+                    <li><a href="javascript:void(0);">疗程信息</a></li>
+                    <li><a href="javascript:void(0);">注意事项</a></li>
+                    <li><a href="javascript:void(0);">商品卖点</a></li>
+                    <li><a href="javascript:void(0);">市场信息</a></li>
+                    <li><a href="javascript:void(0);">商品相册</a></li>
+                    <li><a href="javascript:void(0);">其他信息</a></li>
+                </ul>
+                <!-- 通用信息 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table class="tab-table">
+                            <tr>
+                                <td class="td-tit">商品ID：</td>
+                                <td colspan="8">0</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">商品分类：</td>
+                                <td colspan="8">
+                                    <span class="beautify_select keshi_box">
+                                        <select name="keshi" class="beautify_input keshi">
+                                            <option value="0">请选择科室...</option>
+                                            <option value="1">科室1</option>
+                                            <option value="2">科室2</option>
+                                            <option value="3">科室3</option>
+                                        </select>
+                                    </span>
+                                    <span style="display:inline-block;"></span>
+                                    <span class="beautify_select bingzhong_select">
+                                        <select id="bingzhong" name="bingzhong" class="beautify_input">
+                                            <option value="0">请选择病种...</option>
+                                        </select>
+                                    </span>
+                                    <i class="input-xing keshi-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">商品类型：</td>
+                                <td colspan="8">
+                                    <label for="check1" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check1" type="radio" checked>
+                                        <label for="check1"></label>
+                                        <i style="color:#ff0000;">RX</i>
+                                    </label>
+                                    <label for="check2" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check2" type="radio">
+                                        <label for="check2"></label>
+                                        <i style="color:#1da02b;">OTC</i>
+                                    </label>
+                                    <label for="check3" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check3" type="radio">
+                                        <label for="check3"></label>
+                                        <i style="color:#0066cc;">保健品</i>
+                                    </label>
+                                    <label for="check4" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check4" type="radio">
+                                        <label for="check4"></label>
+                                        器械
+                                    </label>
+                                    <label for="check5" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check5" type="radio">
+                                        <label for="check5"></label>
+                                        成人
+                                    </label>
+                                    <label for="check6" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check6" type="radio">
+                                        <label for="check6"></label>
+                                        日用
+                                    </label>
+                                    <label for="check7" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check7" type="radio">
+                                        <label for="check7"></label>
+                                        药材
+                                    </label>
+                                    <label for="check8" class="radioFour">
+                                        <input class="check" name="pro_leixing" id="check8" type="radio">
+                                        <label for="check8"></label>
+                                        食品
+                                    </label>
+                                    <i class="input-xing pro_leixing-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">商品名称：</td>
+                                <td colspan="8">
+                                    <input class="input-text pro_name" name="pro_name" type="text">
+                                    <i class="input-xing pro_name-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">规格型号：</td>
+                                <td colspan="8">
+                                    <input class="input-text pro_guige" name="pro_guige" style="width:220px;" type="text">
+                                    <i class="input-xing pro_guige-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">单&nbsp;&nbsp;&nbsp;&nbsp;位：</td>
+                                <td colspan="8">
+                                    <input class="input-text danwei_num" name="danwei_num" style="width:50px;margin-right:6px;" type="text">
+                                    <span class="beautify_select danwei">
+                                        <select name="danwei" class="beautify_input">
+                                            <option value="0">请选择...</option>
+                                            <option value="1">元</option>
+                                            <option value="2">盒</option>
+                                        </select>
+                                    <i class="input-xing danwei-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">生产厂家：</td>
+                                <td colspan="8">
+                                    <input class="input-text manufacturer" name="manufacturer" style="width:240px;" type="text">
+                                    <i class="input-xing manufacturer-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">批准文号：</td>
+                                <td colspan="8">
+                                    <input class="input-text approval_number" name="approval_number" style="width:220px;" type="text">
+                                    <i class="input-xing approval_number-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">有效期：</td>
+                                <td colspan="8">
+                                    <input class="input-text effect_day" name="effect_day" style="width:50px;" type="text" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                    <span style="padding-left:4px;">个月</span>
+                                    <i class="input-xing effect_day-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">零售价：</td>
+                                <td colspan="8">
+                                    <input class="input-text retail_price" name="retail_price" type="text" style="width:120px;" value="0" onkeyup="value=value.replace(/[^.\d]/g,'')">
+                                    <i class="input-xing retail_price-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">服用天数：</td>
+                                <td colspan="8">
+                                    <input class="input-text use_day" name="use_day" style="width:50px;" type="text" value="0" onkeyup="value=value.replace(/[^\d]/g,'')"><span style="padding-left:4px">/盒</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">是否上架：</td>
+                                <td colspan="8">
+                                    <label for="check9" class="checkFour">
+                                        <input class="check_box issale" name="name9" id="check9" type="checkbox" checked>
+                                        <label for="check9"></label>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">参与积分：</td>
+                                <td colspan="8">
+                                    <label for="check10" class="checkFour">
+                                        <input class="check_box" name="name10" id="check10" type="checkbox">
+                                        <label for="check10"></label>
+                                        打勾表示此商品参与积分计算。
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">是否赠品：</td>
+                                <td colspan="8">
+                                    <label for="check11" class="checkFour">
+                                        <input class="check_box" name="name11" id="check11" type="checkbox">
+                                        <label for="check11"></label>
+                                        打勾表示此商品为赠品，价格为0。
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">主品ID：</td>
+                                <td colspan="8">
+                                    <input class="input-text main_pro_id" name="main_pro_id" style="width:50px;" type="text" value="0" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                    <span style="padding-left:4px">如果为赠品，请填写对应的主品的商品ID。</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">排序：</td>
+                                <td colspan="8">
+                                    <input class="input-text add_sort" name="add_sort" style="width:50px;" type="text" value="30" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 价格优惠 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <table class="tab-table">
+                            <tr>
+                                <td class="td-tit">优惠价格：</td>
+                                <td colspan="8">
+                                    <span style="margin-right:4px;">优惠起量</span>
+                                    <input class="input-text discount_start" name="discount_start" type="text" style="width:80px;">
+                                    <span style="margin-right:4px;">优惠单价</span>
+                                    <input class="input-text discount_odd_price" name="discount_odd_price" type="text" style="width:80px;">
+                                    <span style="margin-right:4px;">优惠总价</span>
+                                    <input class="input-text discount_all_price" name="discount_all_price" type="text" style="width:80px;">
+                                    <span style="margin-right:4px;">优惠标题</span>
+                                    <input class="input-text discount_tit" name="discount_tit" type="text" style="width:120px;">
+                                    <span style="margin-right:4px;">排序</span>
+                                    <input class="input-text discount_sort" name="discount_sort" type="text" style="width:30px;" value="1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">促销价：</td>
+                                <td colspan="8">
+                                    <input class="input-text promotion_price" name="promotion_price" style="width:120px;" type="text" placeholder="0">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">限购数：</td>
+                                <td colspan="8">
+                                    <input class="input-text limit_num" name="limit_num" style="width:120px;" type="text" placeholder="0">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">促销日期：</td>
+                                <td colspan="8">
+                                    <input id="d5221" class="Wdate promotion_date_one" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="开始日期" name="promotion_date_one"/>
+                                    <i class="icon_heng">-</i>
+                                    <input id="d5222" class="Wdate promotion_date_two" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="结束日期" name="promotion_date_two"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 适应症 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <textarea class="public_textarea indication_textarea" name="indication_textarea" placeholder="适应症"></textarea>
+                    </div>
+                </div>
+                <!-- 用法用量 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <textarea class="public_textarea usage_dosage_textarea" name="usage_dosage_textarea" placeholder="用法用量"></textarea>
+                    </div>
+                </div>
+                <!-- 疗程信息 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <textarea class="public_textarea course_information_textarea" name="course_information_textarea" placeholder="疗程信息"></textarea>
+                    </div>
+                </div>
+                <!-- 注意事项 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <textarea class="public_textarea careful_textarea" name="careful_textarea" placeholder="注意事项"></textarea>
+                    </div>
+                </div>
+                <!-- 商品卖点 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <textarea class="public_textarea selling_point_textarea" name="selling_point_textarea" placeholder="商品卖点"></textarea>
+                    </div>
+                </div>
+                <!-- 市场信息 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <textarea class="public_textarea market_info_textarea" name="market_info_textarea" placeholder="市场信息"></textarea>
+                    </div>
+                </div>
+                <!-- 商品相册 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <table class="tab-table">
+                            <tr>
+                                <td class="td-tit">商品主图：</td>
+                                <td colspan="8">
+                                    <div class="image_container">
+                                        <img id="preview" style="height:120px;line-height:120px;width:120px;border:0;margin:10px 0;vertical-align:middle;display:none;"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">上传主图：</td>
+                                <td colspan="8">
+                                    <input id="file_upload" name="pro_name" type="file">
+                                    <span>800*800px，单张图片不能超过150KB</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 其他信息 -->
+                <div class="tabcontent hide">
+                    <div class="tab_table-box">
+                        <textarea class="public_textarea other_info_textarea" name="other_info_textarea" placeholder="其他信息"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">确&nbsp;定</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="product.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+            //图片预览
+            $("#file_upload").change(function () {
+                var $file = $(this);
+                var fileObj = $file[0];
+                var windowURL = window.URL || window.webkitURL;
+                var dataURL;
+                var $img = $("#preview");
+                $img.show();
+                if (fileObj && fileObj.files && fileObj.files[0]) {
+                    // alert(Math.ceil(fileObj.files[0].size / 1024));
+                    dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                    $img.attr('src', dataURL);
+                }else{
+                    $("#file_upload").val("");
+                    $('.image_container img').prop("src","");
+                    dataURL = $file.val();
+                    var imgObj = document.getElementById("preview");
+                    imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+                }
+            });
+        });
+
+        //添加tab栏切换
+        $('.mask-tabs ul li').click(function () {
+            var index = $(this).index();
+            $(this).addClass('current').siblings('li').removeClass('current');
+            $(this).parents('.mask-tabs').find('.tabcontent').eq(index).show().siblings('.tabcontent').hide();
+        });
+        //点击回收站改变文字
+        $('.btn_main_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("全部商品");
+                $(this).find('i').css("background-image","url(../../images/icon_product.png)");
+                $('.all_mendian').html("回收站");
+            }else{
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("全部商品");
+            }
+        });
+
+        //查询中select科组与病种二级联动
+        $("#department").change(function() { 
+            var department = $(this).val(); 
+            $.ajax({
+                url: "demo.php", 
+                data:{'department':department},
+                type:"post",  
+                dataType:"json",
+                success: function(data){ 
+                    if(data != null && data.status == 0){
+                        var str = "";
+                        str += "<select id='disease' name='disease' class='beautify_input'>"; 
+                        for(var i=0;i<data.content.length;i++){
+                            if(i==0){
+                                str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                            }else{
+                                str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                            }
+                        }
+                        str += "</select>";
+                        $(".disease_select").html("");
+                        $('.disease_select').append(str);
+                        $('.beautify_input').cssSelect();
+                    }
+                }
+            });
+        }); 
+
+        //添加中的科室，病种
+        $(".keshi").change(function() { 
+            var keshi = $(this).val(); 
+            $.ajax({
+                url: "demo.php", 
+                data:{'keshi':keshi},
+                type:"post",
+                dataType:"json",
+                success: function(data){ 
+                    if(data != null && data.status == 0){
+                        var str = "";
+                        str += "<select id='bingzhong' name='bingzhong' class='beautify_input'>"; 
+                        for(var i=0;i<data.content.length;i++){
+                            if(i==0){
+                                str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                            }else{
+                                str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                            }
+                        }
+                        str += "</select>";
+                        $(".bingzhong_select").html("");
+                        $('.bingzhong_select').append(str);
+                        $('.beautify_input').cssSelect();
+                    }
+                }
+            });
+        }); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+/*基本信息部分*/
+.tit-name {
+	display: inline-block;
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	text-align: left;
+	font-size: 14px;
+	background: #ddd;
+	padding-left: 6px;
+	margin-right: 8px;
+}
+.jiaose_name {
+	display: inline-block;
+	width: 130px;
+	height: 36px;
+	line-height: 36px;
+	text-align: left;
+	font-size: 14px;
+	position: relative;
+}
+.jiaose_name input {
+	width: 130px;
+	height: 28px;
+	line-height: 28px;
+	padding: 2px 4px;
+	border: 1px solid #bbb;
+	font-size: 13px;
+}
+.jiaose_name .input-xing {
+	width: 10px;
+	height: 10px;
+	padding-left: 5px;
+	color: #ff0000;
+	position: absolute;
+	top: 0;
+	left: 145px;
+	display: none;
+}
+.desc-box {
+	width: 100%;
+	height: 200px;
+}
+.tit-desc {
+	float: left;
+	width: 100px;
+	height: 200px;
+	line-height: 200px;
+	text-align: left;
+	font-size: 14px;
+	display: block;
+	background: #ddd;
+	padding-left: 6px;
+	margin-right: 7px;
+}
+.jiaose_desc {
+	float: left;
+	line-height: 40px;
+	height: 200px;
+	line-height: 200px;
+	text-align: left;
+	font-size: 14px;
+	display: block;
+	position: relative;
+}
+.jiaose_desc textarea {
+	width: 500px;
+	height: 170px;
+	padding: 2px 5px;
+	display: inline-block;
+	vertical-align: middle;
+	resize:none;
+}
+.jiaose_desc .textarea-xing {
+	padding-left: 5px;
+	color: #ff0000;
+	display: none;
+}
+.tit-right {
+	display: inline-block;
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	text-align: left;
+	font-size: 14px;
+	background: #ddd;
+	padding-left: 6px;
+	margin-right: 6px;
+}
+.jiaose_right {
+	display: inline-block;
+	width: 120px;
+	height: 36px;
+	line-height: 36px;
+	text-align: left;
+	font-size: 14px;
+}
+/*客户管理部分*/
+.tab-table-big tr td {
+	height: 45px;
+	line-height: 45px;
+}
+.customer-box .label-box {
+	display: block;
+	position: relative;
+}
+.customer-box .two-td label {
+	float: left;
+	width: 25%;
+	height: 20px;
+	line-height: 20px;
+	display: block;
+	position: relative;
+} 
+.customer-box .system-cont label {
+	height: 37px;
+	line-height: 37px;
+}
+#allcheck {
+	margin-right: 5px;
+}
+.all-cont {
+	position: relative;
+}
+.check {
+	margin-right: 5px;
+}
+.customer-box .odd-check {
+	height: 40px;
+	line-height: 40px;
+}
+/*checkbox美化*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {  
+	-webkit-appearance: none !important;  
+}
+/**
+* 隐藏默认的checkbox
+*/
+.jiaose_right input[type=checkbox] {
+	visibility: hidden;
+}
+.jiaose_right {
+	width: 0;
+	height: 0;
+	position: relative;
+}
+.jiaose_right label .label {
+	display: block;
+	width: 12px;
+	height: 12px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+	position: absolute;
+	top: 11px;
+	left: 0;
+	z-index: 1;
+	border: 1px solid #999;
+}
+.jiaose_right input[type=checkbox]:checked + label {
+	width: 14px;
+	height: 14px;
+	display: block;
+	border: 0;
+	background: url(../../images/icon_xuanzhong.png) no-repeat;
+	background-size: 14px 14px;
+	opacity: 1;
+	border-color: #479ce2;
+}
+
+.customer-box td input[type=checkbox] {
+	visibility: hidden;
+}
+.customer-box td label .label {
+	display: block;
+	width: 12px;
+	height: 12px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+	position: absolute;
+	top: 15px;
+	left: 7px;
+	z-index: 1;
+	border: 1px solid #999;
+}
+.customer-box .two-td label .label {
+	top: 4px;
+}
+.customer-box .jiaose-cont label .label,
+.customer-box .manage-cont label .label {
+	top: 11px;
+}
+.customer-box td input[type=checkbox]:checked + .label {
+	width: 14px;
+	height: 14px;
+	display: block;
+	border: 0;
+	background: url(../../images/icon_xuanzhong.png) no-repeat;
+	background-size: 14px 14px;
+	opacity: 1;
+	border-color: #479ce2;
+}

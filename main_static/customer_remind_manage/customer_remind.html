@@ -1,0 +1,168 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>待办提醒</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="customer_remind.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">待办提醒</span>
+            <a href="javascript:void(0);" class="btn_all_daiban">
+                <span>全部提醒</span>
+                <i class="all_daiban"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_already_daiban">
+                <span>已办提醒</span>
+                <i class="already_daiban"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <input class="input_textbox" type="text" name="name" placeholder="提醒ID/顾客ID/姓名/简拼/电话">
+                    <input id="d5221" class="Wdate" type="text" onclick="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.click();},maxDate:'#F{$dp.$D(\'d5222\')}',readOnly:true})" placeholder="开始日期"/>
+                    <i class="icon_heng">-</i>
+                    <input id="d5222" class="Wdate" type="text" onclick="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}',readOnly:true})" placeholder="结束日期"/>
+                    <span class="beautify_select" style="float:left;margin-left:10px;">
+                        <select name="daiban_people" class="beautify_input">
+                            <option value="0" selected>==待办人==</option>
+                            <option value="1">待办人1</option>
+                            <option value="2">待办人2</option>
+                            <option value="3">待办人3</option>
+                        </select>
+                    </span>
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">序号</th>
+                        <th width="7%">
+                            <a class="th-sort" href="javascript:void(0);">提醒ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="15%">客户</th>
+                        <th width="40%">提醒事项</th>
+                        <th width="7%">提醒人</th>
+                        <th width="12%">
+                            <a class="th-sort" href="javascript:void(0);">待办日期<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="7%">状态</th>
+                        <th width="7%">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_box">
+                    <tr>
+                        <td>111111111111</td>
+                        <td>123</td>
+                        <td>邱...18888888</td>
+                        <td>回访1111.....</td>
+                        <td>凯</td>
+                        <td>2017-08-08 16:06</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>
+                            <a class="btn_xiaoxi" href="javascript:void(0);">
+                                <img src="../../images/icon_xiaoxi.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2222</td>
+                        <td>123</td>
+                        <td>邱...18888888</td>
+                        <td>回访1111.....</td>
+                        <td>凯</td>
+                        <td>2017-08-08 16:06</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_fou.png" alt="否"></td>
+                        <td>
+                            <a class="btn_xiaoxi" href="javascript:void(0);">
+                                <img src="../../images/icon_xiaoxi.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="customer_remind.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+        //点击回收站改变文字
+        $('.btn_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("全部提醒");
+                $(this).find('i').css("background-image","url(../../images/icon_daiban_green.png)");
+                // $(this).prop("iconCls","icon-mendian");
+                $('.all_mendian').html("回收站");
+            }else{
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("全部提醒");
+            }
+        });
+        //点击全部提醒按钮
+        $('.btn_all_daiban').on('click',function() {
+            $('.all_mendian').html("全部提醒");
+        });
+        //点击未办提醒按钮
+        $('.btn_already_daiban').on('click',function() {
+            $('.all_mendian').html("未办提醒");
+        });
+    </script>
+</body>
+</html>

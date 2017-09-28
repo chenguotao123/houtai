@@ -1,0 +1,54 @@
+.table-tit .btn_back {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+
+.mian-table .main_tbody tr td {
+	height: 55px;
+	line-height: 55px;
+}
+.mian-table .main_tbody tr td.td_photo_img img {
+	max-width: 90%;
+	max-height: 50px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+/*待审核*/
+.btn_review {
+	width: 60px;
+	line-height: 35px;
+	height: 35px;
+	text-decoration: none;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0 12px;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #1da02b;
+	color: #fff;
+	font-weight: normal;
+	position: absolute;
+	right: 130px;
+	top: 10px;
+	padding-left: 26px;
+}
+.btn_review .review {
+	width: 20px;
+	height: 20px;
+	display: block;
+	background: url(../../images/icon_review.png) no-repeat;
+	background-size: 20px 20px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	margin-top: -10px;
+}

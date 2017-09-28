@@ -1,0 +1,359 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>微信店员</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="wechat_clerk.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">微信店员</span>
+            <a href="javascript:void(0);" class="btn_review">
+                <span>待审核</span>
+                <i class="review"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_back btn_main_back">
+                <span>回收站</span>
+                <i class="back"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <span class="beautify_select business_select">
+                        <select name="business" class="beautify_input">
+                            <option value="0" selected>=所属业务=</option>
+                            <option value="1">业务1</option>
+                            <option value="2">业务2</option>
+                            <option value="3">业务3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select isfollow_select">
+                        <select name="isfollow" class="beautify_input">
+                            <option value="0" selected>=是否关注=</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select isfans_select">
+                        <select name="isfans" class="beautify_input">
+                            <option value="0" selected>=是否有粉=</option>
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                        </select>
+                    </span>
+                    <input class="input_textbox" type="text" name="name" placeholder="昵称/姓名/电话/ID/门店名/门店简拼">
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">
+                            <a class="th-sort" href="javascript:void(0);">ID<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="5%">头像</th>
+                        <th width="5%">店员ID</th>
+                        <th width="6%">店员姓名</th>
+                        <th width="6%">微信昵称</th>
+                        <th width="6%">微信姓名</th>
+                        <th width="6%">绑定手机号</th>
+                        <th width="9%">所属门店</th>
+                        <th width="6%">所属角色</th>
+                        <th width="6%">关注来源</th>
+                        <th width="6%">粉丝数量</th>
+                        <th width="6%">昨日新增</th>
+                        <th width="6%">今日新增</th>
+                        <th width="10%">关注时间</th>
+                        <th width="5%">关注</th>
+                        <th width="7%">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="main_tbody">
+                    <tr>
+                        <td>1111</td>
+                        <td class="td_photo_img"><img src="../../images/photo01.jpg" alt=""></td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>2017-08-08 19:30</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1111</td>
+                        <td class="td_photo_img"><img src="../../images/photo02.jpg" alt=""></td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>2017-08-08 19:30</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>
+                            <a class="btn_wechat" href="javascript:void(0);"><img src="../../images/icon_weixin.png" alt=""></a>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1111</td>
+                        <td class="td_photo_img"><img src="../../images/photo02.jpg" alt=""></td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>2017-08-08 19:30</td>
+                        <td><img class="icon_table_status" src="../../images/icon_table_shi.png" alt="是"></td>
+                        <td>
+                            <a class="btn_update" href="javascript:void(0);">
+                                <img src="../../images/icon_update.png" alt="">
+                            </a>
+                            <a class="btn_del" href="javascript:void(0);" onclick="confirm1();">
+                                <img src="../../images/icon_del.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <!-- 编辑部分 -->
+    <form id="add_form" action="demo.php" method="post">
+        <div class="add_box">
+            <div class="mask-tabs">
+                <div class="table-tit" style="margin-bottom: 6px;">
+                    <span class="add_tit">编辑微信店员</span>
+                    <a href="javascript:void(0);" class="btn_add btn_clerk">
+                        <span>微信店员</span>
+                        <i class="icon_clerk"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_back btn_add_back">
+                        <span>回收站</span>
+                        <i class="back"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_excel">
+                        <span>导出</span>
+                        <i class="excel"></i>
+                    </a>
+                </div>
+                <ul class="mask-tabs-tit clearfix">
+                    <li>基本信息</li>
+                </ul>
+                <!-- 通用信息 -->
+                <div class="tabcontent">
+                    <div class="tab_table-box">
+                        <table class="tab-table">
+                            <tr>
+                                <td class="td-tit">ID：</td>
+                                <td colspan="8">1428</td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">注册姓名：</td>
+                                <td colspan="8">
+                                    <input class="input-text register_name" name="register_name" type="text">
+                                    <i class="input-xing register_name-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">注册手机：</td>
+                                <td colspan="8">
+                                    <input class="input-text register_phone" name="register_phone" type="text" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11">
+                                    <i class="input-xing register_phone-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">所属门店：</td>
+                                <td colspan="8">
+                                    <input class="input-text input_store" name="store_name" type="text">
+                                    <a href="javascript:void(0);" class="btn_sou">搜素</a>
+                                    <span class="beautify_select store_select">
+                                        <select id="store" name="store" class="beautify_input">
+                                            <option value="0"></option>
+                                        </select>
+                                    </span>
+                                    <a class="bind_selected" href="javascript:void(0);">选定</a>
+                                    <i class="input-xing store-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">绑定店员：</td>
+                                <td colspan="8">
+                                    <input class="input-text bind_clerk_num" name="bind_clerk_num" type="text" style="width:60px;margin-right:3px;" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                    <input class="input-text bind_clerk_name" name="bind_clerk_name" type="text">
+                                    <i class="input-xing bind_clerk-xing">*</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">所属角色：</td>
+                                <td colspan="8">
+                                    <span class="beautify_select role_select">
+                                        <select name="role" class="beautify_input">
+                                            <option value="0" selected>店员</option>
+                                            <option value="1">店员1</option>
+                                            <option value="2">店员2</option>
+                                            <option value="3">店员3</option>
+                                        </select>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-tit">是否审核：</td>
+                                <td colspan="8">
+                                    <label for="check1" class="radioFour">
+                                        <input name="isaudit" id="check1" type="radio" checked>
+                                        <label for="check1"></label>
+                                        是
+                                    </label>
+                                    <label for="check2" class="radioFour">
+                                        <input name="isaudit" id="check2" type="radio">
+                                        <label for="check2"></label>
+                                        否
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="javascript:void(0)" class="btn_queding">确&nbsp;定</a>
+                <a href="javascript:void(0)" class="btn_quxiao">取&nbsp;消</a>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="wechat_clerk.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+        //点击回收站改变文字，客户部分
+        $('.btn_main_back').on('click',function() {
+            if($(this).find('span').html() == "回收站"){
+                $(this).find('span').html("微信店员");
+                $(this).find('i').css("background-image","url(../../images/icon_all_customer.png)");
+                $('.all_mendian').html("回收站");
+            }else if($(this).find('span').html() == "微信店员"){
+                $(this).find('span').html("回收站");
+                $(this).find('i').css("background-image","url(../../images/recycle.png)");
+                $('.all_mendian').html("微信店员");
+            }
+        });
+
+        //编辑中select搜索部分
+        $('.btn_sou').on('click',function() {
+            var store_name = $('.input_store').val();
+            $.ajax({
+                url: "demo.php",
+                data: {"store_name":store_name},
+                dataType: "json",
+                type: "post",
+                success: function(data) {
+                    if(data.status == 0){
+                        var str="";
+                        str += "<select id='store' name='store' class='beautify_input'>";
+                        for(var i=0;i<data.content.length;i++){
+                            if(i==0){
+                                str += "<option value ='0' selected='true'>"+ data.content[i] +"</option>";
+                            }else{
+                                str += "<option value ='"+i+"'>"+ data.content[i] +"</option>";
+                            }
+                        }
+                        str += "</select>";
+                        $('.store_select').html("");
+                        $('.store_select').append(str);
+                        $('.beautify_input').cssSelect();
+                    }          
+                },
+                error: function() {
+
+                }
+            });
+        });
+    </script>
+</body>
+</html>

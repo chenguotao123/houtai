@@ -1,0 +1,288 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>订单周报表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="order_week_report.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            订单周报表
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <!-- <form id="form_tijiao" action=""> -->
+            <div class="table-search">
+                <span class="search-box">
+                    <!--  周报表，默认显示本周数据，只显示本年度周.... -->
+                    <span class="beautify_select now_week_one">
+                        <select name="now_week_one" class="beautify_input">
+                            <option value="2">第1周</option>
+                            <option value="3">第2周</option>
+                            <option value="4">第3周</option>
+                            <option value="5">第4周</option>
+                            <option value="6">第5周</option>
+                            <option value="7">第6周</option>
+                            <option value="8">第7周</option>
+                            <option value="9">第8周</option>
+                            <option value="10">第9周</option>
+                            <option value="11">第10周</option>
+                            <!-- ....一直列到36周 -->
+                            <option value="32">第31周</option>
+                            <option value="33">第32周</option>
+                            <option value="34">第33周</option>
+                            <option value="35">第34周</option>
+                            <option value="36">第35周</option>
+                            <option value="37">第36周</option>
+                            <option value="1">上周</option>
+                            <option value="0" selected>本周</option>
+                        </select>
+                    </span>
+                    <i class="icon_heng">-</i>
+                    <span class="beautify_select now_week_two">
+                        <select name="now_week_two" class="beautify_input">
+                            <option value="2">第1周</option>
+                            <option value="3">第2周</option>
+                            <option value="4">第3周</option>
+                            <option value="5">第4周</option>
+                            <option value="6">第5周</option>
+                            <option value="7">第6周</option>
+                            <option value="8">第7周</option>
+                            <option value="9">第8周</option>
+                            <option value="10">第9周</option>
+                            <option value="11">第10周</option>
+                            <!-- ....一直列到36周 -->
+                            <option value="32">第31周</option>
+                            <option value="33">第32周</option>
+                            <option value="34">第33周</option>
+                            <option value="35">第34周</option>
+                            <option value="36">第35周</option>
+                            <option value="37">第36周</option>
+                            <option value="1">上周</option>
+                            <option value="0" selected>本周</option>
+                        </select>
+                    </span>
+                    <!-- <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();"> -->
+                    <a href="javascript:void(0);" class="btn_search">
+                        查询
+                        <i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置
+                        <i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        <!-- </form> -->
+        <div class="table-box">
+            <table id="mian_table" class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="5%">序号</th>
+                        <th width="6%">订单数(单)</th>
+                        <th width="6%">销售额(元)</th>
+                        <th width="6%">客单价(元)</th>
+                        <th width="6%">新客订单(单)</th>
+                        <th width="6%">新客销售(元)</th>
+                        <th width="6%">新客单价(元)</th>
+                        <th width="6%">复购订单(单)</th>
+                        <th width="6%">复购销售(元)</th>
+                        <th width="6%">复购单价(元)</th>
+                        <th width="6%">销售门店(个)</th>
+                        <th width="6%">销售店员(名)</th>
+                        <th width="7%">购买顾客(名)</th>
+                        <th width="6%">
+                            <a class="th-sort" href="javascript:void(0);">周数<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="8%">开始日期</th>
+                        <th width="8%">结束日期</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody_box">
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0.00</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.00</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.00</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>-2</td>
+                        <td>38</td>
+                        <td>2017-08-08</td>
+                        <td>2017-08-08</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>34</td>
+                        <td>7,577.00</td>
+                        <td>421.50</td>
+                        <td>21</td>
+                        <td>4,827.00</td>
+                        <td>402.25</td>
+                        <td>8</td>
+                        <td>2,760.00</td>
+                        <td>460.00</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>28</td>
+                        <td>36</td>
+                        <td>2017-08-20</td>
+                        <td>2017-08-27</td>
+                    </tr>
+                </tbody>
+                <!-- 合计部分,需计算 -->
+                <tr class="tr_heji">
+                    <td>合计</td>
+                    <td>388</td>
+                    <td>49,0099.00</td>
+                    <td>340.97</td>
+                    <td>297</td>
+                    <td>36,004.00</td>
+                    <td>346.18</td>
+                    <td>97</td>
+                    <td>15,005.00</td>
+                    <td>465.17</td>
+                    <td>119</td>
+                    <td>157</td>
+                    <td>376</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>6</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="order_week_report.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+        //查询部分
+        $('.btn_search').on('click',function() {
+            var now_week_one = $('.now_week_one .selectLt').text();
+            var now_week_two = $('.now_week_two .selectLt').text();
+            $.ajax({
+                url: "demo.php", 
+                data:{'now_week_one':now_week_one,'now_week_two':now_week_two},
+                type:"post",
+                dataType:"json",
+                success: function(data){ 
+                    if(data != null && data.status == 0){
+                        var str = "";
+                        for(var i=0;i<data.content.length;i++){
+                            str += "<tr>";
+                                str += "<td>"+data.content[i].xuhao+"</td>";
+                                str += "<td>"+data.content[i].order_num+"</td>";
+                                str += "<td>"+data.content[i].sales_amount+"</td>";
+                                str += "<td>"+data.content[i].ke_price+"</td>";
+                                str += "<td>"+data.content[i].new_customer_order+"</td>";
+                                str += "<td>"+data.content[i].new_customer_sales+"</td>";
+                                str += "<td>"+data.content[i].new_customer_price+"</td>";
+                                str += "<td>"+data.content[i].purchase_order+"</td>";
+                                str += "<td>"+data.content[i].purchase_sales+"</td>";
+                                str += "<td>"+data.content[i].purchase_price+"</td>";
+                                str += "<td>"+data.content[i].sales_mendian+"</td>";
+                                str += "<td>"+data.content[i].sales_clerk+"</td>";
+                                str += "<td>"+data.content[i].sales+"</td>";
+                                str += "<td>"+data.content[i].zhoushu+"</td>";
+                                str += "<td>"+data.content[i].now_time+"</td>";
+                                str += "<td>"+data.content[i].end_time+"</td>";
+                            str += "</tr>";
+                        }
+                        $('.tbody_box').html("");
+                        $('.tbody_box').append(str);
+                        //以下为合计部分,需计算所有搜索到的内容，然后加入到text里
+                        $('.tr_heji td').eq(1).text(data.heji.order_num);
+                        $('.tr_heji td').eq(2).text(data.heji.sales_amount);
+                        $('.tr_heji td').eq(3).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(4).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(5).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(6).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(7).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(8).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(9).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(10).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(11).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(12).text(data.heji.ke_price);
+                        $('.tr_heji td').eq(13).text("");
+                        $('.tr_heji td').eq(14).text("");
+                        $('.tr_heji td').eq(15).text("");
+                    }else if(data.status == 1){
+                        var str = "<tr><td colspan='16' style='background:#ffffff;height:100px;line-height:100px;text-align:center;'>没有任何数据！</td></tr>";
+                        $('.tbody_box').html("");
+                        $('.tbody_box').append(str);
+                        $('.tr_heji td').eq(1).text("0");
+                        $('.tr_heji td').eq(2).text("0");
+                        $('.tr_heji td').eq(3).text("0");
+                        $('.tr_heji td').eq(4).text("0");
+                        $('.tr_heji td').eq(5).text("0");
+                        $('.tr_heji td').eq(6).text("0");
+                        $('.tr_heji td').eq(7).text("0");
+                        $('.tr_heji td').eq(8).text("0");
+                        $('.tr_heji td').eq(9).text("0");
+                        $('.tr_heji td').eq(10).text("0");
+                        $('.tr_heji td').eq(11).text("0");
+                        $('.tr_heji td').eq(12).text("0");
+                        $('.tr_heji td').eq(13).text("");
+                        $('.tr_heji td').eq(14).text("");
+                        $('.tr_heji td').eq(15).text("");
+                    }
+                },
+                error:function() {
+                    var str = "<tr><td colspan='16' style='background:#ffffff;height:100px;line-height:100px;text-align:center;'>服务器开小差...</td></tr>";
+                    $('.tbody_box').html("");
+                    $('.tbody_box').append(str);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

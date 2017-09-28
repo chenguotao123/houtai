@@ -1,0 +1,174 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>单品月报表</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="mendian_single_month_report.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            <span class="all_mendian">单品月报表</span>
+            <a href="javascript:void(0);" class="btn_excel">
+                <span>导出</span>
+                <i class="excel"></i>
+            </a>
+        </div>
+        <form id="form_tijiao" action="" method="post">
+            <div class="table-search">
+                <span class="search-box clearfix">
+                    <!-- 月报表，默认显示本月数据，仅显示本年度月份.... -->
+                    <span class="beautify_select now_month_one">
+                        <select name="now_month_one" class="beautify_input">
+                            <option value="1">上月</option>
+                            <option value="0" selected>本月</option>
+                        </select>
+                    </span>
+                    <i class="icon_heng">-</i>
+                    <span class="beautify_select now_month_two">
+                        <select name="now_month_two" class="beautify_input">
+                            <option value="1">上月</option>
+                            <option value="0" selected>本月</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select business">
+                        <select name="business" class="beautify_input">
+                            <option value="0" selected>=所属业务=</option>
+                            <option value="1">业务1</option>
+                            <option value="2">业务2</option>
+                            <option value="3">业务3</option>
+                        </select>
+                    </span>
+                    <span class="beautify_select customer_service">
+                        <select name="customer_service" class="beautify_input">
+                            <option value="0" selected>=所属客服=</option>
+                            <option value="1">客服1</option>
+                            <option value="2">客服2</option>
+                            <option value="3">客服3</option>
+                        </select>
+                    </span>                    
+                    <input class="input_textbox" type="text" name="name" placeholder="门店/简拼/商品名">
+                    <a href="javascript:void(0);" class="btn_search" onclick="document.getElementById('form_tijiao').submit();" >
+                        查询<i class="search"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="btn_reload" onclick="window.location.reload();">
+                        重置<i class="reload"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="table-box">
+            <table class="mian-table">
+                <thead>
+                    <tr>
+                        <th width="10%">门店简称</th>
+                        <th width="10%">商品名称</th>
+                        <th width="8%">订单数(单)</th>
+                        <th width="8%">
+                            <a class="th-sort" href="javascript:void(0);">总销量(盒)<img class="th-icon-sort" src="../../images/sort_bot.png" alt=""></a>
+                        </th>
+                        <th width="8%">客单量(盒/单)</th>
+                        <th width="8%">新客订单(单)</th>
+                        <th width="8%">新客销量(盒)</th>
+                        <th width="8%">新客单量(盒/单)</th>
+                        <th width="8%">复购订单(单)</th>
+                        <th width="8%">复购销量(盒)</th>
+                        <th width="8%">复购单量(盒/单)</th>
+                        <th width="8%">当前月份</th>
+                    </tr>
+                </thead>
+                <tbody class="main_tbody">
+                    <tr>
+                        <td>1111</td>
+                        <td><i class="zengpin">[赠品]</i>海龙</td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>1</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>2222</td>
+                        <td>111111111</td>
+                        <td>111111111</td>
+                        <td>20</td>
+                        <td>20</td>
+                        <td>2</td>
+                        <td>13</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>36</td>
+                        <td>1</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+                <!-- 合计部分,需计算 -->
+                <tr class="tr_heji">
+                    <td>合计</td>
+                    <td></td>
+                    <td>111111111</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 分页部分 -->
+        <div class="page-box clearfix">
+            <div class="pagination clearfix">
+                <select class="pagination-list">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <a href="javascript:void(0)" class="left-btn-all current">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="left-btn current">
+                    <i></i>
+                </a>
+                <span class="span_text">第</span>
+                <input class="page-num" type="text" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))" value="1" size="2">
+                <span class="span_text">共<i>15</i>页</span>
+                <a href="javascript:void(0)" class="right-btn">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="right-btn-all">
+                    <i></i>
+                </a>
+                <a href="javascript:void(0)" class="btn_refresh" onclick="window.location.reload();">
+                    <i></i>
+                </a>
+            </div>
+            <div class="page-info">显示1到10，共<span>20</span>条记录</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="mendian_single_month_report.js"></script>
+    <script type="text/javascript">
+        $(function(){   
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.table-tit .btn_excel {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+
+.input_textbox {
+	width: 250px;
+	height: 28px;
+	margin-left: 8px;
+}
+
+.beautify_select,
+.icon_heng,
+.input_textbox,
+.btn_search,
+.btn_reload {
+	float: left;
+}
+
+.search-box .icon_heng {
+	display: block;
+	height: 34px;
+	line-height: 34px;
+	margin: 0 5px;
+}
+
+
+.mian-table tr th .th-sort .th-icon-sort {
+	left: 37px;
+}

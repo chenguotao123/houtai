@@ -1,0 +1,167 @@
+.table-tit .btn_excel,
+.table-tit .btn_back {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 999;
+	font-weight: normal;
+}
+.table-tit .btn_back {
+	right: 120px;
+}
+
+.mian-table .main_tbody tr td {
+	height: 55px;
+	line-height: 55px;
+}
+.mian-table .main_tbody tr td.td_photo_img img {
+	max-width: 90%;
+	max-height: 50px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.business_select,
+.isfollow_select,
+.isfans_select,
+.input_textbox,
+.btn_search,
+.btn_reload {
+	float: left;
+}
+
+.business_select,
+.isfollow_select,
+.isfans_select,
+.input_textbox {
+	margin-right: 8px;
+}
+
+.input_textbox {
+	width: 250px;
+}
+
+.btn_search {
+	margin-left: 4px;
+}
+
+.btn_update,
+.btn_del {
+	margin-left: 0;
+}
+
+.input-text {
+	width: 200px;
+	height: 28px;
+	line-height: 28px;
+	padding: 2px 4px;
+	border: 1px solid #bbb;
+	font-size: 13px;
+}
+
+.table-tit .btn_clerk {
+	position: absolute;
+	top: 10px;
+	right: 240px;
+	z-index: 999;
+	font-weight: normal;
+    padding-left: 36px;
+}
+
+.table-tit .btn_clerk .icon_clerk {
+	width: 20px;
+	height: 20px;
+	display: block;
+	background: url(../../images/icon_customer_list.png) no-repeat;	
+	background-size: 20px 20px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	margin-top: -10px;
+}
+
+.btn_wechat {
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	display: inline-block;
+	margin-right: 3px;
+}
+.btn_wechat img {
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+}
+
+.btn_sou {
+	display: inline-block;
+	width: 55px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid #aaa;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px; 
+	background-color: #ededed;
+	font-size: 12px;
+	margin: 0 4px;
+	margin-bottom: 4px;
+}
+.bind_selected {
+	font-size: 12px;
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: url(../../images/left_dbjiantou.png) no-repeat center left;
+	border: 1px solid #aaa;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px; 
+	background-color: #ededed;
+	margin-left: 4px;
+	margin-bottom: 4px;
+}
+.btn_sou:hover,
+.bind_selected:hover {
+	background-color: #fff;
+}
+
+
+/*待审核*/
+.btn_review {
+	width: 60px;
+	line-height: 35px;
+	height: 35px;
+	text-decoration: none;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0 12px;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #1da02b;
+	color: #fff;
+	font-weight: normal;
+	position: absolute;
+	right: 240px;
+	top: 10px;
+	padding-left: 26px;
+}
+.btn_review .review {
+	width: 20px;
+	height: 20px;
+	display: block;
+	background: url(../../images/icon_review.png) no-repeat;
+	background-size: 20px 20px;
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	margin-top: -10px;
+}

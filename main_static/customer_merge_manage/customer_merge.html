@@ -1,0 +1,189 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>合并客户</title> 
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/beautify_select.css">
+    <link rel="stylesheet" href="customer_merge.css">
+    <style type="text/css">
+        .tab-table tr td {
+            height: 50px;
+            line-height: 50px;
+        }
+        .input_text {
+            width: 140px;
+            height: 22px;
+            padding: 5px;
+            display: inline-block;
+            margin-left: 7px;
+        }
+        .btn_quxiao {
+            margin: 0 7px;
+        }
+        .icon_dbjiantou {
+            width: 16px;
+            height: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="mian">
+        <div class="table-tit">
+            合并客户
+        </div>
+        <div class="tab_table-box">
+            <table id="tab_table" class="tab-table">
+                <tr>
+                    <td colspan="7" style="font-weight:bold;">原客户</td>
+                    <td class="td-tit" colspan="1" style="text-align:center;">操作</td>
+                    <td colspan="7" style="font-weight:bold;">合并到</td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <input class="input_text out_input" type="text" name="name" placeholder="ID/姓名/简拼/手机">
+                        <a href="javascript:void(0)" class="btn_quxiao btn_search_out" style="text-align:center;">搜&nbsp;索</a>
+                        <span class="beautify_select customer_select_out_box">
+                            <select id="customer_select_out" name="customer_select_out" class="beautify_input">
+                                <option value="0" selected="true"></option>
+                            </select>
+                        </span>
+                    </td>
+                    <td colspan="1" style="text-align:center;"><img class="icon_dbjiantou" src="../../images/icon_dbjiantou.png" alt=""></td>
+                    <td colspan="7">
+                        <input class="input_text in_input" type="text" name="name" placeholder="ID/姓名/简拼/手机">
+                        <a href="javascript:void(0)" class="btn_quxiao btn_search_in" style="text-align:center;">搜&nbsp;索</a>
+                        <span class="beautify_select customer_select_in_box">
+                            <select id="customer_select_in" name="customer_select_in" class="beautify_input">
+                                <option value="0" selected="true"></option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="btn-box" style="margin-top:80px;">
+            <a href="javascript:void(0)" class="btn_queding">提&nbsp;交</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/base.js"></script>
+    <script type="text/javascript" src="../../js/jquery.beautify.select.js"></script>
+    <script type="text/javascript" src="customer_merge.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //select美化下拉框
+            $('.beautify_input').cssSelect();
+            //判断输入框是否为空
+            $('.btn_search_out').on('click',function() {
+                if($('.out_input').val() == ""){                    
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("请输入关键词");
+                    $('.mask_tishi',window.parent.document).show();
+                }else{
+                    //不为空，则异步请求数据，并填充到select   
+                    var customer_value = $('.out_input').val(); 
+                    $.ajax({
+                        url: "demo.php", 
+                        data:{'customer_value':customer_value},
+                        type:"post",  
+                        dataType:"json",
+                        success: function(data){ 
+                            if(data != null && data.status == 0){
+                                var str = "";
+                                str += "<select id='customer_select_out' name='customer_select_out' class='beautify_input'>"; 
+                                for(var i=0;i<data.content.length;i++){
+                                    if(i==0){
+                                        str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                                    }else{
+                                        str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                                    }
+                                }
+                                str += "</select>";
+                                $(".customer_select_out_box").html("");
+                                $('.customer_select_out_box').append(str);
+                                $('.beautify_input').cssSelect();
+                            }
+                        }
+                    });
+                }
+            });
+            $('.btn_search_in').on('click',function() {
+                if($('.in_input').val() == ""){                    
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("请输入关键词");
+                    $('.mask_tishi',window.parent.document).show();
+                }else{                
+                    //不为空，则异步请求数据，并填充到select   
+                    var customer_value = $('.in_input').val(); 
+                    $.ajax({
+                        url: "demo.php", 
+                        data:{'customer_value':customer_value},
+                        type:"post",  
+                        dataType:"json",
+                        success: function(data){ 
+                            if(data != null && data.status == 0){
+                                var str = "";
+                                str += "<select id='customer_select_in' name='customer_select_in' class='beautify_input'>"; 
+                                for(var i=0;i<data.content.length;i++){
+                                    if(i==0){
+                                        str += "<option value ='"+ i +"' selected='true'>"+ data.content[i] +"</option>";
+                                    }else{
+                                        str += "<option value ='"+ i +"'>"+ data.content[i] +"</option>";
+                                    }
+                                }
+                                str += "</select>";
+                                $(".customer_select_in_box").html("");
+                                $('.customer_select_in_box').append(str);
+                                $('.beautify_input').cssSelect();
+                            }
+                        }
+                    });
+                }
+            });
+
+            //点击确定按钮进行提交
+            $('.btn_queding').on('click',function() {
+                if($('#customer_select_out option:selected').text() == "" && $('#customer_select_in option:selected').text() == ""){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-请选择转出、转入客户！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else if($('#customer_select_out option:selected').text() == ""){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-请选择转出客户！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else if($('#customer_select_in option:selected').text() == ""){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-请选择转入客户！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else if($('#customer_select_out option:selected').text() == $('#customer_select_in option:selected').text()){
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","-150px 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("-转入客户不能为转出客户！");
+                    $('.mask_tishi',window.parent.document).show();
+                }else{
+                    //下面为正确
+                    $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","0 0");
+                    $('.tishi-box-cont .question_text',window.parent.document).text("提交成功");
+                    $('.mask_tishi',window.parent.document).show();
+                }
+            });
+
+            //关闭
+            $('.button_ok',window.parent.document).on('click',function() {
+                $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","0 0");
+                $('.tishi-box-cont .question_text',window.parent.document).text("提交成功");
+                $('.mask_tishi',window.parent.document).hide();
+            });
+            $('.dialog_close',window.parent.document).on('click',function() {
+                $('.tishi-box-cont .tishi-question',window.parent.document).css("background-position","0 0");
+                $('.tishi-box-cont .question_text',window.parent.document).text("提交成功");
+                $('.mask_tishi',window.parent.document).hide();
+            });
+        });
+    </script>
+</body>
+</html>

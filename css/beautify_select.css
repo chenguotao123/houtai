@@ -1,0 +1,34 @@
+/*被选中的文本样式*/
+::-webkit-selection{ background:#000; color:#fff; text-shadow:none; }
+::-moz-selection{ background:#000; color:#fff; text-shadow:none; }
+::selection{ background:#000; color:#fff; text-shadow:none; }
+
+
+.cssSelect { white-space: nowrap; 
+		 display: inline-block;
+		vertical-align: middle;
+		margin-bottom: 3px;
+/* 	 display: block;
+	float: left;  */
+}
+.cssSelect *{ display: block; }
+.cssSelect a{ color: #222; outline-width: 0px; text-decoration: none; }
+.cssSelect .selectBox{ cursor: pointer; border:solid 1px #aaaaaa; float: left; }
+.cssSelect .selectLt{ cursor: pointer; float: left; text-align: left; }
+.cssSelect .selectRt{ cursor: pointer; background:url('../images/select_icons.png') -53px -158px no-repeat #f2f2f2; border-left: 1px solid #c8c8c8; float: left}
+.cssSelect .selectBox{}
+.cssSelect .selectLt{ overflow: hidden; height: 35px; line-height: 35px; padding: 0 6px; background: #fff; color: #222; }
+.cssSelect .selectRt{ height:35px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 20px}
+.cssSelect .sNormal{ background-position: 0px 0px}
+/*.cssSelect .sNormal .selectRt { background-position: 100% 0px}*/
+.cssSelect .sHover{ background-position: 0px -50px}
+.cssSelect .sHover .selectRt{ background: url('../images/select_icons.png') -53px -158px no-repeat #e6e6e6; }
+.cssSelect .sPressDown{ }
+.cssSelect .sPressDown .selectRt{ background: url('../images/select_icons.png') -53px -158px no-repeat #e6e6e6; }
+.cssSelect .optionsBox{ position: absolute; border: 1px solid #dbdbdb; padding: 2px; margin: 0px; background: #fff; z-index: 999999;}
+.cssSelect .optionsInnerBox { }
+.cssSelect .optionBox { cursor: pointer; padding: 2px 35px 2px 15px; margin: 0px; height:25px; line-height: 25px; }
+.cssSelect .optionBox span { cursor: pointer; font-size:12px}
+.cssSelect .oNormal { }
+.cssSelect .oHover{ background: #59c865; color: #fff; }
+.cssSelect .selected{ background: #1da02b; color: #fff; }

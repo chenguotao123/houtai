@@ -1,0 +1,25 @@
+/*基本信息部分*/
+.tab-table tr td input {
+	width: 140px;
+	height: 28px;
+	line-height: 28px;
+	padding: 2px 4px;
+	border: 1px solid #bbb;
+	font-size: 13px;
+}
+.tab-table tr td .customer input {
+	width: 200px;
+}
+.tab-table tr td .sort input {
+	width: 40px;
+}
+.tab-table tr td .integral_between input {
+	width: 80px;
+}
+.tab-table tr td .jinyong {
+	margin-bottom: 4px;
+}
+.tab-table tr td .jinyong input {
+	width: 14px;
+	display: inline-block;
+}
